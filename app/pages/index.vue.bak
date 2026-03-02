@@ -5,7 +5,6 @@ const localePath = useLocalePath();
 /* region Meta */
 useSeoMeta({
   title: t("pages.index.meta.title"),
-  description: t("pages.index.hero.description"),
 });
 /* endregion */
 
@@ -22,74 +21,29 @@ const global = {
   available: true,
 };
 
-const experienceItems = computed(() => [
-  {
-    position: t("pages.index.experience.items[0].position"),
-    date: t("pages.index.experience.items[0].date"),
-    company: {
-      name: t("pages.index.experience.items[0].company.name"),
-      logo: t("pages.index.experience.items[0].company.logo"),
-      url: t("pages.index.experience.items[0].company.url"),
-      color: t("pages.index.experience.items[0].company.color"),
-    },
-  },
-  {
-    position: t("pages.index.experience.items[1].position"),
-    date: t("pages.index.experience.items[1].date"),
-    company: {
-      name: t("pages.index.experience.items[1].company.name"),
-      logo: t("pages.index.experience.items[1].company.logo"),
-      url: t("pages.index.experience.items[1].company.url"),
-      color: t("pages.index.experience.items[1].company.color"),
-    },
-  },
-]);
+const experienceItems = computed<any[]>(() => {
+  return tm("pages.index.experience.items") as any;
+});
 
-const testimonialItems = computed(() => [
-  {
-    quote: t("pages.index.testimonials.items[0].quote"),
-    author: {
-      name: t("pages.index.testimonials.items[0].author.name"),
-      description: t("pages.index.testimonials.items[0].author.description"),
-    },
-  },
-  {
-    quote: t("pages.index.testimonials.items[1].quote"),
-    author: {
-      name: t("pages.index.testimonials.items[1].author.name"),
-      description: t("pages.index.testimonials.items[1].author.description"),
-    },
-  },
-]);
+const testimonialItems = computed<any[]>(() => {
+  return tm("pages.index.testimonials.items") as any;
+});
 
-const faqItems = computed(() => [
-  {
-    label: t("pages.index.faq.categories[0].title"),
-    questions: [
-      {
-        label: t("pages.index.faq.categories[0].questions[0].label"),
-        content: t("pages.index.faq.categories[0].questions[0].content"),
-      },
-      {
-        label: t("pages.index.faq.categories[0].questions[1].label"),
-        content: t("pages.index.faq.categories[0].questions[1].content"),
-      },
-    ],
-  },
-  {
-    label: t("pages.index.faq.categories[1].title"),
-    questions: [
-      {
-        label: t("pages.index.faq.categories[1].questions[0].label"),
-        content: t("pages.index.faq.categories[1].questions[0].content"),
-      },
-      {
-        label: t("pages.index.faq.categories[1].questions[1].label"),
-        content: t("pages.index.faq.categories[1].questions[1].content"),
-      },
-    ],
-  },
-]);
+const faqItems = computed(() => {
+  const key: string = "pages.index.faq.categories";
+  const categories: any = tm(key);
+  return Array.isArray(categories)
+    ? categories.map((cat: any) => ({
+        label: rt(cat.title),
+        questions: Array.isArray(cat.questions)
+          ? cat.questions.map((q: any) => ({
+              label: rt(q.label),
+              content: rt(q.content),
+            }))
+          : [],
+      }))
+    : [];
+});
 
 const { data: posts } = await useAsyncData(
   `index-blogs-${locale.value}`,

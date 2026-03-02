@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { NuxtError } from "#app";
-import { navLinks } from "~/utils/links";
 
 defineProps({
   error: {
@@ -9,9 +8,45 @@ defineProps({
   },
 });
 
+const { t, locale } = useI18n();
+const localePath = useLocalePath();
+
+const searchLinks = computed(() => [
+  {
+    label: t("app.navigation.home"),
+    icon: "i-lucide-home",
+    to: localePath("/"),
+  },
+  {
+    label: t("app.navigation.projects"),
+    icon: "i-lucide-folder",
+    to: localePath("/projects"),
+  },
+  {
+    label: t("app.navigation.resume"),
+    icon: "i-lucide-layout",
+    to: localePath("/resume"),
+  },
+  {
+    label: t("app.navigation.blog"),
+    icon: "i-lucide-file-text",
+    to: localePath("/blog"),
+  },
+  {
+    label: t("app.navigation.about"),
+    icon: "i-lucide-user",
+    to: localePath("/about"),
+  },
+  {
+    label: t("app.navigation.contact"),
+    icon: "i-lucide-mail",
+    to: localePath("/contact"),
+  },
+]);
+
 useHead({
   htmlAttrs: {
-    lang: "en",
+    lang: locale.value,
   },
 });
 
@@ -21,16 +56,23 @@ useSeoMeta({
 });
 
 const [{ data: navigation }, { data: files }] = await Promise.all([
-  useAsyncData("navigation", () => {
-    return queryCollectionNavigation("blog");
-  }),
-  useLazyAsyncData(
-    "search",
+  useAsyncData(
+    `navigation-${locale.value}`,
     () => {
-      return queryCollectionSearchSections("blog");
+      const collection = `${locale.value}_blog` as any;
+      return queryCollectionNavigation(collection);
+    },
+    { watch: [locale] },
+  ),
+  useLazyAsyncData(
+    `search-${locale.value}`,
+    () => {
+      const collection = `${locale.value}_blog` as any;
+      return queryCollectionSearchSections(collection);
     },
     {
       server: false,
+      watch: [locale],
     },
   ),
 ]);
@@ -38,7 +80,7 @@ const [{ data: navigation }, { data: files }] = await Promise.all([
 
 <template>
   <div>
-    <MCAppHeader :links="navLinks" />
+    <MCAppHeader />
 
     <UMain>
       <UContainer>
@@ -55,7 +97,7 @@ const [{ data: navigation }, { data: files }] = await Promise.all([
         :files="files"
         shortcut="meta_k"
         :navigation="navigation"
-        :links="navLinks"
+        :links="searchLinks"
         :fuse="{ resultLimit: 42 }"
       />
     </ClientOnly>

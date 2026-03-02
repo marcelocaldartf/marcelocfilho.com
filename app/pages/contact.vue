@@ -27,8 +27,13 @@ const isLoading = ref(false);
 
 async function onSubmit(event: FormSubmitEvent<ContactFormData>) {
   isLoading.value = true;
-  // Mock API call
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  const { name, email, message } = state.value;
+  const targetEmail = t("pages.contact.details.emailValue");
+  const subject = encodeURIComponent(`Contact from ${name}`);
+  const body = encodeURIComponent(`${message}\n\n---\nFrom: ${name}\nEmail: ${email}`);
+
+  window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
 
   isLoading.value = false;
   toast.add({
@@ -49,19 +54,28 @@ const contactInfo = computed(() => [
     value: t("pages.contact.details.emailValue"),
   },
   {
-    icon: "i-lucide-map-pin",
-    label: t("pages.contact.details.location"),
-    value: t("pages.contact.details.locationValue"),
+    icon: "i-simple-icons-whatsapp",
+    label: t("pages.contact.details.whatsapp"),
+    value: t("pages.contact.details.whatsappValue"),
   },
 ]);
 
 const socialLinks = [
-  { icon: "i-simple-icons-soundcloud", name: "SoundCloud", url: "https://soundcloud.com/marcelo-filho-32565359" },
-  { icon: "i-simple-icons-linkedin", name: "LinkedIn", url: "https://www.linkedin.com/in/marcelocfilho/" },
+  {
+    icon: "i-simple-icons-soundcloud",
+    name: "SoundCloud",
+    url: "https://soundcloud.com/marcelo-filho-32565359",
+  },
+  {
+    icon: "i-simple-icons-linkedin",
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/marcelocfilho/",
+  },
 ];
 
-useHead({
+useSeoMeta({
   title: t("pages.contact.meta.title"),
+  description: t("pages.contact.hero.description"),
 });
 </script>
 

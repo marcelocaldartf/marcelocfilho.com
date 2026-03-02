@@ -1,15 +1,35 @@
 {
-  "welcome": "Bem-vindo",
   "app": {
-    "language_picker": "Escolher Idioma"
+    "language_picker": "Escolher Idioma",
+    "switchTheme": "Mudar Tema",
+    "seoTitleTemplate": "%s - Marcelo Caldart Filho",
+    "navigation": {
+      "home": "Início",
+      "projects": "Projetos",
+      "resume": "Currículo",
+      "blog": "Blog",
+      "about": "Sobre",
+      "contact": "Contato"
+    }
   },
   "pages": {
+    "blog": {
+      "copyLink": "Copiar link",
+      "linkCopied": "Link copiado!"
+    },
+    "projects": {
+      "viewProject": "Ver Projeto"
+    },
+    "global": {
+      "errors": {
+        "notFound": "Página não encontrada"
+      }
+    },
     "contact": {
       "meta": {
         "title": "Contato | Marcelo Caldart Filho"
       },
       "hero": {
-        "headline": "Contato",
         "title": "Envie-me uma mensagem",
         "description": "Sinta-se à vontade para entrar em contato para consultas de negócios ou outros tópicos!"
       },
@@ -23,7 +43,7 @@
           },
           "email": {
             "label": "Endereço de E-mail",
-            "placeholder": "nome@exemplo.com",
+            "placeholder": "nome{'@'}exemplo.com",
             "error": "Por favor, insira um endereço de e-mail válido."
           },
           "message": {
@@ -41,9 +61,9 @@
       "details": {
         "title": "Detalhes de Contato",
         "email": "E-mail",
-        "emailValue": "hello{'@'}marcelocfilho.com",
-        "location": "Localização",
-        "locationValue": "Curitiba, Brasil",
+        "emailValue": "marcelocfilho96{'@'}gmail.com",
+        "whatsapp": "WhatsApp",
+        "whatsappValue": "41999862882",
         "socials": "Também estou disponível através das minhas redes sociais:"
       }
     },
@@ -63,7 +83,6 @@
         "description": "Designer de som, artista de Foley e Compositor com bacharelado em Música. Ofereço produções de áudio para jogos, projetos audiovisuais, anúncios e branding. Minha abordagem combina estratégia criativa com expertise técnica, transformando conceitos em experiências sonoras propositais."
       },
       "experience": {
-        "title": "Experiência Profissional",
         "items": [
           {
             "position": "Audio Designer na",
@@ -93,7 +112,6 @@
         "readMore": "Ler Artigo"
       },
       "testimonials": {
-        "title": "O que as pessoas dizem",
         "items": [
           {
             "quote": "O design de som do Marcelo deu vida ao nosso projeto. Sua atenção aos detalhes em Foley e faixas atmosféricas é excepcional. Ele não apenas entrega áudio; ele constrói mundos sonoros que combinam perfeitamente com a visão do jogo.",
@@ -149,7 +167,6 @@
         "title": "Currículo | Marcelo Caldart Filho"
       },
       "sidebar": {
-        "name": "Marcelo Caldart Filho",
         "location": "Curitiba, Brasil",
         "availability": "Disponível"
       },
@@ -170,16 +187,12 @@
       "languages": {
         "title": "Idiomas",
         "levels": {
-          "fluent": "Fluente",
           "professional": "Profissional",
-          "native": "Nativo",
-          "intermediate": "Intermediário",
-          "basic": "Básico"
+          "native": "Nativo"
         },
         "items": {
           "english": "Inglês",
-          "portuguese": "Português",
-          "spanish": "Espanhol"
+          "portuguese": "Português"
         }
       },
       "hero": {
@@ -192,18 +205,13 @@
       },
       "sections": {
         "skills": {
-          "title": "Habilidades",
-          "webDev": "Produção de Áudio",
-          "gameDev": "Sound Design",
-          "design": "Filosofias Criativas"
+          "title": "Habilidades"
         },
         "tech": {
           "title": "Tecnologias",
           "categories": {
             "audio": "Produção de Áudio",
-            "video": "Edição de Vídeo",
-            "recording": "Gravação & Equipamento",
-            "software": "Software & Ferramentas"
+            "video": "Edição de Vídeo"
           }
         },
         "education": {

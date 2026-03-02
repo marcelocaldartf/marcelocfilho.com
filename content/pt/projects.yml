@@ -1,0 +1,11 @@
+title: Projetos
+description: Uma coleção dos meus trabalhos em sound design e produção de áudio.
+links:
+  - label: "Vamos conversar"
+    color: "primary"
+    to: "/contact"
+  - label: "Ver SoundCloud"
+    color: "neutral"
+    variant: "outline"
+    to: "https://soundcloud.com/marcelo-filho-32565359"
+    target: "_blank"

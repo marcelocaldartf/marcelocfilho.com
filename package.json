@@ -9,14 +9,17 @@
     "dev": "nuxt dev",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "i18n": "vue-i18n-extract report --vueFiles './{app,server,shared}/**/*.?(js|vue|ts)' --languageFiles './i18n/locales/*.?(json|yml|yaml|js)'",
+    "i18n:add": "vue-i18n-extract report --vueFiles './{app,server,shared}/**/*.?(js|vue|ts)' --languageFiles './i18n/locales/*.?(json|yml|yaml|js)' --add",
+    "i18n:remove": "vue-i18n-extract report --vueFiles './{app,server,shared}/**/*.?(js|vue|ts)' --languageFiles './i18n/locales/*.?(json|yml|yaml|js)' --remove",
+    "i18n:fix": "vue-i18n-extract report --vueFiles './{app,server,shared}/**/*.?(js|vue|ts)' --languageFiles './i18n/locales/*.?(json|yml|yaml|js)' --add --remove",
     "typecheck": "nuxt prepare && vue-tsc --noEmit && nuxt typecheck",
     "lint": "oxlint .",
     "lint:fix": "oxlint . --fix",
     "format": "oxfmt --check",
     "format:fix": "oxfmt .",
-    "i18n": "vue-i18n-extract report --vueFiles './{app,server,shared}/**/*.?(js|vue|ts)' --languageFiles './i18n/locales/*.?(json|yml|yaml|js)'",
-    "check": "bun run typecheck && bun run lint && bun run format && bun run i18n",
-    "fix": "bun run lint:fix && bun run format:fix"
+    "check": "bun run i18n && bun run typecheck && bun run lint && bun run format",
+    "fix": "bun run i18n:fix && bun run lint:fix && bun run format:fix"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.90",
@@ -32,6 +35,7 @@
     "better-sqlite3": "^12.6.2",
     "date-fns": "^4.1.0",
     "nuxt": "^4.3.1",
+    "nuxt-llms": "^0.2.0",
     "nuxt-og-image": "^5.1.13",
     "nuxt-studio": "1.3.3",
     "tailwind-merge": "^3.4.0",

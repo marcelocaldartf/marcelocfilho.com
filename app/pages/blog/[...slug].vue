@@ -3,22 +3,48 @@ import type { ContentNavigationItem } from "@nuxt/content";
 import { mapContentNavigation } from "@nuxt/ui/utils/content";
 import { findPageBreadcrumb } from "@nuxt/content/utils";
 
+definePageMeta({
+  i18n: {
+    paths: {
+      pt: "/blog/[...slug]",
+    },
+  },
+});
 const route = useRoute();
+const { t, locale } = useI18n();
+const localePath = useLocalePath();
 
-const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection("blog").path(route.path).first(),
+const slug = computed(() => {
+  const s = Array.isArray(route.params.slug) ? route.params.slug.join("/") : route.params.slug;
+  return `/blog/${s}`;
+});
+
+const { data: page } = await useAsyncData(
+  `blog-${route.path}`,
+  async () => {
+    const collection = `${locale.value}_blog` as any;
+    return queryCollection(collection).path(slug.value).first();
+  },
+  { watch: [locale] },
 );
+
 if (!page.value)
   throw createError({ statusCode: 404, statusMessage: "Page not found", fatal: true });
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
-  queryCollectionItemSurroundings("blog", route.path, {
-    fields: ["description"],
-  }),
+
+const { data: surround } = await useAsyncData(
+  `${route.path}-surround`,
+  async () => {
+    const collection = `${locale.value}_blog` as any;
+    return queryCollectionItemSurroundings(collection, slug.value, {
+      fields: ["description"],
+    });
+  },
+  { watch: [locale] },
 );
 
 const navigation = inject<Ref<ContentNavigationItem[]>>("navigation", ref([]));
 const blogNavigation = computed(
-  () => navigation.value.find((item) => item.path === "/blog")?.children || [],
+  () => navigation.value.find((item) => item.path === localePath("/blog"))?.children || [],
 );
 
 const breadcrumb = computed(() =>
@@ -54,7 +80,7 @@ useSeoMeta({
 const articleLink = computed(() => `${window?.location}`);
 
 const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString("en-US", {
+  return new Date(dateString).toLocaleDateString(locale.value, {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -63,29 +89,21 @@ const formatDate = (dateString: string) => {
 </script>
 
 <template>
-  <UMain class="px-2">
-    <UContainer class="relative min-h-screen">
-      <UPage v-if="page">
-        <ULink to="/blog" class="text-sm flex items-center gap-1 mb-4">
-          <UIcon name="lucide:chevron-left" />
-          Blog
-        </ULink>
-        <UPageHeader
-          :title="page.title"
-          :description="page.description"
-          class="border-none"
-        >
-          <template #headline>
-            <div class="flex text-xs text-muted items-center gap-2">
-              <span v-if="page.date">
-                {{ formatDate(page.date) }}
-              </span>
-              <span v-if="page.date && page.minRead"> - </span>
-              <span v-if="page.minRead"> {{ page.minRead }} MIN READ </span>
-            </div>
-          </template>
-        </UPageHeader>
+  <UContainer>
+    <UPage v-if="page">
+      <UPageHeader :title="page.title" :description="page.description" class="border-none">
+        <template #headline>
+          <div class="flex text-xs text-muted items-center gap-2">
+            <span v-if="page.date">
+              {{ formatDate(page.date) }}
+            </span>
+            <span v-if="page.date && page.minRead"> - </span>
+            <span v-if="page.minRead"> {{ page.minRead }} MIN READ </span>
+          </div>
+        </template>
+      </UPageHeader>
 
+      <UPageBody>
         <NuxtImg
           :src="page.image"
           :alt="page.title"
@@ -101,21 +119,51 @@ const formatDate = (dateString: string) => {
             v-bind="page.author"
           />
         </div>
-        <UPageBody class="max-w-3xl mx-auto">
-          <ContentRenderer v-if="page.body" :value="page" />
 
-          <div class="flex items-center justify-end gap-2 text-sm text-muted">
-            <UButton
-              size="sm"
-              variant="link"
-              color="neutral"
-              label="Copy link"
-              @click="copyToClipboard(articleLink, 'Article link copied to clipboard')"
+        <div class="max-w-none">
+          <ContentRenderer
+            v-if="page.body"
+            :value="page"
+            class="prose prose-primary dark:prose-invert"
+          />
+        </div>
+
+        <div class="flex items-center justify-end gap-2 text-sm text-muted mb-8">
+          <UButton
+            size="sm"
+            variant="link"
+            color="neutral"
+            :label="t('pages.blog.copyLink')"
+            @click="copyToClipboard(articleLink, t('pages.blog.linkCopied'))"
+          />
+        </div>
+
+        <USeparator class="my-16" />
+
+        <UContentSurround :surround="surround" />
+      </UPageBody>
+
+      <template #left>
+        <UPageAside>
+          <div class="flex flex-col gap-sm">
+            <div class="text-sm font-semibold text-highlighted">
+              {{ t("app.navigation.blog") }}
+            </div>
+            <UContentNavigation
+              highlight
+              :navigation="
+                navigation?.find((item) => item.path === localePath('/blog'))?.children || []
+              "
             />
           </div>
-          <UContentSurround :surround />
-        </UPageBody>
-      </UPage>
-    </UContainer>
-  </UMain>
+        </UPageAside>
+      </template>
+
+      <template v-if="page?.body?.toc?.links?.length" #right>
+        <UPageAside>
+          <UContentToc :links="page.body?.toc?.links" :ui="{ container: 'lg:py-0' }" />
+        </UPageAside>
+      </template>
+    </UPage>
+  </UContainer>
 </template>

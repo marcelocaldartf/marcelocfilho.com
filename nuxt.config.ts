@@ -14,14 +14,16 @@ export default defineNuxtConfig({
 
   modules: [
     "@nuxt/a11y",
+    "@nuxt/content",
     "@nuxt/image",
     "@nuxt/ui",
-    "@nuxt/content",
+    "@nuxtjs/i18n",
     "@nuxtjs/robots",
     "@nuxtjs/sitemap",
     "@vueuse/nuxt",
+    "nuxt-llms",
     "nuxt-og-image",
-    "@nuxtjs/i18n",
+    "nuxt-studio",
   ],
 
   $development: {
@@ -66,51 +68,18 @@ export default defineNuxtConfig({
     defaultLocale: "en",
     langDir: "locales",
     locales: [
-      //{
-      //  code: "ar",
-      //  name: "العربية",
-      //  file: "ar.json"
-      //},
       {
         code: "en",
         name: "English",
+        language: "en-US",
         file: "en.json",
       },
-      //{
-      //  code: "es",
-      //  name: "Español",
-      //  file: "es.json"
-      //},
-      //{
-      //  code: "fr",
-      //  name: "Français",
-      //  file: "fr.json"
-      //},
-      //{
-      //  code: "ja",
-      //  name: "日本語",
-      //  file: "ja.json"
-      //},
-      //{
-      //  code: "ko",
-      //  name: "한국어",
-      //  file: "ko.json"
-      //},
       {
         code: "pt",
         name: "Português",
+        language: "pt-BR",
         file: "pt.json",
       },
-      //{
-      //  code: "ro",
-      //  name: "Română",
-      //  file: "ro.json"
-      //},
-      //{
-      //  code: "zh_cn",
-      //  name: "简体中文",
-      //  file: "zh_cn.json"
-      //}
     ],
   },
 
@@ -136,5 +105,57 @@ export default defineNuxtConfig({
     cloudflare: {
       baseURL: "https://cdn.marcelocfilho.com",
     },
+  },
+
+  content: {
+    build: {
+      markdown: {
+        toc: {
+          depth: 3,
+        },
+      },
+    },
+    database: {
+      type: "d1",
+      bindingName: "",
+    },
+  },
+
+  studio: {
+    i18n: {
+      defaultLocale: "en",
+    },
+    route: "/studio",
+    repository: {
+      provider: "github",
+      owner: "marcelocaldartf",
+      repo: "marcelocfilho.com",
+    },
+  },
+
+  llms: {
+    domain: "https://marcelocfilho.com",
+    title: "Marcelo Caldart Filho",
+    description: "My personal portfolio website.",
+    sections: [
+      {
+        title: "Projects",
+        description: "Projects I have worked on.",
+        contentCollection: "projects",
+        contentFilters: [
+          { field: "extension", operator: "=", value: "md" },
+          { field: "draft", operator: "<>", value: "true" },
+        ],
+      },
+      {
+        title: "Blog",
+        description: "My personal articles and opinion pieces.",
+        contentCollection: "blog",
+        contentFilters: [
+          { field: "extension", operator: "=", value: "md" },
+          { field: "draft", operator: "<>", value: "true" },
+        ],
+      },
+    ],
   },
 });

@@ -1,15 +1,35 @@
 {
-  "welcome": "Welcome",
   "app": {
-    "language_picker": "Switch Language"
+    "language_picker": "Switch Language",
+    "switchTheme": "Switch Theme",
+    "seoTitleTemplate": "%s - Marcelo Caldart Filho",
+    "navigation": {
+      "home": "Home",
+      "projects": "Projects",
+      "resume": "Resume",
+      "blog": "Blog",
+      "about": "About",
+      "contact": "Contact"
+    }
   },
   "pages": {
+    "blog": {
+      "copyLink": "Copy link",
+      "linkCopied": "Link copied!"
+    },
+    "projects": {
+      "viewProject": "View Project"
+    },
+    "global": {
+      "errors": {
+        "notFound": "Page not found"
+      }
+    },
     "contact": {
       "meta": {
         "title": "Contact | Marcelo Caldart Filho"
       },
       "hero": {
-        "headline": "Contact",
         "title": "Send me a message",
         "description": "Feel free to contact me for business inquiries or other topics!"
       },
@@ -41,9 +61,9 @@
       "details": {
         "title": "Contact Details",
         "email": "Email",
-        "emailValue": "hello{'@'}marcelocfilho.com",
-        "location": "Location",
-        "locationValue": "Global Remote",
+        "emailValue": "marcelocfilho96{'@'}gmail.com",
+        "whatsapp": "WhatsApp",
+        "whatsappValue": "41999862882",
         "socials": "I'm also available through my socials:"
       }
     },
@@ -63,7 +83,6 @@
         "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding. My approach blends creative strategy with technical expertise, transforming concepts into purposeful sonic experiences."
       },
       "experience": {
-        "title": "Work Experience",
         "items": [
           {
             "position": "Audio Designer at",
@@ -93,7 +112,6 @@
         "readMore": "Read Article"
       },
       "testimonials": {
-        "title": "What People Say",
         "items": [
           {
             "quote": "Marcelo's sound design brought our project to life. His attention to detail in Foley and atmospheric tracks is exceptional. He doesn't just deliver audio; he builds sonora worlds that perfectly match the game's vision.",
@@ -149,7 +167,6 @@
         "title": "Resume | Marcelo Caldart Filho"
       },
       "sidebar": {
-        "name": "Marcelo Caldart Filho",
         "location": "Curitiba, Brazil",
         "availability": "Available"
       },
@@ -170,16 +187,12 @@
       "languages": {
         "title": "Languages",
         "levels": {
-          "fluent": "Fluent",
           "professional": "Professional",
-          "native": "Native",
-          "intermediate": "Intermediate",
-          "basic": "Basic"
+          "native": "Native"
         },
         "items": {
           "english": "English",
-          "portuguese": "Portuguese",
-          "spanish": "Spanish"
+          "portuguese": "Portuguese"
         }
       },
       "hero": {
@@ -192,18 +205,13 @@
       },
       "sections": {
         "skills": {
-          "title": "Skills",
-          "webDev": "Audio Production",
-          "gameDev": "Sound Design",
-          "design": "Creative Philosophies"
+          "title": "Skills"
         },
         "tech": {
           "title": "Technologies",
           "categories": {
             "audio": "Audio Production",
-            "video": "Video Editing",
-            "recording": "Recording & Gear",
-            "software": "Software & Tools"
+            "video": "Video Editing"
           }
         },
         "education": {

@@ -1,7 +1,15 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData("projects-page", () => {
-  return queryCollection("pages").path("/projects").first();
-});
+const route = useRoute();
+const { locale, t } = useI18n();
+const localePath = useLocalePath();
+const { data: page } = await useAsyncData(
+  route.path,
+  async () => {
+    const collection = `${locale.value}_pages` as any;
+    return queryCollection(collection).path("/projects").first();
+  },
+  { watch: [locale] },
+);
 if (!page.value) {
   throw createError({
     statusCode: 404,
@@ -10,14 +18,14 @@ if (!page.value) {
   });
 }
 
-const { data: projects } = await useAsyncData("projects", () => {
-  return queryCollection("projects").order("date", "DESC").all();
-});
-
-const global = {
-  meetingLink: 'https://cal.com/',
-  email: 'hello@marcelocfilho.com',
-};
+const { data: projects } = await useAsyncData(
+  `projects-${locale.value}`,
+  async () => {
+    const collection = `${locale.value}_projects` as any;
+    return queryCollection(collection).order("date", "DESC").all();
+  },
+  { watch: [locale] },
+);
 
 useSeoMeta({
   title: page.value?.seo?.title || page.value?.title,
@@ -29,19 +37,14 @@ useSeoMeta({
 
 <template>
   <UPage v-if="page">
-    <UPageHero
+    <UPageSection
       :title="page.title"
       :description="page.description"
       :links="page.links"
       :ui="{
-        title: '!mx-0 text-left',
-        description: '!mx-0 text-left',
+        title: 'mx-0 text-left',
+        description: 'mx-0 text-left',
         links: 'justify-start',
-      }"
-    />
-    <UPageSection
-      :ui="{
-        container: '!pt-0',
       }"
     >
       <UPageGrid>
@@ -50,14 +53,14 @@ useSeoMeta({
           :key="project.title"
           :title="project.title"
           :description="project.description"
-          :to="project.path"
+          :to="localePath(project.path)"
           variant="naked"
           class="group"
           :ui="{
             root: 'ring ring-default hover:ring-2 hover:ring-primary-500 transition-all duration-300 rounded-xl overflow-hidden',
-            header: 'p-0 h-48 relative',
+            header: 'p-0 h-48 w-full relative overflow-hidden',
             body: 'p-6',
-            footer: 'p-6 pt-0 mt-auto'
+            footer: 'p-6 pt-0 mt-auto',
           }"
         >
           <template #header>
@@ -65,7 +68,7 @@ useSeoMeta({
               v-if="project.image"
               :src="project.image"
               :alt="project.title"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              class="w-full h-full block object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div class="absolute top-4 left-4">
               <UBadge variant="subtle" color="neutral" size="sm">
@@ -76,23 +79,23 @@ useSeoMeta({
 
           <template #footer>
             <div class="flex flex-wrap gap-1.5 pt-4 border-t border-default mb-4">
-              <UBadge 
-                v-for="tag in project.tags" 
-                :key="tag" 
-                variant="soft" 
-                color="neutral" 
+              <UBadge
+                v-for="tag in project.tags"
+                :key="tag"
+                variant="soft"
+                color="neutral"
                 size="xs"
               >
                 {{ tag }}
               </UBadge>
             </div>
-            <UButton 
-              label="View Project" 
-              icon="i-lucide-arrow-right" 
-              trailing 
-              variant="link" 
-              class="p-0 hover:text-primary" 
-              :to="project.path" 
+            <UButton
+              :label="t('pages.projects.viewProject')"
+              icon="i-lucide-arrow-right"
+              trailing
+              variant="link"
+              class="p-0 hover:text-primary"
+              :to="localePath(project.path)"
             />
           </template>
         </UPageCard>

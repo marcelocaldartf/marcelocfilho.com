@@ -18,16 +18,16 @@ const links = [
 </script>
 
 <template>
-  <footer class="mx-auto w-full max-w-(--ui-container) px-4 py-8 mb-4 text-muted text-xs flex flex-col sm:flex-row items-center justify-between gap-4">
-    <div>
-       © {{ currentYear }} Marcelo Caldart Filho
-    </div>
+  <footer
+    class="mx-auto w-full max-w-(--ui-container) px-4 py-8 mb-4 text-muted text-xs flex flex-col-reverse sm:flex-row items-center justify-between gap-4"
+  >
+    <div>© {{ currentYear }} Marcelo Caldart Filho</div>
 
     <div class="flex items-center gap-1">
       <UButton
         v-for="(link, index) of links"
         :key="index"
-        v-bind="{ size: 'xs', color: 'neutral', variant: 'ghost', ...link }"
+        v-bind="{ size: 'md', color: 'neutral', variant: 'ghost', ...link }"
         class="hover:text-primary-500"
       />
     </div>

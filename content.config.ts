@@ -1,11 +1,5 @@
 import { defineCollection, defineContentConfig, z } from "@nuxt/content";
 
-const createBaseSchema = () =>
-  z.object({
-    title: z.string(),
-    description: z.string(),
-  });
-
 const createButtonSchema = () =>
   z.object({
     label: z.string(),
@@ -33,91 +27,61 @@ const createAuthorSchema = () =>
     avatar: createImageSchema().optional(),
   });
 
-const createTestimonialSchema = () =>
-  z.object({
-    quote: z.string(),
-    author: createAuthorSchema(),
-  });
+const commonSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  links: z.array(createButtonSchema()).optional(),
+  content: z.string().optional(),
+  images: z.array(createImageSchema()).optional(),
+});
+
+const blogSchema = commonSchema.extend({
+  minRead: z.number(),
+  date: z.date(),
+  image: z.string().nonempty().editor({ input: "media" }),
+  author: createAuthorSchema(),
+});
+
+const projectSchema = commonSchema.extend({
+  title: z.string().nonempty(),
+  description: z.string().nonempty(),
+  image: z.string().nonempty().editor({ input: "media" }),
+  tags: z.array(z.string()),
+  date: z.date(),
+});
 
 export default defineContentConfig({
   collections: {
-    index: defineCollection({
+    en_blog: defineCollection({
       type: "page",
-      source: "index.yml",
-      schema: z.object({
-        hero: z.object({
-          links: z.array(createButtonSchema()),
-          images: z.array(createImageSchema()),
-        }),
-        about: createBaseSchema(),
-        experience: createBaseSchema().extend({
-          items: z.array(
-            z.object({
-              date: z.date(),
-              position: z.string(),
-              company: z.object({
-                name: z.string(),
-                url: z.string(),
-                logo: z.string().editor({ input: "icon" }),
-                color: z.string(),
-              }),
-            }),
-          ),
-        }),
-        testimonials: z.array(createTestimonialSchema()),
-        blog: createBaseSchema(),
-        faq: createBaseSchema().extend({
-          categories: z.array(
-            z.object({
-              title: z.string().nonempty(),
-              questions: z.array(
-                z.object({
-                  label: z.string().nonempty(),
-                  content: z.string().nonempty(),
-                }),
-              ),
-            }),
-          ),
-        }),
-      }),
+      source: { include: "en/blog/**", prefix: "/blog" },
+      schema: blogSchema,
     }),
-    projects: defineCollection({
+    en_projects: defineCollection({
       type: "page",
-      source: "projects/*.md",
-      schema: z.object({
-        title: z.string().nonempty(),
-        description: z.string().nonempty(),
-        image: z.string().nonempty().editor({ input: "media" }),
-        tags: z.array(z.string()),
-        date: z.date(),
-        links: z.array(createButtonSchema()).optional(),
-      }),
+      source: { include: "en/projects/**", prefix: "/projects" },
+      schema: projectSchema,
     }),
-    blog: defineCollection({
+    en_pages: defineCollection({
       type: "page",
-      source: "blog/*.md",
-      schema: z.object({
-        minRead: z.number(),
-        date: z.date(),
-        image: z.string().nonempty().editor({ input: "media" }),
-        author: createAuthorSchema(),
-      }),
-    }),
-    pages: defineCollection({
-      type: "page",
-      source: [{ include: "projects.yml" }, { include: "blog.yml" }],
-      schema: z.object({
-        links: z.array(createButtonSchema()),
-      }),
+      source: { include: "en/*.yml", prefix: "" },
+      schema: commonSchema,
     }),
 
-    about: defineCollection({
+    pt_blog: defineCollection({
       type: "page",
-      source: "about.yml",
-      schema: z.object({
-        content: z.object({}),
-        images: z.array(createImageSchema()),
-      }),
+      source: { include: "pt/blog/**", prefix: "/blog" },
+      schema: blogSchema,
+    }),
+    pt_projects: defineCollection({
+      type: "page",
+      source: { include: "pt/projects/**", prefix: "/projects" },
+      schema: projectSchema,
+    }),
+    pt_pages: defineCollection({
+      type: "page",
+      source: { include: "pt/*.yml", prefix: "" },
+      schema: commonSchema,
     }),
   },
 });
