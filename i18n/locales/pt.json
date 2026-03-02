@@ -1,4 +1,9 @@
 {
+  "studio": {
+    "tooltips": {
+      "toggleStudio": "Alternar Studio"
+    }
+  },
   "app": {
     "language_picker": "Escolher Idioma",
     "switchTheme": "Mudar Tema",

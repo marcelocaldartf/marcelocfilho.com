@@ -96,10 +96,15 @@ const socialLinks = [
         <div class="flex items-stretch gap-1">
           <MCColorModeButton />
 
-          <ULocaleSelect
+          <USelectMenu
             :model-value="locale"
             @update:model-value="setLocale($event as 'en' | 'pt')"
-            :locales="[en, pt]"
+            :items="[
+              { code: 'en', name: 'English' },
+              { code: 'pt', name: 'Português' }
+            ]"
+            value-key="code"
+            label-key="name"
             icon="i-lucide-languages"
             variant="ghost"
             size="sm"
@@ -109,7 +114,14 @@ const socialLinks = [
               content: 'w-48',
             }"
             :aria-label="t('app.language_picker')"
-          />
+          >
+            <template #leading="{ modelValue }">
+              <span class="text-xs font-medium">{{ modelValue === 'pt' ? 'PT' : 'EN' }}</span>
+            </template>
+            <template #item-leading="{ item }">
+              <span class="text-xs font-medium">{{ item.code.toUpperCase() }}</span>
+            </template>
+          </USelectMenu>
 
           <div class="hidden sm:flex items-center gap-0.5">
             <UButton

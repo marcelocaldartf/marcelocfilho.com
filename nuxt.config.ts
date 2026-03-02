@@ -141,7 +141,7 @@ export default defineNuxtConfig({
       {
         title: "Projects",
         description: "Projects I have worked on.",
-        contentCollection: "projects",
+        contentCollection: "en_projects",
         contentFilters: [
           { field: "extension", operator: "=", value: "md" },
           { field: "draft", operator: "<>", value: "true" },
@@ -150,7 +150,7 @@ export default defineNuxtConfig({
       {
         title: "Blog",
         description: "My personal articles and opinion pieces.",
-        contentCollection: "blog",
+        contentCollection: "en_blog",
         contentFilters: [
           { field: "extension", operator: "=", value: "md" },
           { field: "draft", operator: "<>", value: "true" },
