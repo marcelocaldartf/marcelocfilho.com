@@ -1,0 +1,290 @@
+{
+  "welcome": "Welcome",
+  "app": {
+    "language_picker": "Switch Language"
+  },
+  "pages": {
+    "contact": {
+      "meta": {
+        "title": "Contact | Marcelo Caldart Filho"
+      },
+      "hero": {
+        "headline": "Contact",
+        "title": "Send me a message",
+        "description": "Feel free to contact me for business inquiries or other topics!"
+      },
+      "form": {
+        "title": "Send a Message",
+        "fields": {
+          "name": {
+            "label": "Your Name",
+            "placeholder": "Enter your name",
+            "error": "Name must be at least 2 characters long."
+          },
+          "email": {
+            "label": "Email Address",
+            "placeholder": "name{'@'}example.com",
+            "error": "Please enter a valid email address."
+          },
+          "message": {
+            "label": "Message",
+            "placeholder": "Type your message here...",
+            "error": "Message must be at least 10 characters long..."
+          },
+          "submit": "Send Message"
+        },
+        "success": {
+          "title": "Message Sent!",
+          "description": "I'll get back to you as soon as possible."
+        }
+      },
+      "details": {
+        "title": "Contact Details",
+        "email": "Email",
+        "emailValue": "hello{'@'}marcelocfilho.com",
+        "location": "Location",
+        "locationValue": "Global Remote",
+        "socials": "I'm also available through my socials:"
+      }
+    },
+    "index": {
+      "meta": {
+        "title": "Marcelo Caldart Filho - Sound Designer | Musician"
+      },
+      "hero": {
+        "title": "Hey, I'm Marcelo Caldart Filho Sound Designer | Musician",
+        "description": "I craft immersive audio experiences and music for games and media. Based in Curitiba, bringing sonic worlds to life through creativity and technology.",
+        "actions": {
+          "talk": "Let's Talk"
+        }
+      },
+      "about": {
+        "title": "About Me",
+        "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding. My approach blends creative strategy with technical expertise, transforming concepts into purposeful sonic experiences."
+      },
+      "experience": {
+        "title": "Work Experience",
+        "items": [
+          {
+            "position": "Audio Designer at",
+            "date": "2017 - Present",
+            "company": {
+              "name": "Freelance",
+              "logo": "i-lucide-mic-2",
+              "url": "https://soundcloud.com/marcelo-filho-32565359",
+              "color": "#ff5500"
+            }
+          },
+          {
+            "position": "Music Producer at",
+            "date": "2017 - Present",
+            "company": {
+              "name": "Freelance",
+              "logo": "i-lucide-music",
+              "url": "https://soundcloud.com/marcelo-filho-32565359",
+              "color": "#00ffcc"
+            }
+          }
+        ]
+      },
+      "blog": {
+        "title": "Latest Articles",
+        "description": "Some of my recent thoughts",
+        "readMore": "Read Article"
+      },
+      "testimonials": {
+        "title": "What People Say",
+        "items": [
+          {
+            "quote": "Marcelo's sound design brought our project to life. His attention to detail in Foley and atmospheric tracks is exceptional. He doesn't just deliver audio; he builds sonora worlds that perfectly match the game's vision.",
+            "author": {
+              "name": "Sarah Chen",
+              "description": "Lead Developer at IndieSphere Games"
+            }
+          },
+          {
+            "quote": "The music production quality Marcelo provides is industry-standard. He has a unique ability to capture the exact emotion needed for a scene, whether it's an action-packed sequence or a subtle ambient background.",
+            "author": {
+              "name": "Michael Rodriguez",
+              "description": "Creative Director at SonicWave Studios"
+            }
+          }
+        ]
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "description": "Everything you need to know about working with me on audio and music productions.",
+        "categories": [
+          {
+            "title": "Services & Process",
+            "questions": [
+              {
+                "label": "What services do you offer?",
+                "content": "I specialize in sound design, Foley art, and music composition for games, audiovisual projects, and branding. I provide end-to-end audio production, including recording, mixing, and mastering."
+              },
+              {
+                "label": "How do you approach a new project?",
+                "content": "My process starts with a deep dive into the creative vision. I work closely with developers and directors to understand the aesthetic goals, then iterate on sonic concepts through prototypes and technical implementation in tools like Reaper and Pro Tools."
+              }
+            ]
+          },
+          {
+            "title": "Technical & Delivery",
+            "questions": [
+              {
+                "label": "What formats do you deliver in?",
+                "content": "I deliver high-quality WAV, AIFF, or specialized formats for middleware implementation. I'm also proficient in delivering integrated audio assets ready for game engines."
+              },
+              {
+                "label": "What gear and software do you use?",
+                "content": "I primarily work with Reaper and Pro Tools for DAW work, and DaVinci Resolve for video sync. My studio is equipped with professional-grade microphones and monitoring systems to ensure the highest fidelity."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "resume": {
+      "meta": {
+        "title": "Resume | Marcelo Caldart Filho"
+      },
+      "sidebar": {
+        "name": "Marcelo Caldart Filho",
+        "location": "Curitiba, Brazil",
+        "availability": "Available"
+      },
+      "about": {
+        "title": "About",
+        "fields": {
+          "name": "Name:",
+          "nameValue": "Marcelo Caldart Filho",
+          "gender": "Gender:",
+          "genderValue": "Male",
+          "pronouns": "Pronouns:",
+          "pronounsValue": "He / Him",
+          "nationality": "Nationality:",
+          "nationalityValue": "Brazilian",
+          "age": "Age:"
+        }
+      },
+      "languages": {
+        "title": "Languages",
+        "levels": {
+          "fluent": "Fluent",
+          "professional": "Professional",
+          "native": "Native",
+          "intermediate": "Intermediate",
+          "basic": "Basic"
+        },
+        "items": {
+          "english": "English",
+          "portuguese": "Portuguese",
+          "spanish": "Spanish"
+        }
+      },
+      "hero": {
+        "title": "Marcelo Caldart Filho",
+        "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding.",
+        "actions": {
+          "hire": "Let's Talk",
+          "downloadCv": "Download CV"
+        }
+      },
+      "sections": {
+        "skills": {
+          "title": "Skills",
+          "webDev": "Audio Production",
+          "gameDev": "Sound Design",
+          "design": "Creative Philosophies"
+        },
+        "tech": {
+          "title": "Technologies",
+          "categories": {
+            "audio": "Audio Production",
+            "video": "Video Editing",
+            "recording": "Recording & Gear",
+            "software": "Software & Tools"
+          }
+        },
+        "education": {
+          "title": "Education",
+          "items": [
+            {
+              "degree": "Bachelor of Music, Music Production and Research",
+              "school": "Federal University of Paraná (UFPR)",
+              "period": "Jun 2021 – Dec 2025"
+            }
+          ]
+        },
+        "certifications": {
+          "title": "Certifications",
+          "items": [
+            {
+              "name": "Music Production",
+              "issuer": "Futuresonic",
+              "date": "2017"
+            },
+            {
+              "name": "Furniture Design Technician",
+              "issuer": "Federal Institute of Paraná (IFPR)",
+              "date": "2013"
+            }
+          ]
+        },
+        "volunteering": {
+          "title": "Volunteering",
+          "items": [
+            {
+              "role": "Secretary",
+              "organization": "Vicentina (Associação de Proteção à Saúde e Maternidade)",
+              "period": "Apr 2012 - Dec 2013",
+              "field": "Social Services"
+            }
+          ]
+        },
+        "experience": {
+          "title": "Experience",
+          "items": [
+            {
+              "role": "Audio Designer",
+              "company": "Freelance",
+              "period": "Feb 2017 - Present",
+              "bullets": [
+                "Game audio, Digital sound, Sound design, Foley, and Music composition.",
+                "Delivering high-quality audio assets for various multimedia projects.",
+                "Collaborating with clients to define sonic identities."
+              ]
+            },
+            {
+              "role": "Music Producer",
+              "company": "Freelance",
+              "period": "Feb 2017 - Present",
+              "bullets": [
+                "Studio recording, Mixing, and Mastering.",
+                "Electronic music production and arrangement."
+              ]
+            },
+            {
+              "role": "Production and Secretary Assistant",
+              "company": "Paideia Produções Artísticas",
+              "period": "Oct 2018 - Feb 2019",
+              "bullets": [
+                "Worked on event production, including stage setup and administrative duties.",
+                "Contributed to logistics, organization, and event execution."
+              ]
+            },
+            {
+              "role": "Sales Associate",
+              "company": "Decathlon",
+              "period": "Nov 2016 - Feb 2017",
+              "bullets": [
+                "Direct customer service and identification of sports product needs.",
+                "Support during the purchase process and product orientation."
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

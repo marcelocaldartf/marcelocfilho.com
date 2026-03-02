@@ -1,0 +1,183 @@
+<script setup lang="ts">
+import { z } from "zod";
+import type { FormSubmitEvent } from "#ui/types";
+
+const { t } = useI18n();
+const toast = useToast();
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+const contactFormSchema = z.object({
+  name: z.string().min(2, t("pages.contact.form.fields.name.error")),
+  email: z.string().email(t("pages.contact.form.fields.email.error")),
+  message: z.string().min(10, t("pages.contact.form.fields.message.error")),
+});
+
+const state = ref<ContactFormData>({
+  name: "",
+  email: "",
+  message: "",
+});
+
+const isLoading = ref(false);
+
+async function onSubmit(event: FormSubmitEvent<ContactFormData>) {
+  isLoading.value = true;
+  // Mock API call
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  isLoading.value = false;
+  toast.add({
+    color: "success",
+    title: t("pages.contact.form.success.title"),
+    description: t("pages.contact.form.success.description"),
+  });
+
+  state.value.name = "";
+  state.value.email = "";
+  state.value.message = "";
+}
+
+const contactInfo = computed(() => [
+  {
+    icon: "i-lucide-mail",
+    label: t("pages.contact.details.email"),
+    value: t("pages.contact.details.emailValue"),
+  },
+  {
+    icon: "i-lucide-map-pin",
+    label: t("pages.contact.details.location"),
+    value: t("pages.contact.details.locationValue"),
+  },
+]);
+
+const socialLinks = [
+  { icon: "i-simple-icons-soundcloud", name: "SoundCloud", url: "https://soundcloud.com/marcelo-filho-32565359" },
+  { icon: "i-simple-icons-linkedin", name: "LinkedIn", url: "https://www.linkedin.com/in/marcelocfilho/" },
+];
+
+useHead({
+  title: t("pages.contact.meta.title"),
+});
+</script>
+
+<template>
+  <UPage>
+    <UPageSection
+      :title="t('pages.contact.hero.title')"
+      :description="t('pages.contact.hero.description')"
+    >
+      <div class="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
+        <!-- Form Section -->
+        <div class="flex flex-col gap-8 lg:w-3/5">
+          <h3 class="text-2xl font-semibold">{{ t("pages.contact.form.title") }}</h3>
+
+          <UForm
+            :schema="contactFormSchema"
+            :state="state"
+            class="flex flex-col gap-6"
+            @submit="onSubmit"
+          >
+            <UFormField :label="t('pages.contact.form.fields.name.label')" name="name" required>
+              <UInput
+                v-model="state.name"
+                icon="i-lucide-user"
+                :placeholder="t('pages.contact.form.fields.name.placeholder')"
+                class="w-full"
+              />
+            </UFormField>
+
+            <UFormField
+              :label="t('pages.contact.form.fields.email.label')"
+              name="email"
+              required
+              class="w-full"
+            >
+              <UInput
+                v-model="state.email"
+                icon="i-lucide-mail"
+                :placeholder="t('pages.contact.form.fields.email.placeholder')"
+                type="email"
+                class="w-full"
+              />
+            </UFormField>
+
+            <UFormField
+              :label="t('pages.contact.form.fields.message.label')"
+              name="message"
+              required
+              class="w-full"
+            >
+              <UTextarea
+                v-model="state.message"
+                :placeholder="t('pages.contact.form.fields.message.placeholder')"
+                :rows="8"
+                class="w-full"
+              />
+            </UFormField>
+
+            <UButton
+              type="submit"
+              :loading="isLoading"
+              icon="i-lucide-send"
+              size="lg"
+              block
+              class="mt-2"
+            >
+              {{ t("pages.contact.form.fields.submit") }}
+            </UButton>
+          </UForm>
+        </div>
+
+        <USeparator orientation="vertical" class="hidden lg:block lg:self-stretch" />
+        <USeparator class="lg:hidden" />
+
+        <!-- Details Section -->
+        <div class="flex flex-col gap-8 lg:w-[calc(40%-4rem)]">
+          <h3 class="text-2xl font-semibold">{{ t("pages.contact.details.title") }}</h3>
+          <div class="space-y-8">
+            <ul class="space-y-6">
+              <li v-for="item in contactInfo" :key="item.label" class="flex items-start">
+                <UIcon :name="item.icon" class="mr-3 h-6 w-6 shrink-0 text-primary" />
+                <div>
+                  <h4 class="font-medium">
+                    {{ item.label }}
+                  </h4>
+                  <p class="text-muted">
+                    {{ item.value }}
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <USeparator />
+
+            <div class="flex flex-col gap-4">
+              <h4 class="text-sm font-medium">
+                {{ t("pages.contact.details.socials") }}
+              </h4>
+              <div class="flex flex-row flex-wrap gap-2">
+                <UButton
+                  v-for="link in socialLinks"
+                  :key="link.name"
+                  :icon="link.icon"
+                  :to="link.url"
+                  :aria-label="`${link.name}`"
+                  variant="ghost"
+                  color="neutral"
+                  target="_blank"
+                  size="xl"
+                  class="hover:text-primary-500"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </UPageSection>
+  </UPage>
+</template>

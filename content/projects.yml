@@ -1,0 +1,11 @@
+title: Projects
+description: A collection of my work in sound design and audio production.
+links:
+  - label: "Let's talk"
+    color: "primary"
+    to: "/contact"
+  - label: "View SoundCloud"
+    color: "neutral"
+    variant: "outline"
+    to: "https://soundcloud.com/marcelo-filho-32565359"
+    target: "_blank"
