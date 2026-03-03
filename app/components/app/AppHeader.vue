@@ -4,26 +4,30 @@ import { en, pt } from "@nuxt/ui/locale";
 
 const { t, locale, setLocale } = useI18n();
 const localePath = useLocalePath();
+const route = useRoute();
+
+const open = ref(false);
+
+// Close slideover when route changes
+watch(() => route.path, () => {
+  open.value = false;
+});
 
 const leftLinks = computed<NavigationMenuItem[]>(() => [
   {
     label: t("app.navigation.home"),
-    icon: "i-lucide-home",
     to: localePath("/"),
   },
   {
     label: t("app.navigation.projects"),
-    icon: "i-lucide-folder",
     to: localePath("/projects"),
   },
   {
     label: t("app.navigation.blog"),
-    icon: "i-lucide-file-text",
     to: localePath("/blog"),
   },
   {
     label: t("app.navigation.about"),
-    icon: "i-lucide-user",
     to: localePath("/about"),
   },
 ]);
@@ -31,12 +35,10 @@ const leftLinks = computed<NavigationMenuItem[]>(() => [
 const rightLinks = computed<NavigationMenuItem[]>(() => [
   {
     label: t("app.navigation.resume"),
-    icon: "i-lucide-layout",
     to: localePath("/resume"),
   },
   {
     label: t("app.navigation.contact"),
-    icon: "i-lucide-mail",
     to: localePath("/contact"),
   },
 ]);
@@ -64,17 +66,48 @@ const socialLinks = [
     <div
       class="flex items-center justify-between bg-muted/80 backdrop-blur-sm rounded-full px-4 py-1 border border-muted/50 shadow-lg shadow-neutral-950/5"
     >
-      <!-- Left Section -->
-      <div class="hidden sm:flex items-center">
-        <UNavigationMenu
-          :items="leftLinks"
-          variant="link"
-          color="neutral"
-          :ui="{
-            link: 'px-2 py-1',
-            linkLeadingIcon: 'hidden',
-          }"
-        />
+      <!-- Left Section (Mobile Menu / Desktop Nav) -->
+      <div class="flex items-center">
+        <USlideover v-model:open="open" side="left" :ui="{ content: 'w-2/3' }" title="Menu">
+          <UButton
+            icon="i-lucide-menu"
+            color="neutral"
+            variant="ghost"
+            class="rounded-full my-auto sm:hidden"
+            aria-label="Open Menu"
+          />
+          <template #body>
+            <div class="flex flex-col gap-4">
+              <UNavigationMenu orientation="vertical" :items="[...leftLinks, ...rightLinks]" />
+              <USeparator />
+              <div class="flex flex-col gap-2">
+                <UButton
+                  v-for="(link, index) in socialLinks"
+                  :key="index"
+                  v-bind="link"
+                  variant="ghost"
+                  color="neutral"
+                  size="md"
+                  class="hover:text-primary-500"
+                >
+                  {{ link['aria-label'] }}
+                </UButton>
+              </div>
+            </div>
+          </template>
+        </USlideover>
+
+        <div class="hidden sm:flex items-center">
+          <UNavigationMenu
+            :items="leftLinks"
+            variant="link"
+            color="neutral"
+            :ui="{
+              link: 'px-2 py-1',
+              linkLeadingIcon: 'hidden',
+            }"
+          />
+        </div>
       </div>
 
       <!-- Right Section -->
@@ -134,33 +167,6 @@ const socialLinks = [
               class="rounded-full hover:text-primary-500"
             />
           </div>
-
-          <USlideover title="Menu" class="flex sm:hidden items-center">
-            <UButton
-              icon="i-lucide-menu"
-              color="neutral"
-              variant="ghost"
-              class="rounded-full my-auto"
-              aria-label="Open Menu"
-            />
-            <template #body>
-              <div class="flex flex-col gap-4">
-                <UNavigationMenu orientation="vertical" :items="[...leftLinks, ...rightLinks]" />
-                <USeparator />
-                <div class="flex items-center gap-2">
-                  <UButton
-                    v-for="(link, index) in socialLinks"
-                    :key="index"
-                    v-bind="link"
-                    variant="ghost"
-                    color="neutral"
-                    size="md"
-                    class="rounded-full hover:text-primary-500"
-                  />
-                </div>
-              </div>
-            </template>
-          </USlideover>
         </div>
       </div>
     </div>

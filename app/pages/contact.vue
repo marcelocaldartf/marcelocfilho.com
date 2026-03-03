@@ -86,6 +86,48 @@ useSeoMeta({
       :description="t('pages.contact.hero.description')"
     >
       <div class="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
+        <!-- Details Section (Mobile First) -->
+        <div class="order-first flex flex-col gap-8 lg:order-last lg:w-[calc(40%-4rem)]">
+          <h3 class="text-2xl font-semibold">{{ t("pages.contact.details.title") }}</h3>
+          <div class="space-y-8">
+            <ul class="space-y-6">
+              <li v-for="item in contactInfo" :key="item.label" class="flex items-start">
+                <UIcon :name="item.icon" class="mr-3 h-6 w-6 shrink-0 text-primary" />
+                <div>
+                  <h4 class="font-medium">
+                    {{ item.label }}
+                  </h4>
+                  <p class="text-muted">
+                    {{ item.value }}
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <USeparator />
+
+            <div class="flex flex-col gap-4">
+              <h4 class="text-sm font-medium">
+                {{ t("pages.contact.details.socials") }}
+              </h4>
+              <div class="flex flex-row flex-wrap gap-2">
+                <UButton
+                  v-for="link in socialLinks"
+                  :key="link.name"
+                  :icon="link.icon"
+                  :to="link.url"
+                  :aria-label="`${link.name}`"
+                  variant="ghost"
+                  color="neutral"
+                  target="_blank"
+                  size="xl"
+                  class="hover:text-primary-500"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Form Section -->
         <div class="flex flex-col gap-8 lg:w-3/5">
           <h3 class="text-2xl font-semibold">{{ t("pages.contact.form.title") }}</h3>
@@ -145,51 +187,6 @@ useSeoMeta({
               {{ t("pages.contact.form.fields.submit") }}
             </UButton>
           </UForm>
-        </div>
-
-        <USeparator orientation="vertical" class="hidden lg:block lg:self-stretch" />
-        <USeparator class="lg:hidden" />
-
-        <!-- Details Section -->
-        <div class="flex flex-col gap-8 lg:w-[calc(40%-4rem)]">
-          <h3 class="text-2xl font-semibold">{{ t("pages.contact.details.title") }}</h3>
-          <div class="space-y-8">
-            <ul class="space-y-6">
-              <li v-for="item in contactInfo" :key="item.label" class="flex items-start">
-                <UIcon :name="item.icon" class="mr-3 h-6 w-6 shrink-0 text-primary" />
-                <div>
-                  <h4 class="font-medium">
-                    {{ item.label }}
-                  </h4>
-                  <p class="text-muted">
-                    {{ item.value }}
-                  </p>
-                </div>
-              </li>
-            </ul>
-
-            <USeparator />
-
-            <div class="flex flex-col gap-4">
-              <h4 class="text-sm font-medium">
-                {{ t("pages.contact.details.socials") }}
-              </h4>
-              <div class="flex flex-row flex-wrap gap-2">
-                <UButton
-                  v-for="link in socialLinks"
-                  :key="link.name"
-                  :icon="link.icon"
-                  :to="link.url"
-                  :aria-label="`${link.name}`"
-                  variant="ghost"
-                  color="neutral"
-                  target="_blank"
-                  size="xl"
-                  class="hover:text-primary-500"
-                />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </UPageSection>

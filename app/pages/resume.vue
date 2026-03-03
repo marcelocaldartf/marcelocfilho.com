@@ -136,134 +136,18 @@ const downloadPDF = () => {
 </script>
 
 <template>
-  <UContainer>
-    <UPage>
-      <template #left>
-        <UPageAside>
-          <div class="flex flex-col gap-lg">
-            <div class="flex flex-col items-center justify-center gap-sm">
-              <NuxtImg
-                src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
-                alt="Marcelo C. Filho"
-                class="h-24 w-24 rounded-full"
-              />
-              <h3 class="text-center font-bold text-highlighted">Marcelo Caldart Filho</h3>
-              <UFieldGroup class="gap-xs pdf-exclude">
-                <UButton
-                  variant="ghost"
-                  color="neutral"
-                  icon="i-simple-icons-linkedin"
-                  to="https://www.linkedin.com/in/marcelocfilho/"
-                  target="_blank"
-                  class="hover:text-primary-500"
-                />
-                <UButton
-                  variant="ghost"
-                  color="neutral"
-                  icon="i-simple-icons-soundcloud"
-                  to="https://soundcloud.com/marcelo-filho-32565359"
-                  target="_blank"
-                  class="hover:text-primary-500"
-                />
-              </UFieldGroup>
-              <UButton
-                variant="ghost"
-                color="neutral"
-                icon="lucide:map-pin"
-                to="https://en.wikipedia.org/wiki/Curitiba"
-                class="hover:text-primary-500"
-              >
-                {{ t("pages.resume.sidebar.location") }}
-              </UButton>
-              <UButton
-                block
-                color="success"
-                variant="ghost"
-                :to="localePath('/contact')"
-                class="gap-2 h-auto text-left pdf-exclude"
-                :label="t('pages.resume.sidebar.availability')"
-                :ui="{ label: 'whitespace-normal text-balance' }"
-              >
-                <template #leading>
-                  <span class="relative flex size-2">
-                    <span
-                      class="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-75"
-                    />
-                    <span class="relative inline-flex size-2 scale-90 rounded-full bg-success" />
-                  </span>
-                </template>
-              </UButton>
-            </div>
-            <div class="flex flex-col gap-sm">
-              <div class="flex flex-row items-center gap-md">
-                <UIcon name="lucide:user" size="xs" />
-                <h5 class="text-highlighted">{{ t("pages.resume.about.title") }}</h5>
-              </div>
-              <USeparator />
-              <ul class="text-neutral-900 dark:text-neutral-100">
-                <li>
-                  <span class="text-sm"
-                    ><strong>{{ t("pages.resume.about.fields.name") }}</strong>
-                    {{ t("pages.resume.about.fields.nameValue") }}</span
-                  >
-                </li>
-                <li>
-                  <span class="text-sm"
-                    ><strong>{{ t("pages.resume.about.fields.gender") }}</strong>
-                    {{ t("pages.resume.about.fields.genderValue") }}</span
-                  >
-                </li>
-                <li>
-                  <span class="text-sm"
-                    ><strong>{{ t("pages.resume.about.fields.pronouns") }}</strong>
-                    {{ t("pages.resume.about.fields.pronounsValue") }}</span
-                  >
-                </li>
-                <li>
-                  <span class="text-sm"
-                    ><strong>{{ t("pages.resume.about.fields.nationality") }}</strong>
-                    {{ t("pages.resume.about.fields.nationalityValue") }}</span
-                  >
-                </li>
-                <li>
-                  <span class="text-sm"
-                    ><strong>{{ t("pages.resume.about.fields.age") }}</strong> {{ age }}</span
-                  >
-                </li>
-              </ul>
-            </div>
-            <div class="flex flex-col gap-sm">
-              <div class="flex flex-row items-center gap-md">
-                <UIcon name="lucide:languages" size="xs" />
-                <h5 class="text-highlighted">{{ t("pages.resume.languages.title") }}</h5>
-              </div>
-              <USeparator />
-              <ul class="flex flex-col gap-md">
-                <li v-for="lang in languages" :key="lang.name">
-                  <div class="flex flex-col gap-xs">
-                    <div class="flex w-full flex-row justify-between">
-                      <h6 class="text-sm text-highlighted">{{ lang.name }}</h6>
-                      <span class="text-xs text-muted">{{ lang.level }}</span>
-                    </div>
-                    <UProgress :model-value="lang.progress" size="sm" />
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </UPageAside>
-      </template>
-      <UPageHero
-        :title="t('pages.resume.hero.title')"
-        :description="t('pages.resume.hero.description')"
-        orientation="horizontal"
-        :links="heroLinks"
-        :ui="{
-          title: 'text-highlighted',
-          description: 'text-muted',
-          container: 'py-8 sm:py-8 lg:py-8',
-        }"
-      >
+  <UPage>
+    <UPageHero
+      :title="t('pages.resume.hero.title')"
+      :description="t('pages.resume.hero.description')"
+      orientation="horizontal"
+      :links="heroLinks"
+      :ui="{
+        title: 'text-highlighted',
+        description: 'text-muted',
+        container: 'py-8 sm:py-8 lg:py-8',
+      }"
+    >
         <NuxtImg
           src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
           alt="Marcelo C. Filho"
@@ -415,8 +299,123 @@ const downloadPDF = () => {
           </div>
         </div>
       </UPageSection>
+
+      <template #left>
+        <UPageAside>
+          <div class="flex flex-col gap-lg">
+            <div class="flex flex-col items-center justify-center gap-sm">
+              <NuxtImg
+                src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
+                alt="Marcelo C. Filho"
+                class="h-24 w-24 rounded-full"
+              />
+              <h3 class="text-center font-bold text-highlighted">Marcelo Caldart Filho</h3>
+              <UFieldGroup class="gap-xs pdf-exclude">
+                <UButton
+                  variant="ghost"
+                  color="neutral"
+                  icon="i-simple-icons-linkedin"
+                  to="https://www.linkedin.com/in/marcelocfilho/"
+                  target="_blank"
+                  class="hover:text-primary-500"
+                />
+                <UButton
+                  variant="ghost"
+                  color="neutral"
+                  icon="i-simple-icons-soundcloud"
+                  to="https://soundcloud.com/marcelo-filho-32565359"
+                  target="_blank"
+                  class="hover:text-primary-500"
+                />
+              </UFieldGroup>
+              <UButton
+                variant="ghost"
+                color="neutral"
+                icon="lucide:map-pin"
+                to="https://en.wikipedia.org/wiki/Curitiba"
+                class="hover:text-primary-500"
+              >
+                {{ t("pages.resume.sidebar.location") }}
+              </UButton>
+              <UButton
+                block
+                color="success"
+                variant="ghost"
+                :to="localePath('/contact')"
+                class="gap-2 h-auto text-left pdf-exclude"
+                :label="t('pages.resume.sidebar.availability')"
+                :ui="{ label: 'whitespace-normal text-balance' }"
+              >
+                <template #leading>
+                  <span class="relative flex size-2">
+                    <span
+                      class="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-75"
+                    />
+                    <span class="relative inline-flex size-2 scale-90 rounded-full bg-success" />
+                  </span>
+                </template>
+              </UButton>
+            </div>
+            <div class="flex flex-col gap-sm">
+              <div class="flex flex-row items-center gap-md">
+                <UIcon name="lucide:user" size="xs" />
+                <h5 class="text-highlighted">{{ t("pages.resume.about.title") }}</h5>
+              </div>
+              <USeparator />
+              <ul class="text-neutral-900 dark:text-neutral-100">
+                <li>
+                  <span class="text-sm"
+                    ><strong>{{ t("pages.resume.about.fields.name") }}</strong>
+                    {{ t("pages.resume.about.fields.nameValue") }}</span
+                  >
+                </li>
+                <li>
+                  <span class="text-sm"
+                    ><strong>{{ t("pages.resume.about.fields.gender") }}</strong>
+                    {{ t("pages.resume.about.fields.genderValue") }}</span
+                  >
+                </li>
+                <li>
+                  <span class="text-sm"
+                    ><strong>{{ t("pages.resume.about.fields.pronouns") }}</strong>
+                    {{ t("pages.resume.about.fields.pronounsValue") }}</span
+                  >
+                </li>
+                <li>
+                  <span class="text-sm"
+                    ><strong>{{ t("pages.resume.about.fields.nationality") }}</strong>
+                    {{ t("pages.resume.about.fields.nationalityValue") }}</span
+                  >
+                </li>
+                <li>
+                  <span class="text-sm"
+                    ><strong>{{ t("pages.resume.about.fields.age") }}</strong> {{ age }}</span
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="flex flex-col gap-sm">
+              <div class="flex flex-row items-center gap-md">
+                <UIcon name="lucide:languages" size="xs" />
+                <h5 class="text-highlighted">{{ t("pages.resume.languages.title") }}</h5>
+              </div>
+              <USeparator />
+              <ul class="flex flex-col gap-md">
+                <li v-for="lang in languages" :key="lang.name">
+                  <div class="flex flex-col gap-xs">
+                    <div class="flex w-full flex-row justify-between">
+                      <h6 class="text-sm text-highlighted">{{ lang.name }}</h6>
+                      <span class="text-xs text-muted">{{ lang.level }}</span>
+                    </div>
+                    <UProgress :model-value="lang.progress" size="sm" />
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </UPageAside>
+      </template>
     </UPage>
-  </UContainer>
 </template>
 
 <style scoped></style>
