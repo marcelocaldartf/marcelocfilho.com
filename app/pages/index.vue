@@ -11,39 +11,10 @@ useSeoMeta({
 
 /* region Data */
 const global = {
-  picture: {
-    dark: "https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    light:
-      "https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "Marcelo C. Filho",
-  },
   meetingLink: "https://cal.com/marcelocfilho",
   email: "marcelocfilho96@gmail.com",
   available: true,
 };
-
-const experienceItems = computed(() => [
-  {
-    position: t("pages.index.experience.items[0].position"),
-    date: t("pages.index.experience.items[0].date"),
-    company: {
-      name: t("pages.index.experience.items[0].company.name"),
-      logo: t("pages.index.experience.items[0].company.logo"),
-      url: t("pages.index.experience.items[0].company.url"),
-      color: t("pages.index.experience.items[0].company.color"),
-    },
-  },
-  {
-    position: t("pages.index.experience.items[1].position"),
-    date: t("pages.index.experience.items[1].date"),
-    company: {
-      name: t("pages.index.experience.items[1].company.name"),
-      logo: t("pages.index.experience.items[1].company.logo"),
-      url: t("pages.index.experience.items[1].company.url"),
-      color: t("pages.index.experience.items[1].company.color"),
-    },
-  },
-]);
 
 const testimonialItems = computed(() => [
   {
@@ -121,12 +92,7 @@ const faqUi = {
       :ui="{ headline: 'flex justify-center' }"
     >
       <template #headline>
-        <UColorModeAvatar
-          class="size-18 ring ring-default ring-offset-3 ring-offset-bg mx-auto"
-          :light="global.picture?.light!"
-          :dark="global.picture?.dark!"
-          :alt="global.picture?.alt!"
-        />
+        <UAvatar src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp" class="size-18 ring ring-default ring-offset-3 ring-offset-bg mx-auto" />
       </template>
 
       <template #links>

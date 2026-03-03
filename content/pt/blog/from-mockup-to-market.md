@@ -1,14 +1,14 @@
 ---
 title: "Da Gravação de Campo à Engine de Jogo: Meu Processo de Sound Design"
-description: "Um detalhamento detalhado da minha metodologia de áudio iterativa, desde a gravação inicial até a implementação final em middleware e engines."
-date: 2025-04-23
-image: https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1470&auto=format&fit=crop
-minRead: 8
 author:
   name: Marcelo Caldart Filho
   avatar:
     src: https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=1480&auto=format&fit=crop
     alt: Marcelo Caldart Filho
+date: 2025-04-23T00:00:00.000Z
+description: Um detalhamento detalhado da minha metodologia de áudio iterativa, desde a gravação inicial até a implementação final em middleware e engines.
+image: https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1470&auto=format&fit=crop
+minRead: 8
 ---
 
 Criar áudio imersivo para jogos não é apenas apertar o play — é desenvolver uma identidade sonora que dá vida a mundos digitais. Neste artigo, percorrerei meu processo de ponta a ponta usando um título de terror recente como estudo de caso.

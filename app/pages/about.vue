@@ -18,14 +18,7 @@ if (!page.value) {
   });
 }
 
-const global = {
-  picture: {
-    dark: "https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    light:
-      "https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "My profile picture",
-  },
-};
+
 
 useSeoMeta({
   title: page.value?.seo?.title || page.value?.title,
@@ -49,11 +42,10 @@ useSeoMeta({
     >
       <div class="flex flex-col sm:grid sm:grid-cols-3 gap-24">
         <div class="order-first sm:order-last sm:col-span-1 w-full aspect-square sm:rotate-4">
-          <UColorModeAvatar
+          <UAvatar
             class="w-full h-full rounded-lg ring ring-default ring-offset-3 ring-offset-bg"
-            :light="global.picture?.light!"
-            :dark="global.picture?.dark!"
-            :alt="global.picture?.alt!"
+            src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
+            alt="My profile picture"
           />
         </div>
         <MDC :value="page.content" unwrap="p" class="order-last sm:order-first sm:col-span-2" />

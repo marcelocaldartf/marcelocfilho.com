@@ -52,7 +52,7 @@ export default defineNuxtConfig({
       },
     },
     // Switch to true on release
-    site: { url: "https://rimelight.com", indexable: false },
+    site: { url: "https://marcelocfilho.com", indexable: false },
     robots: {
       blockAiBots: true,
       blockNonSeoBots: true,
@@ -60,6 +60,12 @@ export default defineNuxtConfig({
     },
     a11y: {
       enabled: false,
+    },
+    content: {
+      database: {
+        type: "d1",
+        bindingName: "DB",
+      },
     },
   },
 
@@ -107,6 +113,28 @@ export default defineNuxtConfig({
     },
   },
 
+  icon: {
+    class: "icon",
+    size: "24px",
+    customCollections: [
+      {
+        prefix: "first-party",
+        dir: "./app/assets/icons/first-party",
+        normalizeIconName: false,
+      },
+      {
+        prefix: "logos",
+        dir: "./app/assets/icons/first-party/logos",
+        normalizeIconName: false,
+      },
+      {
+        prefix: "third-party",
+        dir: "./app/assets/icons/third-party",
+        normalizeIconName: false,
+      },
+    ],
+  },
+
   content: {
     build: {
       markdown: {
@@ -114,10 +142,6 @@ export default defineNuxtConfig({
           depth: 3,
         },
       },
-    },
-    database: {
-      type: "d1",
-      bindingName: "",
     },
   },
 

@@ -143,7 +143,7 @@ const downloadPDF = () => {
           <div class="flex flex-col gap-lg">
             <div class="flex flex-col items-center justify-center gap-sm">
               <NuxtImg
-                src="https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
                 alt="Marcelo C. Filho"
                 class="h-24 w-24 rounded-full"
               />
@@ -265,7 +265,7 @@ const downloadPDF = () => {
         }"
       >
         <NuxtImg
-          src="https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
           alt="Marcelo C. Filho"
           class="w-full object-cover"
         />

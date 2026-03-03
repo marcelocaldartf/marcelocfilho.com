@@ -64,7 +64,7 @@ export default defineContentConfig({
     }),
     en_pages: defineCollection({
       type: "page",
-      source: { include: "en/*.yml", prefix: "" },
+      source: { include: "en/*.yml", prefix: "/" },
       schema: commonSchema,
     }),
 
@@ -80,8 +80,12 @@ export default defineContentConfig({
     }),
     pt_pages: defineCollection({
       type: "page",
-      source: { include: "pt/*.yml", prefix: "" },
+      source: { include: "pt/*.yml", prefix: "/" },
       schema: commonSchema,
+    }),
+    all: defineCollection({
+      type: "page",
+      source: { include: "**" },
     }),
   },
 });

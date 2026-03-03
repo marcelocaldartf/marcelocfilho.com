@@ -1,14 +1,14 @@
 ---
 title: "From Field Recording to Game Engine: My Sound Design Process"
-description: A detailed breakdown of my iterative audio methodology, from initial recording to final implementation in middleware and engines.
-date: 2025-04-23
-image: https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1470&auto=format&fit=crop
-minRead: 8
 author:
   name: Marcelo Caldart Filho
   avatar:
     src: https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=1480&auto=format&fit=crop
     alt: Marcelo Caldart Filho
+date: 2025-04-23T00:00:00.000Z
+description: A detailed breakdown of my iterative audio methodology, from initial recording to final implementation in middleware and engines.
+image: https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1470&auto=format&fit=crop
+minRead: 8
 ---
 
 Creating immersive audio for games isn't about just clicking play—it's about developing a sonic identity that breathes life into digital worlds. In this article, I'll walk through my end-to-end process using a recent horror title as a case study.
