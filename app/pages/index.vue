@@ -92,7 +92,7 @@ const faqUi = {
       :ui="{ headline: 'flex justify-center' }"
     >
       <template #headline>
-        <UAvatar src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp" class="size-18 ring ring-default ring-offset-3 ring-offset-bg mx-auto" />
+        <NuxtImg src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp" class="size-18 ring ring-default ring-offset-3 ring-offset-bg mx-auto rounded-full" />
       </template>
 
       <template #links>

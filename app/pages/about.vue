@@ -42,10 +42,10 @@ useSeoMeta({
     >
       <div class="flex flex-col sm:grid sm:grid-cols-3 gap-24">
         <div class="order-first sm:order-last sm:col-span-1 w-full aspect-square sm:rotate-4">
-          <UAvatar
-            class="w-full h-full rounded-lg ring ring-default ring-offset-3 ring-offset-bg"
+          <NuxtImg
             src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
             alt="My profile picture"
+            class="w-full h-full rounded-lg ring ring-default ring-offset-3 ring-offset-bg"
           />
         </div>
         <MDC :value="page.content" unwrap="p" class="order-last sm:order-first sm:col-span-2" />
