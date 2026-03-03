@@ -3,16 +3,6 @@
   "name": "marcelocfilho-dot-com",
   "compatibility_flags": ["nodejs_compat"],
   "compatibility_date": "2024-09-23",
-  "routes": [
-    {
-      "pattern": "marcelocfilho.com",
-      "custom_domain": true
-    },
-    {
-      "pattern": "www.marcelocfilho.com",
-      "custom_domain": true
-    }
-  ],
   "observability": {
     "logs": {
       "enabled": true,
