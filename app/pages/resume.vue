@@ -136,6 +136,7 @@ const downloadPDF = () => {
 </script>
 
 <template>
+  <UContainer>
   <UPage>
     <UPageHero
       :title="t('pages.resume.hero.title')"
@@ -416,6 +417,7 @@ const downloadPDF = () => {
         </UPageAside>
       </template>
     </UPage>
+  </UContainer>
 </template>
 
 <style scoped></style>

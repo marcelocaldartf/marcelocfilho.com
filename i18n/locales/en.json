@@ -116,24 +116,6 @@
         "description": "Some of my recent thoughts",
         "readMore": "Read Article"
       },
-      "testimonials": {
-        "items": [
-          {
-            "quote": "Marcelo's sound design brought our project to life. His attention to detail in Foley and atmospheric tracks is exceptional. He doesn't just deliver audio; he builds sonora worlds that perfectly match the game's vision.",
-            "author": {
-              "name": "Sarah Chen",
-              "description": "Lead Developer at IndieSphere Games"
-            }
-          },
-          {
-            "quote": "The music production quality Marcelo provides is industry-standard. He has a unique ability to capture the exact emotion needed for a scene, whether it's an action-packed sequence or a subtle ambient background.",
-            "author": {
-              "name": "Michael Rodriguez",
-              "description": "Creative Director at SonicWave Studios"
-            }
-          }
-        ]
-      },
       "faq": {
         "title": "Frequently Asked Questions",
         "description": "Everything you need to know about working with me on audio and music productions.",

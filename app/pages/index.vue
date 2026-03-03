@@ -16,23 +16,6 @@ const global = {
   available: true,
 };
 
-const testimonialItems = computed(() => [
-  {
-    quote: t("pages.index.testimonials.items[0].quote"),
-    author: {
-      name: t("pages.index.testimonials.items[0].author.name"),
-      description: t("pages.index.testimonials.items[0].author.description"),
-    },
-  },
-  {
-    quote: t("pages.index.testimonials.items[1].quote"),
-    author: {
-      name: t("pages.index.testimonials.items[1].author.name"),
-      description: t("pages.index.testimonials.items[1].author.description"),
-    },
-  },
-]);
-
 const faqItems = computed(() => [
   {
     label: t("pages.index.faq.categories[0].title"),
@@ -159,50 +142,6 @@ const faqUi = {
           </template>
         </UBlogPost>
       </UBlogPosts>
-    </UPageSection>
-
-    <!-- Testimonials Section -->
-    <UPageSection
-      v-if="testimonialItems.length"
-      :ui="{
-        container: 'px-0 !pt-0',
-      }"
-    >
-      <UCarousel
-        v-slot="{ item }"
-        :items="testimonialItems"
-        :autoplay="{ delay: 4000 }"
-        loop
-        dots
-        :ui="{
-          viewport: '-mx-4 sm:-mx-12 lg:-mx-16 max-w-(--ui-container)',
-        }"
-      >
-        <UPageCTA
-          variant="naked"
-          class="rounded-none w-full"
-          :ui="{
-            container: 'sm:py-12 lg:py-12 sm:gap-10',
-          }"
-        >
-          <template #description>
-            <div class="flex flex-col items-center gap-4 text-center">
-              <UIcon name="i-lucide-quote" class="size-8 text-dimmed rotate-180" />
-              <p class="text-xl text-balance italic text-highlighted">
-                {{ rt(item.quote) }}
-              </p>
-              <UIcon name="i-lucide-quote" class="size-8 text-dimmed" />
-            </div>
-          </template>
-          <UUser
-            v-if="item && item.author"
-            :name="rt(item.author.name)"
-            :description="rt(item.author.description)"
-            size="xl"
-            class="justify-center"
-          />
-        </UPageCTA>
-      </UCarousel>
     </UPageSection>
 
     <!-- FAQ Section -->
