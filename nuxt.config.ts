@@ -161,25 +161,5 @@ export default defineNuxtConfig({
     domain: "https://marcelocfilho.com",
     title: "Marcelo Caldart Filho",
     description: "My personal portfolio website.",
-    sections: [
-      {
-        title: "Projects",
-        description: "Projects I have worked on.",
-        contentCollection: "en_projects",
-        contentFilters: [
-          { field: "extension", operator: "=", value: "md" },
-          { field: "draft", operator: "<>", value: "true" },
-        ],
-      },
-      {
-        title: "Blog",
-        description: "My personal articles and opinion pieces.",
-        contentCollection: "en_blog",
-        contentFilters: [
-          { field: "extension", operator: "=", value: "md" },
-          { field: "draft", operator: "<>", value: "true" },
-        ],
-      },
-    ],
   },
 });
