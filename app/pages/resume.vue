@@ -137,7 +137,7 @@ const downloadPDF = () => {
 
 <template>
   <UContainer>
-  <UPage>
+  <UPage :ui="{ root: 'flex flex-col gap-y-8 lg:grid lg:grid-cols-10 lg:gap-10' }">
     <UPageHero
       :title="t('pages.resume.hero.title')"
       :description="t('pages.resume.hero.description')"
@@ -146,7 +146,7 @@ const downloadPDF = () => {
       :ui="{
         title: 'text-highlighted',
         description: 'text-muted',
-        container: 'py-8 sm:py-8 lg:py-8',
+        container: 'px-0 max-w-none py-16 sm:py-24',
       }"
     >
         <NuxtImg
@@ -160,7 +160,7 @@ const downloadPDF = () => {
         :title="t('pages.resume.sections.skills.title')"
         :ui="{
           title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
         }"
       >
         <!-- Empty for now -->
@@ -170,7 +170,7 @@ const downloadPDF = () => {
         :title="t('pages.resume.sections.tech.title')"
         :ui="{
           title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
         }"
       >
         <div class="grid grid-cols-2 gap-lg">
@@ -230,7 +230,7 @@ const downloadPDF = () => {
         :title="t('pages.resume.sections.education.title')"
         :ui="{
           title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
         }"
       >
         <div v-for="(item, index) in educationItems" :key="index">
@@ -243,45 +243,10 @@ const downloadPDF = () => {
       </UPageSection>
 
       <UPageSection
-        v-if="certificationItems.length"
-        :title="t('pages.resume.sections.certifications.title')"
-        :ui="{
-          title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
-        }"
-      >
-        <div v-for="(item, index) in certificationItems" :key="index">
-          <div class="flex flex-col gap-xs">
-            <h3 class="text-highlighted">{{ rt(item.name) }}</h3>
-            <span class="text-sm text-muted">{{ rt(item.issuer) }}</span>
-            <span class="text-xs text-muted/80">{{ rt(item.date) }}</span>
-          </div>
-        </div>
-      </UPageSection>
-
-      <UPageSection
-        v-if="volunteeringItems.length"
-        :title="t('pages.resume.sections.volunteering.title')"
-        :ui="{
-          title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
-        }"
-      >
-        <div v-for="(item, index) in volunteeringItems" :key="index">
-          <div class="flex flex-col gap-xs">
-            <h3 class="text-highlighted">{{ rt(item.role) }}</h3>
-            <span class="text-sm text-muted">{{ rt(item.organization) }}</span>
-            <span class="text-xs text-muted/80">{{ rt(item.period) }}</span>
-            <span v-if="item.field" class="text-xs text-muted/60 italic">{{ rt(item.field) }}</span>
-          </div>
-        </div>
-      </UPageSection>
-
-      <UPageSection
         :title="t('pages.resume.sections.experience.title')"
         :ui="{
           title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
         }"
       >
         <div v-for="(item, index) in experienceItems" :key="index">
@@ -301,8 +266,47 @@ const downloadPDF = () => {
         </div>
       </UPageSection>
 
+      <UPageSection
+        v-if="certificationItems.length"
+        :title="t('pages.resume.sections.certifications.title')"
+        :ui="{
+          title: 'text-left text-xl sm:text-2xl lg:text-3xl',
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
+        }"
+      >
+        <div v-for="(item, index) in certificationItems" :key="index">
+          <div class="flex flex-col gap-xs">
+            <h3 class="text-highlighted">{{ rt(item.name) }}</h3>
+            <span class="text-sm text-muted">{{ rt(item.issuer) }}</span>
+            <span class="text-xs text-muted/80">{{ rt(item.date) }}</span>
+          </div>
+        </div>
+      </UPageSection>
+
+      <UPageSection
+        v-if="volunteeringItems.length"
+        :title="t('pages.resume.sections.volunteering.title')"
+        :ui="{
+          title: 'text-left text-xl sm:text-2xl lg:text-3xl',
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
+        }"
+      >
+        <div v-for="(item, index) in volunteeringItems" :key="index">
+          <div class="flex flex-col gap-xs">
+            <h3 class="text-highlighted">{{ rt(item.role) }}</h3>
+            <span class="text-sm text-muted">{{ rt(item.organization) }}</span>
+            <span class="text-xs text-muted/80">{{ rt(item.period) }}</span>
+            <span v-if="item.field" class="text-xs text-muted/60 italic">{{ rt(item.field) }}</span>
+          </div>
+        </div>
+      </UPageSection>
+
       <template #left>
-        <UPageAside>
+        <UPageAside
+          :ui="{
+            root: 'block overflow-y-auto lg:max-h-[calc(100vh-var(--ui-header-height))] lg:sticky lg:top-(--ui-header-height) pt-16 lg:pt-24 pb-8 lg:ps-4 lg:-ms-4 lg:pe-6.5',
+          }"
+        >
           <div class="flex flex-col gap-lg">
             <div class="flex flex-col items-center justify-center gap-sm">
               <NuxtImg
