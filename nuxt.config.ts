@@ -48,6 +48,12 @@ export default defineNuxtConfig({
     typescript: { typeCheck: false },
     nitro: {
       preset: "cloudflare-module",
+      minify: false,
+      esbuild: {
+        options: {
+          minify: false,
+        },
+      },
       cloudflare: {
         deployConfig: true,
         nodeCompat: true,
@@ -76,6 +82,9 @@ export default defineNuxtConfig({
   },
 
   security: {
+    ssg: {
+      exportToPresets: false,
+    },
     headers: {
       contentSecurityPolicy: {
         "img-src": [
@@ -156,7 +165,7 @@ export default defineNuxtConfig({
     size: "24px",
     customCollections: [
       {
-        prefix: "logos",
+        prefix: "branding",
         dir: "./app/assets/icons/first-party/logos",
         normalizeIconName: false,
       },
