@@ -37,8 +37,6 @@
     "nuxt-og-image": "^5.1.13",
     "nuxt-security": "^2.5.1",
     "nuxt-studio": "^1.4.0",
-    "tailwind-merge": "^3.4.0",
-    "tailwind-variants": "^3.2.2",
     "tailwindcss": "^4.2.1",
     "vue": "^3.5.29",
     "vue-router": "^5.0.3"
