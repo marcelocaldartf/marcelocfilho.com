@@ -48,12 +48,6 @@ export default defineNuxtConfig({
     typescript: { typeCheck: false },
     nitro: {
       preset: "cloudflare-module",
-      minify: false,
-      esbuild: {
-        options: {
-          minify: false,
-        },
-      },
       cloudflare: {
         deployConfig: true,
         nodeCompat: true,
