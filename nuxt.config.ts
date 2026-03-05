@@ -155,13 +155,6 @@ export default defineNuxtConfig({
   icon: {
     class: "icon",
     size: "24px",
-    customCollections: [
-      {
-        prefix: "branding",
-        dir: "./app/assets/icons/first-party/logos",
-        normalizeIconName: false,
-      },
-    ],
   },
 
   ogImage: {
