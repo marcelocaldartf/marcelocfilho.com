@@ -1,12 +1,20 @@
 <script setup lang="ts">
-import { differenceInYears } from "date-fns";
 import type { ButtonProps } from "@nuxt/ui";
 
 /* region State */
 const { t, tm, rt } = useI18n();
 const localePath = useLocalePath();
 
-const age = differenceInYears(new Date(), new Date(1996, 3, 17));
+const calculateAge = (dob: Date) => {
+  const today = new Date();
+  let currentAge = today.getFullYear() - dob.getFullYear();
+  const m = today.getMonth() - dob.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+    currentAge--;
+  }
+  return currentAge;
+};
+const age = calculateAge(new Date(1996, 3, 17));
 
 const portugueseProgress = ref(100);
 const englishProgress = ref(65);
@@ -126,7 +134,7 @@ useSeoMeta({
 /* region Logic */
 const downloadPDF = () => {
   const link = document.createElement("a");
-  link.href = "https://cdn.marcelocfilho.com/Resume/Resume_Marcelo_C_Filho.pdf";
+  link.href = "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Resume/Resume_Marcelo_C_Filho.pdf";
   link.setAttribute("download", "Resume_Marcelo_C_Filho.pdf");
   document.body.appendChild(link);
   link.click();

@@ -20,7 +20,6 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/robots",
     "@nuxtjs/sitemap",
-    "@vueuse/nuxt",
     "nuxt-llms",
     "nuxt-og-image",
     "nuxt-security",
@@ -85,7 +84,6 @@ export default defineNuxtConfig({
           "'self'",
           "data:",
           "blob:",
-          "https://cdn.marcelocfilho.com",
           "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
           "https://via.placeholder.com",
           "https://ui.nuxt.com",
@@ -94,7 +92,6 @@ export default defineNuxtConfig({
         "script-src-attr": ["'unsafe-inline'"],
         "connect-src": [
           "'self'",
-          "https://cdn.marcelocfilho.com",
           "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
           "https://api.iconify.design",
           "https://api.unisvg.com",
@@ -151,7 +148,7 @@ export default defineNuxtConfig({
     format: ["webp"],
     provider: "cloudflare",
     cloudflare: {
-      baseURL: "https://cdn.marcelocfilho.com",
+      baseURL: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
     },
   },
 
