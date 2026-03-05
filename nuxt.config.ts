@@ -58,7 +58,7 @@ export default defineNuxtConfig({
       },
     },
     // Switch to true on release
-    site: { url: "https://marcelocfilho.com", indexable: false },
+    site: { url: "https://marcelocfilho.com", indexable: true },
     robots: {
       blockAiBots: true,
       blockNonSeoBots: true,
