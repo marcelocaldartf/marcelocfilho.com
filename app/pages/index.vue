@@ -80,6 +80,9 @@ const faqUi = {
           alt="Marcelo Caldart Filho profile photo"
           :width="72"
           :height="72"
+          sizes="72px"
+          fetchpriority="high"
+          loading="eager"
           class="size-18 ring ring-default ring-offset-3 ring-offset-bg mx-auto rounded-full"
         />
       </template>

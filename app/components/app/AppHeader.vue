@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from "@nuxt/ui";
-import { en, pt } from "@nuxt/ui/locale";
 
 const { t, locale, setLocale } = useI18n();
 const localePath = useLocalePath();
@@ -8,7 +7,6 @@ const route = useRoute();
 
 const open = ref(false);
 
-// Close slideover when route changes
 watch(
   () => route.path,
   () => {
@@ -130,7 +128,7 @@ const socialLinks = [
         <div class="hidden sm:block mx-1 my-2 w-px bg-muted/50" />
 
         <div class="flex items-stretch gap-1">
-          <MCColorModeButton />
+          <UColorModeButton size="sm" class="rounded-full" />
 
           <USelectMenu
             :model-value="locale"
