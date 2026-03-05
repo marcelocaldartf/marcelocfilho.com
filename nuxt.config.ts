@@ -164,6 +164,10 @@ export default defineNuxtConfig({
     ],
   },
 
+  ogImage: {
+    zeroRuntime: true,
+  },
+
   content: {
     build: {
       markdown: {
