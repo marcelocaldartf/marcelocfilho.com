@@ -137,18 +137,18 @@ const downloadPDF = () => {
 
 <template>
   <UContainer>
-  <UPage :ui="{ root: 'flex flex-col gap-y-8 lg:grid lg:grid-cols-10 lg:gap-10' }">
-    <UPageHero
-      :title="t('pages.resume.hero.title')"
-      :description="t('pages.resume.hero.description')"
-      orientation="horizontal"
-      :links="heroLinks"
-      :ui="{
-        title: 'text-highlighted',
-        description: 'text-muted',
-        container: 'px-0 max-w-none py-16 sm:py-24',
-      }"
-    >
+    <UPage :ui="{ root: 'flex flex-col gap-y-8 lg:grid lg:grid-cols-10 lg:gap-10' }">
+      <UPageHero
+        :title="t('pages.resume.hero.title')"
+        :description="t('pages.resume.hero.description')"
+        orientation="horizontal"
+        :links="heroLinks"
+        :ui="{
+          title: 'text-highlighted',
+          description: 'text-muted',
+          container: 'px-0 max-w-none py-16 sm:py-24',
+        }"
+      >
         <NuxtImg
           src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
           alt="Marcelo C. Filho"

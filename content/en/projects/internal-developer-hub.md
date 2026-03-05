@@ -1,7 +1,6 @@
 ---
 title: 'Cyberia' - Sound Installation
 description: An interactive sound installation for an art gallery, using motion sensors to trigger complex ambient textures and generative melodies.
-image: https://images.unsplash.com/photo-1550684376-efcbd6e3f031?q=80&w=1471&auto=format&fit=crop
 tags: ["Installation", "Generative", "Ambient"]
 date: 2024-03-20
 ---

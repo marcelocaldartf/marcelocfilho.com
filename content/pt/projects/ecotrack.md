@@ -1,7 +1,6 @@
 ---
 title: Branding de Áudio Comercial
 description: Desenvolvi um logo sonoro único e um kit de som para uma marca de tecnologia, criando uma identidade de áudio coesa em seus pontos de contato digitais e físicos.
-image: https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=1470&auto=format&fit=crop
 tags: ["Branding", "Audio Design"]
 date: 2023-08-15
 ---

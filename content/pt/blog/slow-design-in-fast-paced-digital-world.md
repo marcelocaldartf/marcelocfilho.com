@@ -2,12 +2,11 @@
 title: "A Arte do Foley no Desenvolvimento Indie"
 description: "Por que o Foley gravado de forma personalizada supera os sons de biblioteca sempre, mesmo com orçamento limitado."
 date: 2025-01-05
-image: https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1470&auto=format&fit=crop
 minRead: 5
 author:
   name: Marcelo Caldart Filho
   avatar:
-    src: https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=1480&auto=format&fit=crop
+    src: ""
     alt: Marcelo Caldart Filho
 ---
 

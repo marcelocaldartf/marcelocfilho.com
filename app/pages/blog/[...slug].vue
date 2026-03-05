@@ -53,7 +53,7 @@ const breadcrumb = computed(() =>
   ),
 );
 
-if (page.value.image) {
+if (page.value.image && page.value.image !== "") {
   defineOgImage({ url: page.value.image });
 } else {
   defineOgImageComponent(
@@ -105,6 +105,7 @@ const formatDate = (dateString: string) => {
 
       <UPageBody>
         <NuxtImg
+          v-if="page.image"
           :src="page.image"
           :alt="page.title"
           class="rounded-lg w-full h-[300px] object-cover object-center mb-12 shadow-2xl ring-1 ring-default"

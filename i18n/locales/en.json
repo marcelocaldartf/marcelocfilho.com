@@ -87,30 +87,6 @@
         "title": "About Me",
         "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding. My approach blends creative strategy with technical expertise, transforming concepts into purposeful sonic experiences."
       },
-      "experience": {
-        "items": [
-          {
-            "position": "Audio Designer at",
-            "date": "2017 - Present",
-            "company": {
-              "name": "Freelance",
-              "logo": "i-lucide-mic-2",
-              "url": "https://soundcloud.com/marcelo-filho-32565359",
-              "color": "#ff5500"
-            }
-          },
-          {
-            "position": "Music Producer at",
-            "date": "2017 - Present",
-            "company": {
-              "name": "Freelance",
-              "logo": "i-lucide-music",
-              "url": "https://soundcloud.com/marcelo-filho-32565359",
-              "color": "#00ffcc"
-            }
-          }
-        ]
-      },
       "blog": {
         "title": "Latest Articles",
         "description": "Some of my recent thoughts",

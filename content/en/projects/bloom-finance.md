@@ -1,7 +1,6 @@
 ---
 title: Project 'Ether' - Game Audio
 description: Complete sonic overhaul for an indie horror title. Created custom foley systems and a procedural horror score that responds to player heart rate.
-image: https://images.unsplash.com/photo-1510076857177-7470076d4098?q=80&w=1472&auto=format&fit=crop
 tags: ["Game Audio", "FMOD", "Horror"]
 date: 2024-01-01
 ---

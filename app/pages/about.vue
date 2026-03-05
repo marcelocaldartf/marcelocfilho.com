@@ -18,8 +18,6 @@ if (!page.value) {
   });
 }
 
-
-
 useSeoMeta({
   title: page.value?.seo?.title || page.value?.title,
   ogTitle: page.value?.seo?.title || page.value?.title,

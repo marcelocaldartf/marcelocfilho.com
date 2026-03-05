@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "nuxt-llms",
     "nuxt-og-image",
+    "nuxt-security",
     "nuxt-studio",
   ],
 
@@ -71,6 +72,38 @@ export default defineNuxtConfig({
         type: "d1",
         bindingName: "DB",
       },
+    },
+  },
+
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        "img-src": [
+          "'self'",
+          "data:",
+          "blob:",
+          "https://cdn.marcelocfilho.com",
+          "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
+          "https://via.placeholder.com",
+          "https://ui.nuxt.com",
+        ],
+        "script-src": ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'unsafe-eval'"],
+        "script-src-attr": ["'unsafe-inline'"],
+        "connect-src": [
+          "'self'",
+          "https://cdn.marcelocfilho.com",
+          "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
+          "https://api.iconify.design",
+          "https://api.unisvg.com",
+          "https://api.simplesvg.com",
+        ],
+        "font-src": ["'self'", "https://fonts.gstatic.com"],
+        "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        "frame-ancestors": ["'self'"],
+      },
+      referrerPolicy: "strict-origin-when-cross-origin",
+      xFrameOptions: "SAMEORIGIN",
+      xContentTypeOptions: "nosniff",
     },
   },
 

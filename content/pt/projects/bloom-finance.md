@@ -1,7 +1,6 @@
 ---
 title: Projeto 'Ether' - Áudio de Jogo
 description: Reformulação sonora completa para um título de terror indie. Criei sistemas de foley personalizados e uma trilha sonora de terror procedural que responde à frequência cardíaca do jogador.
-image: https://images.unsplash.com/photo-1510076857177-7470076d4098?q=80&w=1472&auto=format&fit=crop
 tags: ["Game Audio", "FMOD", "Horror"]
 date: 2024-01-01
 ---

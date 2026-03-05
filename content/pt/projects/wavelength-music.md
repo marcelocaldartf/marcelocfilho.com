@@ -1,7 +1,6 @@
 ---
 title: Wavelength - Pós-Produção de Áudio
 description: Sound design e trilha sonora original para um curta documental, focando em foley e texturas atmosféricas para criar uma experiência de visualização íntima.
-image: https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=1470&auto=format&fit=crop
 tags: ["Sound Design", "Trilha Sonora", "Mixagem"]
 date: 2023-11-05
 ---

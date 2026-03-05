@@ -75,7 +75,10 @@ const faqUi = {
       :ui="{ headline: 'flex justify-center' }"
     >
       <template #headline>
-        <NuxtImg src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp" class="size-18 ring ring-default ring-offset-3 ring-offset-bg mx-auto rounded-full" />
+        <NuxtImg
+          src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
+          class="size-18 ring ring-default ring-offset-3 ring-offset-bg mx-auto rounded-full"
+        />
       </template>
 
       <template #links>
@@ -117,8 +120,17 @@ const faqUi = {
           :key="index"
           orientation="horizontal"
           variant="naked"
-          v-bind="post"
-          :to="localePath(post.path)"
+          v-bind="{
+            ...post,
+            image: post.image || undefined,
+            author: post.author
+              ? {
+                  ...post.author,
+                  avatar: post.author.avatar?.src ? post.author.avatar : undefined,
+                }
+              : undefined,
+          }"
+          :to="post.path ? localePath(post.path) : undefined"
           :ui="{
             root: 'group relative lg:items-start lg:flex ring-0 hover:ring-0',
             body: '!px-0',

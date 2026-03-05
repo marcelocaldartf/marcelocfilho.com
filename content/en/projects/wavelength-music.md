@@ -1,7 +1,6 @@
 ---
 title: Wavelength - Audio Post Production
 description: Sound design and original score for a documentary short film, focusing on foley and atmospheric textures to create an intimate viewing experience.
-image: https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=1470&auto=format&fit=crop
 tags: ["Sound Design", "Score", "Mixing"]
 date: 2023-11-05
 ---

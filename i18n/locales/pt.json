@@ -87,30 +87,6 @@
         "title": "Sobre Mim",
         "description": "Designer de som, artista de Foley e Compositor com bacharelado em Música. Ofereço produções de áudio para jogos, projetos audiovisuais, anúncios e branding. Minha abordagem combina estratégia criativa com expertise técnica, transformando conceitos em experiências sonoras propositais."
       },
-      "experience": {
-        "items": [
-          {
-            "position": "Audio Designer na",
-            "date": "2017 - Presente",
-            "company": {
-              "name": "Freelance",
-              "logo": "i-lucide-mic-2",
-              "url": "https://soundcloud.com/marcelo-filho-32565359",
-              "color": "#ff5500"
-            }
-          },
-          {
-            "position": "Produtor Musical na",
-            "date": "2017 - Presente",
-            "company": {
-              "name": "Freelance",
-              "logo": "i-lucide-music",
-              "url": "https://soundcloud.com/marcelo-filho-32565359",
-              "color": "#00ffcc"
-            }
-          }
-        ]
-      },
       "blog": {
         "title": "Últimos Artigos",
         "description": "Algumas das minhas reflexões recentes",

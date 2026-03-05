@@ -38,14 +38,14 @@ const commonSchema = z.object({
 const blogSchema = commonSchema.extend({
   minRead: z.number(),
   date: z.date(),
-  image: z.string().nonempty().editor({ input: "media" }),
+  image: z.string().optional().editor({ input: "media" }),
   author: createAuthorSchema(),
 });
 
 const projectSchema = commonSchema.extend({
   title: z.string().nonempty(),
   description: z.string().nonempty(),
-  image: z.string().nonempty().editor({ input: "media" }),
+  image: z.string().optional().editor({ input: "media" }),
   tags: z.array(z.string()),
   date: z.date(),
 });

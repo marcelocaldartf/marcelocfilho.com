@@ -1,7 +1,6 @@
 ---
 title: Commercial Audio Branding
 description: Developed a unique sonic logo and sound kit for a tech brand, creating a cohesive audio identity across their digital and physical touchpoints.
-image: https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=1470&auto=format&fit=crop
 tags: ["Branding", "Audio Design"]
 date: 2023-08-15
 ---

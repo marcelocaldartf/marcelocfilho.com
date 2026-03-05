@@ -9,9 +9,12 @@ const route = useRoute();
 const open = ref(false);
 
 // Close slideover when route changes
-watch(() => route.path, () => {
-  open.value = false;
-});
+watch(
+  () => route.path,
+  () => {
+    open.value = false;
+  },
+);
 
 const leftLinks = computed<NavigationMenuItem[]>(() => [
   {
@@ -90,7 +93,7 @@ const socialLinks = [
                   size="md"
                   class="hover:text-primary-500"
                 >
-                  {{ link['aria-label'] }}
+                  {{ link["aria-label"] }}
                 </UButton>
               </div>
             </div>
@@ -134,7 +137,7 @@ const socialLinks = [
             @update:model-value="setLocale($event as 'en' | 'pt')"
             :items="[
               { code: 'en', name: 'English' },
-              { code: 'pt', name: 'Português' }
+              { code: 'pt', name: 'Português' },
             ]"
             value-key="code"
             label-key="name"
@@ -149,7 +152,7 @@ const socialLinks = [
             :aria-label="t('app.language_picker')"
           >
             <template #leading="{ modelValue }">
-              <span class="text-xs font-medium">{{ modelValue === 'pt' ? 'PT' : 'EN' }}</span>
+              <span class="text-xs font-medium">{{ modelValue === "pt" ? "PT" : "EN" }}</span>
             </template>
             <template #item-leading="{ item }">
               <span class="text-xs font-medium">{{ item.code.toUpperCase() }}</span>

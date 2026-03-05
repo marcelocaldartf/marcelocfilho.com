@@ -59,8 +59,17 @@ useSeoMeta({
           :key="index"
           variant="naked"
           orientation="horizontal"
-          :to="localePath(post.path)"
-          v-bind="post"
+          :to="post.path ? localePath(post.path) : undefined"
+          v-bind="{
+            ...post,
+            image: post.image || undefined,
+            author: post.author
+              ? {
+                  ...post.author,
+                  avatar: post.author.avatar?.src ? post.author.avatar : undefined,
+                }
+              : undefined,
+          }"
           :ui="{
             root: 'md:grid md:grid-cols-2 group overflow-visible transition-all duration-300',
             image:
