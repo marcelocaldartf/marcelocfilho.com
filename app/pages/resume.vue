@@ -157,6 +157,76 @@ const downloadPDF = () => {
       </UPageHero>
 
       <UPageSection
+        :title="t('pages.resume.sections.skills.title')"
+        :ui="{
+          title: 'text-left text-xl sm:text-2xl lg:text-3xl',
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
+        }"
+      >
+        <!-- Empty for now -->
+      </UPageSection>
+
+      <UPageSection
+        :title="t('pages.resume.sections.tech.title')"
+        :ui="{
+          title: 'text-left text-xl sm:text-2xl lg:text-3xl',
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
+        }"
+      >
+        <div class="grid grid-cols-2 gap-lg">
+          <div class="flex flex-col gap-md">
+            <h5 class="text-highlighted">{{ t("pages.resume.sections.tech.categories.audio") }}</h5>
+            <ul class="flex flex-col gap-xs">
+              <li>
+                <UButton
+                  block
+                  variant="ghost"
+                  color="neutral"
+                  icon="fad:logo-reaper"
+                  to="https://www.reaper.fm/"
+                  target="_blank"
+                  class="justify-start hover:text-primary-500"
+                >
+                  Reaper
+                </UButton>
+              </li>
+              <li>
+                <UButton
+                  block
+                  variant="ghost"
+                  color="neutral"
+                  icon="simple-icons:protools"
+                  to="https://www.avid.com/pro-tools"
+                  target="_blank"
+                  class="justify-start hover:text-primary-500"
+                >
+                  Pro Tools
+                </UButton>
+              </li>
+            </ul>
+          </div>
+          <div class="flex flex-col gap-md">
+            <h5 class="text-highlighted">{{ t("pages.resume.sections.tech.categories.video") }}</h5>
+            <ul class="flex flex-col gap-xs">
+              <li>
+                <UButton
+                  block
+                  variant="ghost"
+                  color="neutral"
+                  icon="simple-icons:davinciresolve"
+                  to="https://www.blackmagicdesign.com/products/davinciresolve"
+                  target="_blank"
+                  class="justify-start hover:text-primary-500"
+                >
+                  DaVinci Resolve
+                </UButton>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </UPageSection>
+
+      <UPageSection
         :title="t('pages.resume.sections.education.title')"
         :ui="{
           title: 'text-left text-xl sm:text-2xl lg:text-3xl',
@@ -227,76 +297,6 @@ const downloadPDF = () => {
             <span class="text-sm text-muted">{{ rt(item.organization) }}</span>
             <span class="text-xs text-muted/80">{{ rt(item.period) }}</span>
             <span v-if="item.field" class="text-xs text-muted/60 italic">{{ rt(item.field) }}</span>
-          </div>
-        </div>
-      </UPageSection>
-
-      <UPageSection
-        :title="t('pages.resume.sections.skills.title')"
-        :ui="{
-          title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
-        }"
-      >
-        <!-- Empty for now -->
-      </UPageSection>
-
-      <UPageSection
-        :title="t('pages.resume.sections.tech.title')"
-        :ui="{
-          title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
-        }"
-      >
-        <div class="grid grid-cols-2 gap-lg">
-          <div class="flex flex-col gap-md">
-            <h5 class="text-highlighted">{{ t("pages.resume.sections.tech.categories.audio") }}</h5>
-            <ul class="flex flex-col gap-xs">
-              <li>
-                <UButton
-                  block
-                  variant="ghost"
-                  color="neutral"
-                  icon="fad:logo-reaper"
-                  to="https://www.reaper.fm/"
-                  target="_blank"
-                  class="justify-start hover:text-primary-500"
-                >
-                  Reaper
-                </UButton>
-              </li>
-              <li>
-                <UButton
-                  block
-                  variant="ghost"
-                  color="neutral"
-                  icon="simple-icons:protools"
-                  to="https://www.avid.com/pro-tools"
-                  target="_blank"
-                  class="justify-start hover:text-primary-500"
-                >
-                  Pro Tools
-                </UButton>
-              </li>
-            </ul>
-          </div>
-          <div class="flex flex-col gap-md">
-            <h5 class="text-highlighted">{{ t("pages.resume.sections.tech.categories.video") }}</h5>
-            <ul class="flex flex-col gap-xs">
-              <li>
-                <UButton
-                  block
-                  variant="ghost"
-                  color="neutral"
-                  icon="simple-icons:davinciresolve"
-                  to="https://www.blackmagicdesign.com/products/davinciresolve"
-                  target="_blank"
-                  class="justify-start hover:text-primary-500"
-                >
-                  DaVinci Resolve
-                </UButton>
-              </li>
-            </ul>
           </div>
         </div>
       </UPageSection>
