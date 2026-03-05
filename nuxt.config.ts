@@ -90,7 +90,7 @@ export default defineNuxtConfig({
           "https://via.placeholder.com",
           "https://ui.nuxt.com",
         ],
-        "script-src": ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'unsafe-eval'"],
+        "script-src": ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'"],
         "script-src-attr": ["'unsafe-inline'"],
         "connect-src": [
           "'self'",
@@ -103,6 +103,7 @@ export default defineNuxtConfig({
         "font-src": ["'self'", "https://fonts.gstatic.com"],
         "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         "frame-ancestors": ["'self'"],
+        "form-action": ["'self'"],
       },
       referrerPolicy: "strict-origin-when-cross-origin",
       xFrameOptions: "SAMEORIGIN",

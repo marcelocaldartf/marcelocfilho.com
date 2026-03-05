@@ -77,6 +77,7 @@ const faqUi = {
       <template #headline>
         <NuxtImg
           src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
+          alt="Marcelo Caldart Filho profile photo"
           class="size-18 ring ring-default ring-offset-3 ring-offset-bg mx-auto rounded-full"
         />
       </template>
