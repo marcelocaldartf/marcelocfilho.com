@@ -156,18 +156,8 @@ export default defineNuxtConfig({
     size: "24px",
     customCollections: [
       {
-        prefix: "first-party",
-        dir: "./app/assets/icons/first-party",
-        normalizeIconName: false,
-      },
-      {
         prefix: "logos",
         dir: "./app/assets/icons/first-party/logos",
-        normalizeIconName: false,
-      },
-      {
-        prefix: "third-party",
-        dir: "./app/assets/icons/third-party",
         normalizeIconName: false,
       },
     ],
