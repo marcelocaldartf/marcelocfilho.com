@@ -77,6 +77,7 @@ export default defineNuxtConfig({
 
   security: {
     ssg: {
+      meta: false,
       exportToPresets: false,
     },
     headers: {
@@ -90,7 +91,7 @@ export default defineNuxtConfig({
           "https://ui.nuxt.com",
         ],
         "script-src": ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'"],
-        "script-src-attr": ["'unsafe-inline'"],
+        "script-src-attr": ["'none'"],
         "connect-src": [
           "'self'",
           "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
@@ -102,7 +103,14 @@ export default defineNuxtConfig({
         "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         "frame-ancestors": ["'self'"],
         "form-action": ["'self'"],
+        "require-trusted-types-for": "'script'",
       },
+      strictTransportSecurity: {
+        maxAge: 31536000,
+        includeSubdomains: true,
+        preload: true,
+      },
+      crossOriginOpenerPolicy: "same-origin",
       referrerPolicy: "strict-origin-when-cross-origin",
       xFrameOptions: "SAMEORIGIN",
       xContentTypeOptions: "nosniff",

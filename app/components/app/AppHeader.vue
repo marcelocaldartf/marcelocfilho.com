@@ -128,7 +128,7 @@ const socialLinks = [
         <div class="hidden sm:block mx-1 my-2 w-px bg-muted/50" />
 
         <div class="flex items-stretch gap-1">
-          <UColorModeButton size="sm" class="rounded-full" />
+          <UColorModeButton size="sm" class="rounded-full" aria-label="Toggle color mode" />
 
           <USelectMenu
             :model-value="locale"

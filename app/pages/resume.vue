@@ -332,6 +332,7 @@ const downloadPDF = () => {
                   to="https://www.linkedin.com/in/marcelocfilho/"
                   target="_blank"
                   class="hover:text-primary-500"
+                  aria-label="LinkedIn"
                 />
                 <UButton
                   variant="ghost"
@@ -340,6 +341,7 @@ const downloadPDF = () => {
                   to="https://soundcloud.com/marcelo-filho-32565359"
                   target="_blank"
                   class="hover:text-primary-500"
+                  aria-label="SoundCloud"
                 />
               </UFieldGroup>
               <UButton
