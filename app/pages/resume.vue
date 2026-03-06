@@ -134,7 +134,8 @@ useSeoMeta({
 /* region Logic */
 const downloadPDF = () => {
   const link = document.createElement("a");
-  link.href = "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Resume/Resume_Marcelo_C_Filho.pdf";
+  link.href =
+    "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Resume/Resume_Marcelo_C_Filho.pdf";
   link.setAttribute("download", "Resume_Marcelo_C_Filho.pdf");
   document.body.appendChild(link);
   link.click();

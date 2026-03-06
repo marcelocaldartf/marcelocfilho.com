@@ -6,7 +6,6 @@
   },
   "app": {
     "language_picker": "Escolher Idioma",
-    "switchTheme": "Mudar Tema",
     "seoTitleTemplate": "%s - Marcelo Caldart Filho",
     "navigation": {
       "home": "Início",

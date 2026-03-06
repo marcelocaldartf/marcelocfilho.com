@@ -15,6 +15,7 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/a11y",
     "@nuxt/content",
+    "@nuxt/fonts",
     "@nuxt/image",
     "@nuxt/ui",
     "@nuxtjs/i18n",
