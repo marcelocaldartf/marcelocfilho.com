@@ -55,14 +55,6 @@ const breadcrumb = computed(() =>
 
 if (page.value.image && page.value.image !== "") {
   defineOgImage({ url: page.value.image });
-} else {
-  defineOgImageComponent(
-    "Blog",
-    {
-      title: page.value.title,
-      website: "marcelocfilho.com",
-    },
-  );
 }
 
 const title = page.value?.seo?.title || page.value?.title;
