@@ -59,10 +59,8 @@ if (page.value.image && page.value.image !== "") {
   defineOgImageComponent(
     "Blog",
     {
-      headline: breadcrumb.value.map((item) => item.label).join(" > "),
-    },
-    {
-      fonts: ["Geist:400", "Geist:600"],
+      title: page.value.title,
+      website: "marcelocfilho.com",
     },
   );
 }
