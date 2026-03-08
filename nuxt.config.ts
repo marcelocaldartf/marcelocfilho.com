@@ -88,14 +88,6 @@ export default defineNuxtConfig({
 
   vite: {
     clearScreen: false,
-    server: {
-      strictPort: true,
-      hmr: {
-        protocol: "ws",
-        host: "localhost",
-        port: 3000,
-      },
-    },
   },
 
   ssr: true,
@@ -157,7 +149,6 @@ export default defineNuxtConfig({
         "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         "frame-ancestors": ["'self'"],
         "form-action": ["'self'"],
-        "require-trusted-types-for": "'script'",
       },
       strictTransportSecurity: {
         maxAge: 31536000,
