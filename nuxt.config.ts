@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     componentIslands: {
       selectiveClient: true,
     },
+    viewTransition: true,
   },
 
   modules: [
