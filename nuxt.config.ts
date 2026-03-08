@@ -133,7 +133,7 @@ export default defineNuxtConfig({
           "'self'",
           "data:",
           "blob:",
-          "https://marcelocfilho-dot-com.marcelocaldartfilho.workers.dev",
+          "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
           "https://placehold.co",
         ],
         "script-src": ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'"],
@@ -242,7 +242,7 @@ export default defineNuxtConfig({
     format: ["webp"],
     provider: "cloudflare",
     cloudflare: {
-      baseURL: "https://marcelocfilho-dot-com.marcelocaldartfilho.workers.dev",
+      baseURL: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
     },
   },
 
