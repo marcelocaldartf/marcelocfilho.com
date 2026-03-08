@@ -1,14 +1,14 @@
 {
   "app": {
-    "language_picker": "Escolher Idioma",
     "seoTitleTemplate": "%s - Marcelo Caldart Filho",
-    "navigation": {
+    "header": {
       "home": "Início",
       "projects": "Projetos",
       "resume": "Currículo",
       "blog": "Blog",
       "about": "Sobre",
-      "contact": "Contato"
+      "contact": "Contato",
+      "languagePicker": "Escolher Idioma"
     }
   },
   "pages": {
