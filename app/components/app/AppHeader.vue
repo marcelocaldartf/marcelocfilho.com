@@ -1,143 +1,157 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from "@nuxt/ui";
+import type { NavigationMenuItem, ButtonProps } from "@nuxt/ui";
 
-const { t, locale, setLocale } = useI18n();
-const localePath = useLocalePath();
-const route = useRoute();
+/* region Props */
+/* endregion */
 
-const open = ref(false);
+/* region Emits */
+/* endregion */
 
+/* region Slots */
+/* endregion */
+
+/* region Styles */
+/* endregion */
+
+/* region State */
+const { t, locale, setLocale } = useI18n()
+const localePath = useLocalePath()
+const route = useRoute()
+
+const open = ref(false)
+
+const leftLinks = computed<NavigationMenuItem[]>(() => [
+  {
+    label: t("app.header.home"),
+    to: localePath("/"),
+  },
+  {
+    label: t("app.header.projects"),
+    to: localePath("/projects"),
+  },
+  {
+    label: t("app.header.blog"),
+    to: localePath("/blog"),
+  },
+  {
+    label: t("app.header.about"),
+    to: localePath("/about"),
+  },
+])
+
+const rightLinks = computed<NavigationMenuItem[]>(() => [
+  {
+    label: t("app.header.resume"),
+    to: localePath("/resume"),
+  },
+  {
+    label: t("app.header.contact"),
+    to: localePath("/contact"),
+  },
+])
+
+const socialLinks = computed<ButtonProps[]>(() => [
+  {
+    label: "LinkedIn",
+    icon: "simple-icons:linkedin",
+    to: "https://www.linkedin.com/in/marcelocfilho/",
+    class: "hover:text-primary-500",
+  },
+  {
+    label: "SoundCloud",
+    icon: "simple-icons:soundcloud",
+    to: "https://soundcloud.com/marcelo-filho-32565359",
+    class: "hover:text-primary-500",
+  }
+])
+/* endregion */
+
+/* region Meta */
+/* endregion */
+
+/* region Lifecycle */
 watch(
   () => route.path,
   () => {
     open.value = false;
   },
-);
+)
+/* endregion */
 
-const leftLinks = computed<NavigationMenuItem[]>(() => [
-  {
-    label: t("app.navigation.home"),
-    to: localePath("/"),
-  },
-  {
-    label: t("app.navigation.projects"),
-    to: localePath("/projects"),
-  },
-  {
-    label: t("app.navigation.blog"),
-    to: localePath("/blog"),
-  },
-  {
-    label: t("app.navigation.about"),
-    to: localePath("/about"),
-  },
-]);
-
-const rightLinks = computed<NavigationMenuItem[]>(() => [
-  {
-    label: t("app.navigation.resume"),
-    to: localePath("/resume"),
-  },
-  {
-    label: t("app.navigation.contact"),
-    to: localePath("/contact"),
-  },
-]);
-
-const socialLinks = [
-  {
-    icon: "i-simple-icons-soundcloud",
-    to: "https://soundcloud.com/marcelo-filho-32565359",
-    target: "_blank",
-    "aria-label": "SoundCloud",
-  },
-  {
-    icon: "i-simple-icons-linkedin",
-    to: "https://www.linkedin.com/in/marcelocfilho/",
-    target: "_blank",
-    "aria-label": "LinkedIn",
-  },
-];
+/* region Logic */
+/* endregion */
 </script>
 
 <template>
-  <div
-    class="fixed top-2 sm:top-4 mx-auto left-1/2 transform -translate-x-1/2 z-50 w-full max-w-(--ui-container) px-4"
+  <header
+    class="fixed top-2 sm:top-4 z-50 inset-x-0 mx-auto w-full max-w-(--ui-container) px-sm"
   >
     <div
-      class="flex items-center justify-between bg-muted/80 backdrop-blur-sm rounded-full px-4 py-1 border border-muted/50 shadow-lg shadow-neutral-950/5"
+      class="flex w-full items-center justify-between bg-muted rounded-full px-md py-xs border border-muted shadow-lg shadow-neutral-950/5"
     >
-      <!-- Left Section (Mobile Menu / Desktop Nav) -->
+      <!-- Left Section -->
       <div class="flex items-center">
-        <USlideover v-model:open="open" side="left" :ui="{ content: 'w-2/3' }" title="Menu">
-          <UButton
-            icon="i-lucide-menu"
-            color="neutral"
-            variant="ghost"
-            class="rounded-full my-auto sm:hidden"
-            aria-label="Open Menu"
-          />
-          <template #body>
-            <div class="flex flex-col gap-4">
-              <UNavigationMenu orientation="vertical" :items="[...leftLinks, ...rightLinks]" />
-              <USeparator />
-              <div class="flex flex-col gap-2">
-                <UButton
-                  v-for="(link, index) in socialLinks"
-                  :key="index"
-                  v-bind="link"
-                  variant="ghost"
-                  color="neutral"
-                  size="md"
-                  class="hover:text-primary-500"
-                >
-                  {{ link["aria-label"] }}
-                </UButton>
+        <ClientOnly>
+          <USlideover v-model:open="open" side="left" :ui="{ content: 'w-2/3' }" title="Menu">
+            <UButton
+              icon="lucide:menu"
+              color="neutral"
+              variant="ghost"
+              class="rounded-full my-auto sm:hidden"
+              aria-label="Open Menu"
+            />
+            <template #body>
+              <div class="flex flex-col gap-md">
+                <UNavigationMenu orientation="vertical" :items="[...leftLinks, ...rightLinks]"/>
+                <LazyUSeparator />
+                <div class="flex flex-col gap-sm">
+                  <UButton
+                    v-for="link in socialLinks"
+                    :key="link.name"
+                    size="md"
+                    color="neutral"
+                    variant="ghost"
+                    :icon="link.icon"
+                    :label="link.label"
+                    :to="link.to"
+                    target="_blank"
+                    :aria-label="link.name"
+                    :class="link.class"
+                  />
+                </div>
               </div>
-            </div>
-          </template>
-        </USlideover>
+            </template>
+          </USlideover>
+        </ClientOnly>
 
         <div class="hidden sm:flex items-center">
           <UNavigationMenu
             :items="leftLinks"
             variant="link"
-            color="neutral"
-            :ui="{
-              link: 'px-2 py-1',
-              linkLeadingIcon: 'hidden',
-            }"
           />
         </div>
       </div>
 
       <!-- Right Section -->
-      <div class="flex self-stretch items-stretch gap-1">
+      <div class="flex self-stretch items-stretch gap-sm">
         <div class="hidden sm:flex items-center">
           <UNavigationMenu
             :items="rightLinks"
             variant="link"
-            color="neutral"
-            :ui="{
-              link: 'px-2 py-1',
-              linkLeadingIcon: 'hidden',
-            }"
           />
         </div>
 
-        <LazyUSeparator class="hidden sm:block mx-1 my-2 w-px" />
-
         <div class="flex items-stretch gap-1">
-          <UColorModeButton size="sm" aria-label="Toggle color mode" />
+          <UColorModeButton size="sm" class="rounded-full" />
 
           <ClientOnly>
             <USelectMenu
               :model-value="locale"
               @update:model-value="setLocale($event as 'en' | 'pt')"
               :items="[
-                { code: 'en', name: 'English' },
-                { code: 'pt', name: 'Português' },
-              ]"
+                  { code: 'en', name: 'English' },
+                  { code: 'pt', name: 'Português' },
+                ]"
               value-key="code"
               label-key="name"
               icon="i-lucide-languages"
@@ -145,10 +159,10 @@ const socialLinks = [
               size="sm"
               class="shrink-0 h-full"
               :ui="{
-                value: 'hidden',
-                content: 'w-48',
-              }"
-              :aria-label="t('app.language_picker')"
+                  value: 'hidden',
+                  content: 'w-48',
+                }"
+              :aria-label="t('app.header.languagePicker')"
             >
               <template #leading="{ modelValue }">
                 <span class="text-xs font-medium">{{ modelValue === "pt" ? "PT" : "EN" }}</span>
@@ -161,17 +175,20 @@ const socialLinks = [
 
           <div class="hidden sm:flex items-center gap-xs">
             <UButton
-              v-for="(link, index) in socialLinks"
-              :key="index"
-              v-bind="link"
-              variant="ghost"
+              v-for="link in socialLinks"
+              :key="link.name"
+              size="sm"
               color="neutral"
-              size="md"
-              class="hover:text-primary-500"
+              variant="ghost"
+              :icon="link.icon"
+              :to="link.to"
+              target="_blank"
+              :aria-label="link.name"
+              :class="link.class"
             />
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </header>
 </template>
