@@ -32,8 +32,6 @@
 }
 
 :root {
-  --ui-container: 75rem;
-
   ::selection {
     color: var(--color-neutral-900);
     background-color: var(--color-primary-500);
