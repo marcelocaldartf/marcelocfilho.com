@@ -33,12 +33,14 @@ if (!posts.value) {
   });
 }
 
-useSeoMeta({
-  title: page.value?.seo?.title || page.value?.title,
-  ogTitle: page.value?.seo?.title || page.value?.title,
-  description: page.value?.seo?.description || page.value?.description,
-  ogDescription: page.value?.seo?.description || page.value?.description,
-});
+if (page.value?.ogImage) {
+  defineOgImage(page.value.ogImage);
+} else if (page.value?.image) {
+  defineOgImage({ url: page.value.image });
+}
+
+useHead((page.value?.head || {}) as any);
+useSeoMeta((page.value?.seo || {}) as any);
 </script>
 
 <template>

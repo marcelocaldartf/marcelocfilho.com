@@ -37,13 +37,14 @@ const { data: surround } = await useAsyncData(
   { watch: [locale] },
 );
 
-useSeoMeta({
-  title: page.value.title,
-  description: page.value.description,
-  ogTitle: page.value.title,
-  ogDescription: page.value.description,
-  ogImage: page.value.image,
-});
+if (page.value?.ogImage) {
+  defineOgImage(page.value.ogImage);
+} else if (page.value?.image) {
+  defineOgImage({ url: page.value.image });
+}
+
+useHead((page.value?.head || {}) as any);
+useSeoMeta((page.value?.seo || {}) as any);
 
 const headline = computed(() => findPageHeadline(navigation?.value, page.value?.path));
 </script>

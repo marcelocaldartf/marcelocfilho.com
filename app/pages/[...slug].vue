@@ -28,6 +28,15 @@ const { data: page } = await useAsyncData(
     watch: [locale], // Refetch when locale changes
   },
 );
+
+if (page.value?.ogImage) {
+  defineOgImage(page.value.ogImage);
+} else if ((page.value as any)?.image) {
+  defineOgImage({ url: (page.value as any).image });
+}
+
+useHead((page.value?.head || {}) as any);
+useSeoMeta((page.value?.seo || {}) as any);
 </script>
 
 <template>

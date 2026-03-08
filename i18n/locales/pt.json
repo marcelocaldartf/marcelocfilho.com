@@ -1,9 +1,4 @@
 {
-  "studio": {
-    "tooltips": {
-      "toggleStudio": "Alternar Studio"
-    }
-  },
   "app": {
     "language_picker": "Escolher Idioma",
     "seoTitleTemplate": "%s - Marcelo Caldart Filho",

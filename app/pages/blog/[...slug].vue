@@ -53,19 +53,14 @@ const breadcrumb = computed(() =>
   ),
 );
 
-if (page.value.image && page.value.image !== "") {
+if (page.value?.ogImage) {
+  defineOgImage(page.value.ogImage);
+} else if (page.value?.image) {
   defineOgImage({ url: page.value.image });
 }
 
-const title = page.value?.seo?.title || page.value?.title;
-const description = page.value?.seo?.description || page.value?.description;
-
-useSeoMeta({
-  title,
-  description,
-  ogDescription: description,
-  ogTitle: title,
-});
+useHead((page.value?.head || {}) as any);
+useSeoMeta((page.value?.seo || {}) as any);
 
 const articleLink = computed(() => `${window?.location}`);
 
