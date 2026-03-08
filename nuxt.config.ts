@@ -140,14 +140,14 @@ export default defineNuxtConfig({
           "'self'",
           "data:",
           "blob:",
-          "https://marcelocfilho-dot-com.marcelocaldartfilho.workers.dev/",
+          "https://marcelocfilho-dot-com.marcelocaldartfilho.workers.dev",
           "https://placehold.co",
         ],
         "script-src": ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'"],
         "script-src-attr": ["'none'"],
         "connect-src": [
           "'self'",
-          "https://marcelocfilho-dot-com.marcelocaldartfilho.workers.dev/",
+          "https://marcelocfilho-dot-com.marcelocaldartfilho.workers.dev",
           "https://api.iconify.design",
           "https://api.unisvg.com",
           "https://api.simplesvg.com",
@@ -250,11 +250,15 @@ export default defineNuxtConfig({
     format: ["webp"],
     provider: "cloudflare",
     cloudflare: {
-      baseURL: "https://marcelocfilho-dot-com.marcelocaldartfilho.workers.dev/",
+      baseURL: "https://marcelocfilho-dot-com.marcelocaldartfilho.workers.dev",
     },
   },
 
   ogImage: {
+    zeroRuntime: true,
+  },
+
+  sitemap: {
     zeroRuntime: true,
   },
 
