@@ -1,18 +1,57 @@
 <script setup lang="ts">
 import * as locales from "@nuxt/ui/locale";
 
-const { t, locale } = useI18n();
-const localePath = useLocalePath();
+/* region Props */
+/* endregion */
 
-const lang = computed(() => (locales as any)[locale.value]?.code || "en");
-const dir = computed(() => (locales as any)[locale.value]?.dir || "ltr");
+/* region Emits */
+/* endregion */
 
-useHead({
-  htmlAttrs: {
-    lang,
-    dir,
+/* region Slots */
+/* endregion */
+
+/* region Styles */
+/* endregion */
+
+/* region State */
+const { t, locale } = useI18n()
+const localePath = useLocalePath()
+
+const lang = computed(() => (locales as any)[locale.value]?.code || "en")
+const dir = computed(() => (locales as any)[locale.value]?.dir || "ltr")
+
+const searchLinks = computed(() => [
+  {
+    label: t("app.header.home"),
+    icon: "lucide:home",
+    to: localePath("/"),
   },
-})
+  {
+    label: t("app.header.projects"),
+    icon: "lucide:folder",
+    to: localePath("/projects"),
+  },
+  {
+    label: t("app.header.blog"),
+    icon: "lucide:file-text",
+    to: localePath("/blog"),
+  },
+  {
+    label: t("app.header.about"),
+    icon: "lucide:user",
+    to: localePath("/about"),
+  },
+  {
+    label: t("app.header.resume"),
+    icon: "lucide:layout",
+    to: localePath("/resume"),
+  },
+  {
+    label: t("app.header.contact"),
+    icon: "lucide:mail",
+    to: localePath("/contact"),
+  },
+])
 
 const [{ data: navigation }, { data: files }] = await Promise.all([
   useAsyncData(
@@ -57,40 +96,23 @@ const [{ data: navigation }, { data: files }] = await Promise.all([
   ),
 ])
 
-const searchLinks = computed(() => [
-  {
-    label: t("app.header.home"),
-    icon: "lucide:home",
-    to: localePath("/"),
-  },
-  {
-    label: t("app.header.projects"),
-    icon: "lucide:folder",
-    to: localePath("/projects"),
-  },
-  {
-    label: t("app.header.blog"),
-    icon: "lucide:file-text",
-    to: localePath("/blog"),
-  },
-  {
-    label: t("app.header.about"),
-    icon: "lucide:user",
-    to: localePath("/about"),
-  },
-  {
-    label: t("app.header.resume"),
-    icon: "lucide:layout",
-    to: localePath("/resume"),
-  },
-  {
-    label: t("app.header.contact"),
-    icon: "lucide:mail",
-    to: localePath("/contact"),
-  },
-])
-
 provide("navigation", navigation)
+/* endregion */
+
+/* region Meta */
+useHead({
+  htmlAttrs: {
+    lang,
+    dir,
+  },
+})
+/* endregion */
+
+/* region Lifecycle */
+/* endregion */
+
+/* region Logic */
+/* endregion */
 </script>
 
 <template>
