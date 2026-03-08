@@ -1,5 +1,7 @@
 {
   "app": {
+    "title": "Marcelo Caldart Filho",
+    "description": "Meu site portfólio.",
     "seoTitleTemplate": "%s - Marcelo Caldart Filho",
     "header": {
       "home": "Início",
@@ -12,155 +14,139 @@
     }
   },
   "pages": {
-    "blog": {
-      "copyLink": "Copiar link",
-      "linkCopied": "Link copiado!"
-    },
-    "projects": {
-      "viewProject": "Ver Projeto"
-    },
-    "global": {
-      "errors": {
-        "notFound": "Página não encontrada"
-      }
-    },
-    "contact": {
-      "meta": {
-        "title": "Contato | Marcelo Caldart Filho"
-      },
-      "hero": {
-        "title": "Envie-me uma mensagem",
-        "description": "Sinta-se à vontade para entrar em contato para consultas de negócios ou outros tópicos!"
-      },
-      "form": {
-        "title": "Enviar uma Mensagem",
-        "fields": {
-          "name": {
-            "label": "Seu Nome",
-            "placeholder": "Digite seu nome",
-            "error": "O nome deve ter pelo menos 2 caracteres."
-          },
-          "email": {
-            "label": "Endereço de E-mail",
-            "placeholder": "nome{'@'}exemplo.com",
-            "error": "Por favor, insira um endereço de e-mail válido."
-          },
-          "message": {
-            "label": "Mensagem",
-            "placeholder": "Digite sua mensagem aqui...",
-            "error": "A mensagem deve ter pelo menos 10 caracteres."
-          },
-          "submit": "Enviar Mensagem"
-        },
-        "success": {
-          "title": "Mensagem Enviada!",
-          "description": "Retornarei o contato o mais rápido possível."
-        }
-      },
-      "details": {
-        "title": "Detalhes de Contato",
-        "email": "E-mail",
-        "emailValue": "marcelocfilho96{'@'}gmail.com",
-        "whatsapp": "WhatsApp",
-        "whatsappValue": "41999862882",
-        "socials": "Também estou disponível através das minhas redes sociais:"
-      }
-    },
-    "index": {
+    "home": {
       "meta": {
         "title": "Marcelo Caldart Filho - Sound Designer | Músico"
       },
-      "hero": {
-        "title": "Olá, sou Marcelo Caldart Filho Sound Designer | Músico",
-        "description": "Crio experiências de áudio imersivas e música para jogos e mídia. Baseado em Curitiba, dando vida a mundos sonoros através da criatividade e tecnologia.",
-        "actions": {
-          "talk": "Vamos Conversar"
+      "sections": {
+        "hero": {
+          "title": "Olá, sou Marcelo Caldart Filho Sound Designer | Músico",
+          "description": "Crio experiências de áudio imersivas e música para jogos e mídia. Baseado em Curitiba, dando vida a mundos sonoros através da criatividade e tecnologia.",
+          "actions": {
+            "talk": "Vamos Conversar"
+          }
+        },
+        "about": {
+          "title": "Sobre Mim",
+          "description": "Designer de som, artista de Foley e Compositor com bacharelado em Música. Ofereço produções de áudio para jogos, projetos audiovisuais, anúncios e branding. Minha abordagem combina estratégia criativa com expertise técnica, transformando conceitos em experiências sonoras propositais."
+        },
+        "blog": {
+          "title": "Últimos Artigos",
+          "description": "Algumas das minhas reflexões recentes",
+          "readMore": "Ler Artigo"
+        },
+        "faq": {
+          "title": "Perguntas Frequentes",
+          "description": "Tudo o que você precisa saber sobre trabalhar comigo em produções de áudio e música.",
+          "categories": [
+            {
+              "title": "Serviços & Processo",
+              "questions": [
+                {
+                  "label": "Quais serviços você oferece?",
+                  "content": "Especializo-me em design de som, arte de Foley e composição musical para jogos, projetos audiovisuais e branding. Ofereço produção de áudio ponta a ponta, incluindo gravação, mixagem e masterização."
+                },
+                {
+                  "label": "Como você aborda um novo projeto?",
+                  "content": "Meu processo começa com um mergulho profundo na visão criativa. Trabalho em estreita colaboração com desenvolvedores e diretores para entender os objetivos estéticos, e então itero em conceitos sonoros através de protótipos e implementação técnica em ferramentas como Reaper e Pro Tools."
+                }
+              ]
+            },
+            {
+              "title": "Técnico & Entrega",
+              "questions": [
+                {
+                  "label": "Em quais formatos você entrega os arquivos?",
+                  "content": "Entrego em WAV, AIFF de alta qualidade ou formatos especializados para implementação em middleware. Também sou proficiente em entregar assets de áudio integrados e prontos para engines de jogos."
+                },
+                {
+                  "label": "Quais equipamentos e softwares você usa?",
+                  "content": "Trabalho principalmente com Reaper e Pro Tools para DAW, e DaVinci Resolve para sincronização de vídeo. Meu estúdio é equipado com microfones e sistemas de monitoramento de nível profissional para garantir a mais alta fidelidade."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "projects": {
+      "meta": {
+        "title": "Projetos | Marcelo Caldart Filho"
+      },
+      "sections": {
+        "hero": {
+          "title": "Projetos",
+          "description": "Uma vitrine do meu trabalho de design de som e música para jogos e mídia."
         }
       },
-      "about": {
-        "title": "Sobre Mim",
-        "description": "Designer de som, artista de Foley e Compositor com bacharelado em Música. Ofereço produções de áudio para jogos, projetos audiovisuais, anúncios e branding. Minha abordagem combina estratégia criativa com expertise técnica, transformando conceitos em experiências sonoras propositais."
+      "viewProject": "Ver Projeto"
+    },
+    "blog": {
+      "meta": {
+        "title": "Blog | Marcelo Caldart Filho"
       },
-      "blog": {
-        "title": "Últimos Artigos",
-        "description": "Algumas das minhas reflexões recentes",
-        "readMore": "Ler Artigo"
+      "sections": {
+        "hero": {
+          "title": "Blog",
+          "description": "Reflexões e insights sobre design de som, produção musical e áudio para jogos."
+        }
       },
-      "faq": {
-        "title": "Perguntas Frequentes",
-        "description": "Tudo o que você precisa saber sobre trabalhar comigo em produções de áudio e música.",
-        "categories": [
-          {
-            "title": "Serviços & Processo",
-            "questions": [
-              {
-                "label": "Quais serviços você oferece?",
-                "content": "Especializo-me em design de som, arte de Foley e composição musical para jogos, projetos audiovisuais e branding. Ofereço produção de áudio ponta a ponta, incluindo gravação, mixagem e masterização."
-              },
-              {
-                "label": "Como você aborda um novo projeto?",
-                "content": "Meu processo começa com um mergulho profundo na visão criativa. Trabalho em estreita colaboração com desenvolvedores e diretores para entender os objetivos estéticos, e então itero em conceitos sonoros através de protótipos e implementação técnica em ferramentas como Reaper e Pro Tools."
-              }
-            ]
-          },
-          {
-            "title": "Técnico & Entrega",
-            "questions": [
-              {
-                "label": "Em quais formatos você entrega os arquivos?",
-                "content": "Entrego em WAV, AIFF de alta qualidade ou formatos especializados para implementação em middleware. Também sou proficiente em entregar assets de áudio integrados e prontos para engines de jogos."
-              },
-              {
-                "label": "Quais equipamentos e softwares você usa?",
-                "content": "Trabalho principalmente com Reaper e Pro Tools para DAW, e DaVinci Resolve para sincronização de vídeo. Meu estúdio é equipado com microfones e sistemas de monitoramento de nível profissional para garantir a mais alta fidelidade."
-              }
-            ]
-          }
-        ]
+      "copyLink": "Copiar link",
+      "linkCopied": "Link copiado!"
+    },
+    "about": {
+      "meta": {
+        "title": "Sobre Mim | Marcelo Caldart Filho"
+      },
+      "sections": {
+        "hero": {
+          "title": "Sobre Mim",
+          "description": "Saiba mais sobre minha trajetória, processo criativo e experiência em produção de áudio."
+        }
       }
     },
     "resume": {
       "meta": {
         "title": "Currículo | Marcelo Caldart Filho"
       },
-      "sidebar": {
-        "location": "Curitiba, Brasil",
-        "availability": "Disponível"
-      },
-      "about": {
-        "title": "Sobre",
-        "fields": {
-          "name": "Nome:",
-          "nameValue": "Marcelo Caldart Filho",
-          "gender": "Gênero:",
-          "genderValue": "Masculino",
-          "pronouns": "Pronomes:",
-          "pronounsValue": "Ele / Dele",
-          "nationality": "Nacionalidade:",
-          "nationalityValue": "Brasileiro",
-          "age": "Idade:"
-        }
-      },
-      "languages": {
-        "title": "Idiomas",
-        "levels": {
-          "professional": "Profissional",
-          "native": "Nativo"
-        },
-        "items": {
-          "english": "Inglês",
-          "portuguese": "Português"
-        }
-      },
-      "hero": {
-        "title": "Marcelo Caldart Filho",
-        "description": "Designer de som, artista de Foley e Compositor com bacharelado em Música. Ofereço produções de áudio para jogos, projetos audiovisuais, anúncios e branding.",
-        "actions": {
-          "hire": "Vamos Conversar",
-          "downloadCv": "Baixar CV"
-        }
-      },
       "sections": {
+        "hero": {
+          "title": "Marcelo Caldart Filho",
+          "description": "Designer de som, artista de Foley e Compositor com bacharelado em Música. Ofereço produções de áudio para jogos, projetos audiovisuais, anúncios e branding.",
+          "actions": {
+            "hire": "Vamos Conversar",
+            "downloadCv": "Baixar CV"
+          }
+        },
+        "sidebar": {
+          "location": "Curitiba, Brasil",
+          "availability": "Disponível"
+        },
+        "about": {
+          "title": "Sobre",
+          "fields": {
+            "name": "Nome:",
+            "nameValue": "Marcelo Caldart Filho",
+            "gender": "Gênero:",
+            "genderValue": "Masculino",
+            "pronouns": "Pronomes:",
+            "pronounsValue": "Ele / Dele",
+            "nationality": "Nacionalidade:",
+            "nationalityValue": "Brasileiro",
+            "age": "Idade:"
+          }
+        },
+        "languages": {
+          "title": "Idiomas",
+          "levels": {
+            "professional": "Profissional",
+            "native": "Nativo"
+          },
+          "items": {
+            "english": "Inglês",
+            "portuguese": "Português"
+          }
+        },
         "skills": {
           "title": "Habilidades"
         },
@@ -249,6 +235,55 @@
             }
           ]
         }
+      }
+    },
+    "contact": {
+      "meta": {
+        "title": "Contato | Marcelo Caldart Filho"
+      },
+      "sections": {
+        "hero": {
+          "title": "Envie-me uma mensagem",
+          "description": "Sinta-se à vontade para entrar em contato para consultas de negócios ou outros tópicos!"
+        },
+        "form": {
+          "title": "Enviar uma Mensagem",
+          "fields": {
+            "name": {
+              "label": "Seu Nome",
+              "placeholder": "Digite seu nome",
+              "error": "O nome deve ter pelo menos 2 caracteres."
+            },
+            "email": {
+              "label": "Endereço de E-mail",
+              "placeholder": "nome{'@'}exemplo.com",
+              "error": "Por favor, insira um endereço de e-mail válido."
+            },
+            "message": {
+              "label": "Mensagem",
+              "placeholder": "Digite sua mensagem aqui...",
+              "error": "A mensagem deve ter pelo menos 10 caracteres."
+            },
+            "submit": "Enviar Mensagem"
+          },
+          "success": {
+            "title": "Mensagem Enviada!",
+            "description": "Retornarei o contato o mais rápido possível."
+          }
+        },
+        "details": {
+          "title": "Detalhes de Contato",
+          "email": "E-mail",
+          "emailValue": "marcelocfilho96{'@'}gmail.com",
+          "whatsapp": "WhatsApp",
+          "whatsappValue": "41999862882",
+          "socials": "Também estou disponível através das minhas redes sociais:"
+        }
+      }
+    },
+    "global": {
+      "errors": {
+        "notFound": "Página não encontrada"
       }
     }
   }

@@ -21,14 +21,14 @@ const englishProgress = ref(65);
 
 const heroLinks = computed<ButtonProps[]>(() => [
   {
-    label: t("pages.resume.hero.actions.hire"),
+    label: t("pages.resume.sections.hero.actions.hire"),
     to: localePath("/contact"),
     color: "primary",
     variant: "solid",
     class: "pdf-exclude",
   },
   {
-    label: t("pages.resume.hero.actions.downloadCv"),
+    label: t("pages.resume.sections.hero.actions.downloadCv"),
     icon: "lucide:download",
     onClick: downloadPDF,
     color: "primary",
@@ -39,13 +39,13 @@ const heroLinks = computed<ButtonProps[]>(() => [
 
 const languages = computed(() => [
   {
-    name: t("pages.resume.languages.items.portuguese"),
-    level: t("pages.resume.languages.levels.native"),
+    name: t("pages.resume.sections.languages.items.portuguese"),
+    level: t("pages.resume.sections.languages.levels.native"),
     progress: portugueseProgress.value,
   },
   {
-    name: t("pages.resume.languages.items.english"),
-    level: t("pages.resume.languages.levels.professional"),
+    name: t("pages.resume.sections.languages.items.english"),
+    level: t("pages.resume.sections.languages.levels.professional"),
     progress: englishProgress.value,
   },
 ]);
@@ -124,7 +124,7 @@ const experienceItems = computed(() => [
 /* region Meta */
 useSeoMeta({
   title: t("pages.resume.meta.title"),
-  description: t("pages.resume.hero.description"),
+  description: t("pages.resume.sections.hero.description"),
 });
 /* endregion */
 
@@ -148,8 +148,8 @@ const downloadPDF = () => {
   <UContainer>
     <UPage :ui="{ root: 'flex flex-col gap-y-8 lg:grid lg:grid-cols-10 lg:gap-10' }">
       <UPageHero
-        :title="t('pages.resume.hero.title')"
-        :description="t('pages.resume.hero.description')"
+        :title="t('pages.resume.sections.hero.title')"
+        :description="t('pages.resume.sections.hero.description')"
         orientation="horizontal"
         :links="heroLinks"
         :ui="{
@@ -351,7 +351,7 @@ const downloadPDF = () => {
                 to="https://en.wikipedia.org/wiki/Curitiba"
                 class="hover:text-primary-500"
               >
-                {{ t("pages.resume.sidebar.location") }}
+                {{ t("pages.resume.sections.sidebar.location") }}
               </UButton>
               <UButton
                 block
@@ -359,7 +359,7 @@ const downloadPDF = () => {
                 variant="ghost"
                 :to="localePath('/contact')"
                 class="gap-2 h-auto text-left pdf-exclude"
-                :label="t('pages.resume.sidebar.availability')"
+                :label="t('pages.resume.sections.sidebar.availability')"
                 :ui="{ label: 'whitespace-normal text-balance' }"
               >
                 <template #leading>
@@ -375,37 +375,37 @@ const downloadPDF = () => {
             <div class="flex flex-col gap-sm">
               <div class="flex flex-row items-center gap-md">
                 <UIcon name="lucide:user" size="xs" />
-                <h5 class="text-highlighted">{{ t("pages.resume.about.title") }}</h5>
+                <h5 class="text-highlighted">{{ t("pages.resume.sections.about.title") }}</h5>
               </div>
               <USeparator />
               <ul class="text-neutral-900 dark:text-neutral-100">
                 <li>
                   <span class="text-sm"
-                    ><strong>{{ t("pages.resume.about.fields.name") }}</strong>
-                    {{ t("pages.resume.about.fields.nameValue") }}</span
+                    ><strong>{{ t("pages.resume.sections.about.fields.name") }}</strong>
+                    {{ t("pages.resume.sections.about.fields.nameValue") }}</span
                   >
                 </li>
                 <li>
                   <span class="text-sm"
-                    ><strong>{{ t("pages.resume.about.fields.gender") }}</strong>
-                    {{ t("pages.resume.about.fields.genderValue") }}</span
+                    ><strong>{{ t("pages.resume.sections.about.fields.gender") }}</strong>
+                    {{ t("pages.resume.sections.about.fields.genderValue") }}</span
                   >
                 </li>
                 <li>
                   <span class="text-sm"
-                    ><strong>{{ t("pages.resume.about.fields.pronouns") }}</strong>
-                    {{ t("pages.resume.about.fields.pronounsValue") }}</span
+                    ><strong>{{ t("pages.resume.sections.about.fields.pronouns") }}</strong>
+                    {{ t("pages.resume.sections.about.fields.pronounsValue") }}</span
                   >
                 </li>
                 <li>
                   <span class="text-sm"
-                    ><strong>{{ t("pages.resume.about.fields.nationality") }}</strong>
-                    {{ t("pages.resume.about.fields.nationalityValue") }}</span
+                    ><strong>{{ t("pages.resume.sections.about.fields.nationality") }}</strong>
+                    {{ t("pages.resume.sections.about.fields.nationalityValue") }}</span
                   >
                 </li>
                 <li>
                   <span class="text-sm"
-                    ><strong>{{ t("pages.resume.about.fields.age") }}</strong> {{ age }}</span
+                    ><strong>{{ t("pages.resume.sections.about.fields.age") }}</strong> {{ age }}</span
                   >
                 </li>
               </ul>
@@ -413,7 +413,7 @@ const downloadPDF = () => {
             <div class="flex flex-col gap-sm">
               <div class="flex flex-row items-center gap-md">
                 <UIcon name="lucide:languages" size="xs" />
-                <h5 class="text-highlighted">{{ t("pages.resume.languages.title") }}</h5>
+                <h5 class="text-highlighted">{{ t("pages.resume.sections.languages.title") }}</h5>
               </div>
               <USeparator />
               <ul class="flex flex-col gap-md">

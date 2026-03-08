@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const route = useRoute();
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 const { data: page } = await useAsyncData(
   route.path,
   async () => {
@@ -24,14 +24,18 @@ if (page.value?.ogImage) {
   defineOgImage({ url: page.value.image });
 }
 useHead((page.value?.head || {}) as any);
-useSeoMeta((page.value?.seo || {}) as any);
+useSeoMeta({
+  title: t("pages.about.meta.title"),
+  description: t("pages.about.sections.hero.description"),
+  ...(page.value?.seo || {}),
+});
 </script>
 
 <template>
   <UPage v-if="page">
     <UPageSection
-      :title="page.title"
-      :description="page.description"
+      :title="t('pages.about.sections.hero.title')"
+      :description="t('pages.about.sections.hero.description')"
       orientation="vertical"
       :ui="{
         title: 'mx-0 text-left',

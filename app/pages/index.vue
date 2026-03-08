@@ -4,8 +4,8 @@ const localePath = useLocalePath();
 
 /* region Meta */
 useSeoMeta({
-  title: t("pages.index.meta.title"),
-  description: t("pages.index.hero.description"),
+  title: t("pages.home.meta.title"),
+  description: t("pages.home.sections.hero.description"),
 });
 /* endregion */
 
@@ -18,28 +18,28 @@ const global = {
 
 const faqItems = computed(() => [
   {
-    label: t("pages.index.faq.categories[0].title"),
+    label: t("pages.home.sections.faq.categories[0].title"),
     questions: [
       {
-        label: t("pages.index.faq.categories[0].questions[0].label"),
-        content: t("pages.index.faq.categories[0].questions[0].content"),
+        label: t("pages.home.sections.faq.categories[0].questions[0].label"),
+        content: t("pages.home.sections.faq.categories[0].questions[0].content"),
       },
       {
-        label: t("pages.index.faq.categories[0].questions[1].label"),
-        content: t("pages.index.faq.categories[0].questions[1].content"),
+        label: t("pages.home.sections.faq.categories[0].questions[1].label"),
+        content: t("pages.home.sections.faq.categories[0].questions[1].content"),
       },
     ],
   },
   {
-    label: t("pages.index.faq.categories[1].title"),
+    label: t("pages.home.sections.faq.categories[1].title"),
     questions: [
       {
-        label: t("pages.index.faq.categories[1].questions[0].label"),
-        content: t("pages.index.faq.categories[1].questions[0].content"),
+        label: t("pages.home.sections.faq.categories[1].questions[0].label"),
+        content: t("pages.home.sections.faq.categories[1].questions[0].content"),
       },
       {
-        label: t("pages.index.faq.categories[1].questions[1].label"),
-        content: t("pages.index.faq.categories[1].questions[1].content"),
+        label: t("pages.home.sections.faq.categories[1].questions[1].label"),
+        content: t("pages.home.sections.faq.categories[1].questions[1].content"),
       },
     ],
   },
@@ -70,8 +70,8 @@ const faqUi = {
   <UPage>
     <!-- Hero Section -->
     <UPageHero
-      :title="t('pages.index.hero.title')"
-      :description="t('pages.index.hero.description')"
+      :title="t('pages.home.sections.hero.title')"
+      :description="t('pages.home.sections.hero.description')"
       :ui="{ headline: 'flex justify-center' }"
     >
       <template #headline>
@@ -87,7 +87,7 @@ const faqUi = {
       <template #links>
         <div class="flex flex-col items-center gap-4">
           <UButton
-            :label="t('pages.index.hero.actions.talk')"
+            :label="t('pages.home.sections.hero.actions.talk')"
             :to="localePath('/contact')"
             color="primary"
             variant="solid"
@@ -99,8 +99,8 @@ const faqUi = {
 
     <!-- About & Experience Section -->
     <UPageSection
-      :title="t('pages.index.about.title')"
-      :description="t('pages.index.about.description')"
+      :title="t('pages.home.sections.about.title')"
+      :description="t('pages.home.sections.about.description')"
       :ui="{
         title: 'text-left text-xl sm:text-xl lg:text-2xl font-medium',
         description: 'text-left mt-m3 text-sm sm:text-md lg:text-sm text-muted',
@@ -110,8 +110,8 @@ const faqUi = {
     <!-- Blog Section -->
     <UPageSection
       v-if="posts"
-      :title="t('pages.index.blog.title')"
-      :description="t('pages.index.blog.description')"
+      :title="t('pages.home.sections.blog.title')"
+      :description="t('pages.home.sections.blog.description')"
       :ui="{
         title: 'text-left text-xl sm:text-xl lg:text-2xl font-medium',
         description: 'text-left mt-3 text-sm sm:text-md lg:text-sm text-muted',
@@ -145,7 +145,7 @@ const faqUi = {
               size="xs"
               variant="link"
               class="px-0 gap-0"
-              :label="t('pages.index.blog.readMore')"
+              :label="t('pages.home.sections.blog.readMore')"
             >
               <template #trailing>
                 <UIcon
@@ -161,8 +161,8 @@ const faqUi = {
 
     <!-- FAQ Section -->
     <UPageSection
-      :title="t('pages.index.faq.title')"
-      :description="t('pages.index.faq.description')"
+      :title="t('pages.home.sections.faq.title')"
+      :description="t('pages.home.sections.faq.description')"
       :ui="{
         container: 'px-0 !pt-0 gap-4 sm:gap-4',
         title: 'text-center text-xl sm:text-xl lg:text-2xl font-medium',
@@ -172,7 +172,7 @@ const faqUi = {
       <UContainer>
         <UTabs :items="faqItems" orientation="horizontal" :ui="faqUi">
           <template #content="{ item }">
-            <UAccordion
+            <LazyUAccordion
               trailing-icon="lucide:plus"
               :items="item.questions"
               :unmount-on-hide="false"
@@ -185,9 +185,9 @@ const faqUi = {
               }"
             >
               <template #body="{ item: _item }">
-                <MDC v-if="_item.content" :value="_item.content" unwrap="p" class="px-4" />
+                <LazyMDC v-if="_item.content" :value="_item.content" unwrap="p" class="px-4" />
               </template>
-            </UAccordion>
+            </LazyUAccordion>
           </template>
         </UTabs>
       </UContainer>
@@ -195,14 +195,14 @@ const faqUi = {
 
     <!-- Post CTA -->
     <UPageCTA
-      :title="t('pages.contact.form.title')"
-      :description="t('pages.contact.hero.description')"
+      :title="t('pages.contact.sections.form.title')"
+      :description="t('pages.contact.sections.hero.description')"
       variant="naked"
     >
       <template #links>
         <div class="flex flex-col items-center gap-4">
           <UButton
-            :label="t('pages.index.hero.actions.talk')"
+            :label="t('pages.home.sections.hero.actions.talk')"
             :to="localePath('/contact')"
             color="primary"
             variant="solid"

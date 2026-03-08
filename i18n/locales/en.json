@@ -1,5 +1,7 @@
 {
   "app": {
+    "title": "Marcelo Caldart Filho",
+    "description": "My portfolio website.",
     "seoTitleTemplate": "%s - Marcelo Caldart Filho",
     "header": {
       "home": "Home",
@@ -12,155 +14,139 @@
     }
   },
   "pages": {
-    "blog": {
-      "copyLink": "Copy link",
-      "linkCopied": "Link copied!"
-    },
-    "projects": {
-      "viewProject": "View Project"
-    },
-    "global": {
-      "errors": {
-        "notFound": "Page not found"
-      }
-    },
-    "contact": {
-      "meta": {
-        "title": "Contact | Marcelo Caldart Filho"
-      },
-      "hero": {
-        "title": "Send me a message",
-        "description": "Feel free to contact me for business inquiries or other topics!"
-      },
-      "form": {
-        "title": "Send a Message",
-        "fields": {
-          "name": {
-            "label": "Your Name",
-            "placeholder": "Enter your name",
-            "error": "Name must be at least 2 characters long."
-          },
-          "email": {
-            "label": "Email Address",
-            "placeholder": "name{'@'}example.com",
-            "error": "Please enter a valid email address."
-          },
-          "message": {
-            "label": "Message",
-            "placeholder": "Type your message here...",
-            "error": "Message must be at least 10 characters long..."
-          },
-          "submit": "Send Message"
-        },
-        "success": {
-          "title": "Message Sent!",
-          "description": "I'll get back to you as soon as possible."
-        }
-      },
-      "details": {
-        "title": "Contact Details",
-        "email": "Email",
-        "emailValue": "marcelocfilho96{'@'}gmail.com",
-        "whatsapp": "WhatsApp",
-        "whatsappValue": "41999862882",
-        "socials": "I'm also available through my socials:"
-      }
-    },
-    "index": {
+    "home": {
       "meta": {
         "title": "Marcelo Caldart Filho - Sound Designer | Musician"
       },
-      "hero": {
-        "title": "Hey, I'm Marcelo Caldart Filho Sound Designer | Musician",
-        "description": "I craft immersive audio experiences and music for games and media. Based in Curitiba, bringing sonic worlds to life through creativity and technology.",
-        "actions": {
-          "talk": "Let's Talk"
+      "sections": {
+        "hero": {
+          "title": "Hey, I'm Marcelo Caldart Filho Sound Designer | Musician",
+          "description": "I craft immersive audio experiences and music for games and media. Based in Curitiba, bringing sonic worlds to life through creativity and technology.",
+          "actions": {
+            "talk": "Let's Talk"
+          }
+        },
+        "about": {
+          "title": "About Me",
+          "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding. My approach blends creative strategy with technical expertise, transforming concepts into purposeful sonic experiences."
+        },
+        "blog": {
+          "title": "Latest Articles",
+          "description": "Some of my recent thoughts",
+          "readMore": "Read Article"
+        },
+        "faq": {
+          "title": "Frequently Asked Questions",
+          "description": "Everything you need to know about working with me on audio and music productions.",
+          "categories": [
+            {
+              "title": "Services & Process",
+              "questions": [
+                {
+                  "label": "What services do you offer?",
+                  "content": "I specialize in sound design, Foley art, and music composition for games, audiovisual projects, and branding. I provide end-to-end audio production, including recording, mixing, and mastering."
+                },
+                {
+                  "label": "How do you approach a new project?",
+                  "content": "My process starts with a deep dive into the creative vision. I work closely with developers and directors to understand the aesthetic goals, then iterate on sonic concepts through prototypes and technical implementation in tools like Reaper and Pro Tools."
+                }
+              ]
+            },
+            {
+              "title": "Technical & Delivery",
+              "questions": [
+                {
+                  "label": "What formats do you deliver in?",
+                  "content": "I deliver high-quality WAV, AIFF, or specialized formats for middleware implementation. I'm also proficient in delivering integrated audio assets ready for game engines."
+                },
+                {
+                  "label": "What gear and software do you use?",
+                  "content": "I primarily work with Reaper and Pro Tools for DAW work, and DaVinci Resolve for video sync. My studio is equipped with professional-grade microphones and monitoring systems to ensure the highest fidelity."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "projects": {
+      "meta": {
+        "title": "Projects | Marcelo Caldart Filho"
+      },
+      "sections": {
+        "hero": {
+          "title": "Projects",
+          "description": "A showcase of my sound design and music work for games and media."
         }
       },
-      "about": {
-        "title": "About Me",
-        "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding. My approach blends creative strategy with technical expertise, transforming concepts into purposeful sonic experiences."
+      "viewProject": "View Project"
+    },
+    "blog": {
+      "meta": {
+        "title": "Blog | Marcelo Caldart Filho"
       },
-      "blog": {
-        "title": "Latest Articles",
-        "description": "Some of my recent thoughts",
-        "readMore": "Read Article"
+      "sections": {
+        "hero": {
+          "title": "Blog",
+          "description": "Thoughts and insights on sound design, music production, and game audio."
+        }
       },
-      "faq": {
-        "title": "Frequently Asked Questions",
-        "description": "Everything you need to know about working with me on audio and music productions.",
-        "categories": [
-          {
-            "title": "Services & Process",
-            "questions": [
-              {
-                "label": "What services do you offer?",
-                "content": "I specialize in sound design, Foley art, and music composition for games, audiovisual projects, and branding. I provide end-to-end audio production, including recording, mixing, and mastering."
-              },
-              {
-                "label": "How do you approach a new project?",
-                "content": "My process starts with a deep dive into the creative vision. I work closely with developers and directors to understand the aesthetic goals, then iterate on sonic concepts through prototypes and technical implementation in tools like Reaper and Pro Tools."
-              }
-            ]
-          },
-          {
-            "title": "Technical & Delivery",
-            "questions": [
-              {
-                "label": "What formats do you deliver in?",
-                "content": "I deliver high-quality WAV, AIFF, or specialized formats for middleware implementation. I'm also proficient in delivering integrated audio assets ready for game engines."
-              },
-              {
-                "label": "What gear and software do you use?",
-                "content": "I primarily work with Reaper and Pro Tools for DAW work, and DaVinci Resolve for video sync. My studio is equipped with professional-grade microphones and monitoring systems to ensure the highest fidelity."
-              }
-            ]
-          }
-        ]
+      "copyLink": "Copy link",
+      "linkCopied": "Link copied!"
+    },
+    "about": {
+      "meta": {
+        "title": "About Me | Marcelo Caldart Filho"
+      },
+      "sections": {
+        "hero": {
+          "title": "About Me",
+          "description": "Learn more about my background, creative process, and experience in audio production."
+        }
       }
     },
     "resume": {
       "meta": {
         "title": "Resume | Marcelo Caldart Filho"
       },
-      "sidebar": {
-        "location": "Curitiba, Brazil",
-        "availability": "Available"
-      },
-      "about": {
-        "title": "About",
-        "fields": {
-          "name": "Name:",
-          "nameValue": "Marcelo Caldart Filho",
-          "gender": "Gender:",
-          "genderValue": "Male",
-          "pronouns": "Pronouns:",
-          "pronounsValue": "He / Him",
-          "nationality": "Nationality:",
-          "nationalityValue": "Brazilian",
-          "age": "Age:"
-        }
-      },
-      "languages": {
-        "title": "Languages",
-        "levels": {
-          "professional": "Professional",
-          "native": "Native"
-        },
-        "items": {
-          "english": "English",
-          "portuguese": "Portuguese"
-        }
-      },
-      "hero": {
-        "title": "Marcelo Caldart Filho",
-        "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding.",
-        "actions": {
-          "hire": "Let's Talk",
-          "downloadCv": "Download CV"
-        }
-      },
       "sections": {
+        "hero": {
+          "title": "Marcelo Caldart Filho",
+          "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding.",
+          "actions": {
+            "hire": "Let's Talk",
+            "downloadCv": "Download CV"
+          }
+        },
+        "sidebar": {
+          "location": "Curitiba, Brazil",
+          "availability": "Available"
+        },
+        "about": {
+          "title": "About",
+          "fields": {
+            "name": "Name:",
+            "nameValue": "Marcelo Caldart Filho",
+            "gender": "Gender:",
+            "genderValue": "Male",
+            "pronouns": "Pronouns:",
+            "pronounsValue": "He / Him",
+            "nationality": "Nationality:",
+            "nationalityValue": "Brazilian",
+            "age": "Age:"
+          }
+        },
+        "languages": {
+          "title": "Languages",
+          "levels": {
+            "professional": "Professional",
+            "native": "Native"
+          },
+          "items": {
+            "english": "English",
+            "portuguese": "Portuguese"
+          }
+        },
         "skills": {
           "title": "Skills"
         },
@@ -249,6 +235,55 @@
             }
           ]
         }
+      }
+    },
+    "contact": {
+      "meta": {
+        "title": "Contact | Marcelo Caldart Filho"
+      },
+      "sections": {
+        "hero": {
+          "title": "Send me a message",
+          "description": "Feel free to contact me for business inquiries or other topics!"
+        },
+        "form": {
+          "title": "Send a Message",
+          "fields": {
+            "name": {
+              "label": "Your Name",
+              "placeholder": "Enter your name",
+              "error": "Name must be at least 2 characters long."
+            },
+            "email": {
+              "label": "Email Address",
+              "placeholder": "name{'@'}example.com",
+              "error": "Please enter a valid email address."
+            },
+            "message": {
+              "label": "Message",
+              "placeholder": "Type your message here...",
+              "error": "Message must be at least 10 characters long..."
+            },
+            "submit": "Send Message"
+          },
+          "success": {
+            "title": "Message Sent!",
+            "description": "I'll get back to you as soon as possible."
+          }
+        },
+        "details": {
+          "title": "Contact Details",
+          "email": "Email",
+          "emailValue": "marcelocfilho96{'@'}gmail.com",
+          "whatsapp": "WhatsApp",
+          "whatsappValue": "41999862882",
+          "socials": "I'm also available through my socials:"
+        }
+      }
+    },
+    "global": {
+      "errors": {
+        "notFound": "Page not found"
       }
     }
   }

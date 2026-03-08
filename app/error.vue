@@ -13,32 +13,32 @@ const localePath = useLocalePath();
 
 const searchLinks = computed(() => [
   {
-    label: t("app.navigation.home"),
+    label: t("app.header.home"),
     icon: "i-lucide-home",
     to: localePath("/"),
   },
   {
-    label: t("app.navigation.projects"),
+    label: t("app.header.projects"),
     icon: "i-lucide-folder",
     to: localePath("/projects"),
   },
   {
-    label: t("app.navigation.resume"),
+    label: t("app.header.resume"),
     icon: "i-lucide-layout",
     to: localePath("/resume"),
   },
   {
-    label: t("app.navigation.blog"),
+    label: t("app.header.blog"),
     icon: "i-lucide-file-text",
     to: localePath("/blog"),
   },
   {
-    label: t("app.navigation.about"),
+    label: t("app.header.about"),
     icon: "i-lucide-user",
     to: localePath("/about"),
   },
   {
-    label: t("app.navigation.contact"),
+    label: t("app.header.contact"),
     icon: "i-lucide-mail",
     to: localePath("/contact"),
   },

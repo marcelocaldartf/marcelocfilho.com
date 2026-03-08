@@ -240,10 +240,7 @@ export default defineNuxtConfig({
 
   image: {
     format: ["webp"],
-    provider: "cloudflare",
-    cloudflare: {
-      baseURL: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
-    },
+    domains: ["pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev", "placehold.co"],
   },
 
   ogImage: {

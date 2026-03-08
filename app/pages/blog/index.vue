@@ -40,14 +40,18 @@ if (page.value?.ogImage) {
 }
 
 useHead((page.value?.head || {}) as any);
-useSeoMeta((page.value?.seo || {}) as any);
+useSeoMeta({
+  title: t("pages.blog.meta.title"),
+  description: t("pages.blog.sections.hero.description"),
+  ...(page.value?.seo || {}),
+});
 </script>
 
 <template>
   <UPage v-if="page">
     <UPageSection
-      :title="page.title"
-      :description="page.description"
+      :title="t('pages.blog.sections.hero.title')"
+      :description="t('pages.blog.sections.hero.description')"
       :links="page.links"
       :ui="{
         title: 'mx-0 text-left',

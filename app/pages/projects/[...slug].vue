@@ -101,7 +101,7 @@ const headline = computed(() => findPageHeadline(navigation?.value, page.value?.
         <UPageAside>
           <div class="flex flex-col gap-sm">
             <div class="text-sm font-semibold text-highlighted">
-              {{ t("app.navigation.projects") }}
+              {{ t("app.header.projects") }}
             </div>
             <UContentNavigation
               highlight

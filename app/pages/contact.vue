@@ -12,9 +12,9 @@ interface ContactFormData {
 }
 
 const contactFormSchema = z.object({
-  name: z.string().min(2, t("pages.contact.form.fields.name.error")),
-  email: z.string().email(t("pages.contact.form.fields.email.error")),
-  message: z.string().min(10, t("pages.contact.form.fields.message.error")),
+  name: z.string().min(2, t("pages.contact.sections.form.fields.name.error")),
+  email: z.string().email(t("pages.contact.sections.form.fields.email.error")),
+  message: z.string().min(10, t("pages.contact.sections.form.fields.message.error")),
 });
 
 const state = ref<ContactFormData>({
@@ -29,7 +29,7 @@ async function onSubmit(event: FormSubmitEvent<ContactFormData>) {
   isLoading.value = true;
 
   const { name, email, message } = state.value;
-  const targetEmail = t("pages.contact.details.emailValue");
+  const targetEmail = t("pages.contact.sections.details.emailValue");
   const subject = encodeURIComponent(`Contact from ${name}`);
   const body = encodeURIComponent(`${message}\n\n---\nFrom: ${name}\nEmail: ${email}`);
 
@@ -38,8 +38,8 @@ async function onSubmit(event: FormSubmitEvent<ContactFormData>) {
   isLoading.value = false;
   toast.add({
     color: "success",
-    title: t("pages.contact.form.success.title"),
-    description: t("pages.contact.form.success.description"),
+    title: t("pages.contact.sections.form.success.title"),
+    description: t("pages.contact.sections.form.success.description"),
   });
 
   state.value.name = "";
@@ -50,13 +50,13 @@ async function onSubmit(event: FormSubmitEvent<ContactFormData>) {
 const contactInfo = computed(() => [
   {
     icon: "i-lucide-mail",
-    label: t("pages.contact.details.email"),
-    value: t("pages.contact.details.emailValue"),
+    label: t("pages.contact.sections.details.email"),
+    value: t("pages.contact.sections.details.emailValue"),
   },
   {
     icon: "i-simple-icons-whatsapp",
-    label: t("pages.contact.details.whatsapp"),
-    value: t("pages.contact.details.whatsappValue"),
+    label: t("pages.contact.sections.details.whatsapp"),
+    value: t("pages.contact.sections.details.whatsappValue"),
   },
 ]);
 
@@ -75,20 +75,20 @@ const socialLinks = [
 
 useSeoMeta({
   title: t("pages.contact.meta.title"),
-  description: t("pages.contact.hero.description"),
+  description: t("pages.contact.sections.hero.description"),
 });
 </script>
 
 <template>
   <UPage>
     <UPageSection
-      :title="t('pages.contact.hero.title')"
-      :description="t('pages.contact.hero.description')"
+      :title="t('pages.contact.sections.hero.title')"
+      :description="t('pages.contact.sections.hero.description')"
     >
       <div class="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
         <!-- Details Section (Mobile First) -->
         <div class="order-first flex flex-col gap-8 lg:order-last lg:w-[calc(40%-4rem)]">
-          <h3 class="text-2xl font-semibold">{{ t("pages.contact.details.title") }}</h3>
+          <h3 class="text-2xl font-semibold">{{ t("pages.contact.sections.details.title") }}</h3>
           <div class="space-y-8">
             <ul class="space-y-6">
               <li v-for="item in contactInfo" :key="item.label" class="flex items-start">
@@ -108,7 +108,7 @@ useSeoMeta({
 
             <div class="flex flex-col gap-4">
               <h4 class="text-sm font-medium">
-                {{ t("pages.contact.details.socials") }}
+                {{ t("pages.contact.sections.details.socials") }}
               </h4>
               <div class="flex flex-row flex-wrap gap-2">
                 <UButton
@@ -130,7 +130,7 @@ useSeoMeta({
 
         <!-- Form Section -->
         <div class="flex flex-col gap-8 lg:w-3/5">
-          <h3 class="text-2xl font-semibold">{{ t("pages.contact.form.title") }}</h3>
+          <h3 class="text-2xl font-semibold">{{ t("pages.contact.sections.form.title") }}</h3>
 
           <UForm
             :schema="contactFormSchema"
@@ -138,17 +138,17 @@ useSeoMeta({
             class="flex flex-col gap-6"
             @submit="onSubmit"
           >
-            <UFormField :label="t('pages.contact.form.fields.name.label')" name="name" required>
+            <UFormField :label="t('pages.contact.sections.form.fields.name.label')" name="name" required>
               <UInput
                 v-model="state.name"
                 icon="i-lucide-user"
-                :placeholder="t('pages.contact.form.fields.name.placeholder')"
+                :placeholder="t('pages.contact.sections.form.fields.name.placeholder')"
                 class="w-full"
               />
             </UFormField>
 
             <UFormField
-              :label="t('pages.contact.form.fields.email.label')"
+              :label="t('pages.contact.sections.form.fields.email.label')"
               name="email"
               required
               class="w-full"
@@ -156,21 +156,21 @@ useSeoMeta({
               <UInput
                 v-model="state.email"
                 icon="i-lucide-mail"
-                :placeholder="t('pages.contact.form.fields.email.placeholder')"
+                :placeholder="t('pages.contact.sections.form.fields.email.placeholder')"
                 type="email"
                 class="w-full"
               />
             </UFormField>
 
             <UFormField
-              :label="t('pages.contact.form.fields.message.label')"
+              :label="t('pages.contact.sections.form.fields.message.label')"
               name="message"
               required
               class="w-full"
             >
               <UTextarea
                 v-model="state.message"
-                :placeholder="t('pages.contact.form.fields.message.placeholder')"
+                :placeholder="t('pages.contact.sections.form.fields.message.placeholder')"
                 :rows="8"
                 class="w-full"
               />
@@ -184,7 +184,7 @@ useSeoMeta({
               block
               class="mt-2"
             >
-              {{ t("pages.contact.form.fields.submit") }}
+              {{ t("pages.contact.sections.form.fields.submit") }}
             </UButton>
           </UForm>
         </div>

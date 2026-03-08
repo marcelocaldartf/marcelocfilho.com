@@ -133,7 +133,7 @@ const formatDate = (dateString: string) => {
         <UPageAside>
           <div class="flex flex-col gap-sm">
             <div class="text-sm font-semibold text-highlighted">
-              {{ t("app.navigation.blog") }}
+              {{ t("app.header.blog") }}
             </div>
             <UContentNavigation
               highlight
