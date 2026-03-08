@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import * as locales from "@nuxt/ui/locale";
 
-const colorMode = useColorMode();
-
-const color = computed(() => (colorMode.value === "dark" ? "#020618" : "white"));
-
 const { t, locale } = useI18n();
 const localePath = useLocalePath();
 
@@ -12,23 +8,11 @@ const lang = computed(() => (locales as any)[locale.value]?.code || "en");
 const dir = computed(() => (locales as any)[locale.value]?.dir || "ltr");
 
 useHead({
-  meta: [
-    { charset: "utf-8" },
-    { name: "viewport", content: "width=device-width, initial-scale=1" },
-  ],
-  link: [{ rel: "icon", href: "/favicon.ico" }],
   htmlAttrs: {
     lang,
     dir,
   },
-});
-
-useSeoMeta({
-  titleTemplate: t("app.seoTitleTemplate"),
-  ogImage: "https://ui.nuxt.com/assets/templates/nuxt/portfolio-light.png",
-  twitterImage: "https://ui.nuxt.com/assets/templates/nuxt/portfolio-light.png",
-  twitterCard: "summary_large_image",
-});
+})
 
 const [{ data: navigation }, { data: files }] = await Promise.all([
   useAsyncData(
@@ -41,9 +25,6 @@ const [{ data: navigation }, { data: files }] = await Promise.all([
         queryCollectionNavigation(projectsCollection),
       ]);
 
-      const blogPath = localePath("/blog");
-      const projectsPath = localePath("/projects");
-
       const blogNav = blogNavRaw?.[0]?.path === "/blog" ? blogNavRaw[0].children : blogNavRaw;
       const projectsNav =
         projectsNavRaw?.[0]?.path === "/projects" ? projectsNavRaw[0].children : projectsNavRaw;
@@ -51,12 +32,12 @@ const [{ data: navigation }, { data: files }] = await Promise.all([
       return [
         {
           path: localePath("/blog"),
-          title: t("app.navigation.blog"),
+          title: t("app.header.blog"),
           children: blogNav,
         },
         {
           path: localePath("/projects"),
-          title: t("app.navigation.projects"),
+          title: t("app.header.projects"),
           children: projectsNav,
         },
       ];
@@ -74,49 +55,49 @@ const [{ data: navigation }, { data: files }] = await Promise.all([
       watch: [locale],
     },
   ),
-]);
+])
 
 const searchLinks = computed(() => [
   {
-    label: t("app.navigation.home"),
-    icon: "i-lucide-home",
+    label: t("app.header.home"),
+    icon: "lucide:home",
     to: localePath("/"),
   },
   {
-    label: t("app.navigation.projects"),
-    icon: "i-lucide-folder",
+    label: t("app.header.projects"),
+    icon: "lucide:folder",
     to: localePath("/projects"),
   },
   {
-    label: t("app.navigation.resume"),
-    icon: "i-lucide-layout",
-    to: localePath("/resume"),
-  },
-  {
-    label: t("app.navigation.blog"),
-    icon: "i-lucide-file-text",
+    label: t("app.header.blog"),
+    icon: "lucide:file-text",
     to: localePath("/blog"),
   },
   {
-    label: t("app.navigation.about"),
-    icon: "i-lucide-user",
+    label: t("app.header.about"),
+    icon: "lucide:user",
     to: localePath("/about"),
   },
   {
-    label: t("app.navigation.contact"),
-    icon: "i-lucide-mail",
+    label: t("app.header.resume"),
+    icon: "lucide:layout",
+    to: localePath("/resume"),
+  },
+  {
+    label: t("app.header.contact"),
+    icon: "lucide:mail",
     to: localePath("/contact"),
   },
-]);
+])
 
-provide("navigation", navigation);
+provide("navigation", navigation)
 </script>
 
 <template>
   <UApp :locale="(locales as any)[locale]">
     <NuxtLayout>
       <MCAppHeader />
-      <UMain class="relative pt-20">
+      <UMain>
         <NuxtPage />
       </UMain>
       <MCAppFooter />
