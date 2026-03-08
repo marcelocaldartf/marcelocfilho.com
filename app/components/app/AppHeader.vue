@@ -92,7 +92,13 @@ watch(
       <!-- Left Section -->
       <div class="flex items-center">
         <ClientOnly>
-          <USlideover v-model:open="open" side="left" :ui="{ content: 'w-2/3' }" title="Menu">
+          <USlideover
+            v-model:open="open"
+            side="left"
+            :ui="{ content: 'w-2/3' }"
+            :title="t('app.title')"
+            :description="t('app.description')"
+          >
             <UButton
               icon="lucide:menu"
               color="neutral"
