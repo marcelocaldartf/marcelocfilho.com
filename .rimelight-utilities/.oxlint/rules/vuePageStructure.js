@@ -41,7 +41,7 @@ export const vuePageStructure = {
               break
             }
           }
-        } catch (e) {
+        } catch {
           isSetup = !fullText.includes("export default")
         }
 

@@ -36,7 +36,7 @@ export const vueComponentStructure = {
               break
             }
           }
-        } catch (e) {
+        } catch {
           isSetup = !fullText.includes("export default")
         }
 
