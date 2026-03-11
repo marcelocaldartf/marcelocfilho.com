@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from "@nuxt/content"
 import { findPageHeadline } from "@nuxt/content/utils"
+import { withoutTrailingSlash } from "ufo"
 
 const route = useRoute()
 const navigation = inject<Ref<ContentNavigationItem[]>>("navigation")
@@ -17,7 +18,7 @@ const { data: page } = await useAsyncData(
   route.path,
   async () => {
     const collection = `${locale.value}_projects` as any
-    return queryCollection(collection).path(slug.value).first()
+    return queryCollection(collection).path(withoutTrailingSlash(route.path)).first()
   },
   { watch: [locale] }
 )
@@ -30,7 +31,7 @@ const { data: surround } = await useAsyncData(
   `${route.path}-surround`,
   async () => {
     const collection = `${locale.value}_projects` as any
-    return queryCollectionItemSurroundings(collection, slug.value, {
+    return queryCollectionItemSurroundings(collection, withoutTrailingSlash(route.path), {
       fields: ["description"]
     })
   },

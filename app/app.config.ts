@@ -108,7 +108,8 @@ export default defineAppConfig({
     contentSurround: {
       slots: {
         link: "frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-2xl p-6 shadow-xl border-none transition-all duration-300 hover:-translate-y-1",
-        linkLeading: "bg-primary/10 dark:bg-primary/30 rounded-full p-2 mb-4 group-hover:bg-primary/20",
+        linkLeading:
+          "bg-primary/10 dark:bg-primary/30 rounded-full p-2 mb-4 group-hover:bg-primary/20",
         linkLeadingIcon: "text-primary dark:text-primary-400"
       }
     },

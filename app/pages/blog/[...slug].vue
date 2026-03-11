@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from "@nuxt/content"
+import { withoutTrailingSlash } from "ufo"
 import { mapContentNavigation } from "@nuxt/ui/utils/content"
 import { findPageBreadcrumb } from "@nuxt/content/utils"
 
@@ -23,7 +24,7 @@ const { data: page } = await useAsyncData(
   `blog-${route.path}`,
   async () => {
     const collection = `${locale.value}_blog` as any
-    return queryCollection(collection).path(slug.value).first()
+    return queryCollection(collection).path(withoutTrailingSlash(route.path)).first()
   },
   { watch: [locale] }
 )
@@ -35,7 +36,7 @@ const { data: surround } = await useAsyncData(
   `${route.path}-surround`,
   async () => {
     const collection = `${locale.value}_blog` as any
-    return queryCollectionItemSurroundings(collection, slug.value, {
+    return queryCollectionItemSurroundings(collection, withoutTrailingSlash(route.path), {
       fields: ["description"]
     })
   },

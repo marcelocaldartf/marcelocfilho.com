@@ -165,7 +165,7 @@ const rightLinks = computed<NavigationMenuItem[]>(() => [
             <template #leading>
               <UIcon name="i-lucide-languages" class="size-4" />
             </template>
-            <span class="text-xs font-bold leading-none">{{ locale === "pt" ? "PT" : "EN" }}</span>
+            <span class="text-xs leading-none font-bold">{{ locale === "pt" ? "PT" : "EN" }}</span>
             <template #item-leading="{ item }">
               <span class="text-xs font-medium">{{ item.code.toUpperCase() }}</span>
             </template>

@@ -28,7 +28,9 @@ const { socials } = useAppConfig()
 <template>
   <UFooter>
     <template #left>
-      <div class="frutiger-gloss rounded-full bg-primary/20 px-4 py-1.5 shadow-lg dark:bg-primary/20">
+      <div
+        class="frutiger-gloss bg-primary/20 dark:bg-primary/20 rounded-full px-4 py-1.5 shadow-lg"
+      >
         <p class="text-xs font-medium text-neutral-950 dark:text-white">
           © {{ new Date().getFullYear() }} Marcelo Caldart Filho
         </p>

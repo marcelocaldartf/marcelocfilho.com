@@ -9,7 +9,7 @@ const { data: page } = await useAsyncData(
   withoutTrailingSlash(route.path),
   async () => {
     const collection = `${locale.value}_pages` as any
-    return queryCollection(collection).path("/projects").first()
+    return queryCollection(collection).path(withoutTrailingSlash(route.path)).first()
   },
   { watch: [locale] }
 )
@@ -94,7 +94,7 @@ useSeoMeta({
                 variant="subtle"
                 color="primary"
                 size="xl"
-                class="frutiger-gloss !shadow-lg border-white/20 text-neutral-900 dark:text-white"
+                class="frutiger-gloss border-white/20 text-neutral-900 !shadow-lg dark:text-white"
               >
                 {{ project.date ? new Date(project.date).getUTCFullYear() : "" }}
               </UBadge>
@@ -109,7 +109,7 @@ useSeoMeta({
                 variant="subtle"
                 color="primary"
                 size="xl"
-                class="frutiger-gloss !shadow-sm border-white/10 text-neutral-900 dark:text-white"
+                class="frutiger-gloss border-white/10 text-neutral-900 !shadow-sm dark:text-white"
               >
                 {{ tag }}
               </UBadge>
