@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from "@nuxt/content"
-import { withoutTrailingSlash } from "ufo"
-import { mapContentNavigation } from "@nuxt/ui/utils/content"
 import { findPageBreadcrumb } from "@nuxt/content/utils"
+import { mapContentNavigation } from "@nuxt/ui/utils/content"
+import { withoutTrailingSlash } from "ufo"
 
 definePageMeta({
   i18n: {
