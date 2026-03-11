@@ -1,0 +1,99 @@
+title: Currículo | Marcelo Caldart Filho
+description: Designer de som, artista de Foley e Compositor com bacharelado em Música.
+hero:
+  title: Marcelo Caldart Filho
+  description: Designer de som, artista de Foley e Compositor com bacharelado em Música. Ofereço produções de áudio para jogos, projetos audiovisuais, anúncios e branding.
+  image: https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp
+  links:
+    - label: Vamos Conversar
+      to: /contact
+      color: primary
+      variant: solid
+      class: pdf-exclude
+    - label: Baixar CV
+      icon: lucide:download
+      to: https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Resume/Resume_Marcelo_C_Filho.pdf
+      target: _blank
+      color: primary
+      variant: outline
+      class: pdf-exclude
+sidebar:
+  image: https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp
+  location: Curitiba, Brasil
+  locationLink: https://en.wikipedia.org/wiki/Curitiba
+  availability: Disponível
+  dateOfBirth: 1996-04-17
+  about:
+    title: Sobre
+    fields:
+      - label: Nome
+        value: Marcelo Caldart Filho
+      - label: Gênero
+        value: Masculino
+      - label: Pronomes
+        value: Ele / Dele
+      - label: Nacionalidade
+        value: Brasileiro
+  languages:
+    - name: Português
+      progress: 100
+    - name: Inglês
+      progress: 65
+skills: |
+  Designer de som, artista de Foley e Compositor com bacharelado em Música. Ofereço produções de áudio para jogos, projetos audiovisuais, anúncios e branding. Minha abordagem combina estratégia criativa com expertise técnica, transformando conceitos em experiências sonoras propositais.
+tech:
+  - title: Produção de Áudio
+    items:
+      - label: Reaper
+        icon: fad:logo-reaper
+        to: https://www.reaper.fm/
+      - label: Pro Tools
+        icon: simple-icons:protools
+        to: https://www.avid.com/pro-tools
+  - title: Edição de Vídeo
+    items:
+      - label: DaVinci Resolve
+        icon: simple-icons:davinciresolve
+        to: https://www.blackmagicdesign.com/products/davinciresolve
+education:
+  - degree: Bacharelado em Música, Produção e pesquisa musical
+    school: Universidade Federal do Paraná (UFPR)
+    period: Jun 2021 – Dez 2025
+experience:
+  - role: Audio Designer
+    company: Freelance
+    period: Fev 2017 - Presente
+    bullets:
+      - Áudio de jogos, Som digital, Sound design, Foley e Composição musical.
+      - Entrega de assets de áudio de alta qualidade para diversos projetos multimídia.
+      - Colaboração com clientes para definir identidades sonoras.
+  - role: Produtor Musical
+    company: Freelance
+    period: Fev 2017 - Presente
+    bullets:
+      - Gravação em estúdio, Mixagem e Masterização.
+      - Produção e arranjo de música eletrônica.
+  - role: Assistente de Produção e Secretariado
+    company: Paideia Produções Artísticas
+    period: Out 2018 - Fev 2019
+    bullets:
+      - Atuação na produção de eventos, incluindo montagem de palcos e tarefas administrativas.
+      - Contribuição para logística, organização e execução de eventos.
+  - role: Vendedor
+    company: Decathlon
+    period: Nov 2016 - Fev 2017
+    bullets:
+      - Atendimento direto ao cliente e identificação de necessidades de produtos esportivos.
+      - Suporte durante o processo de compra e orientação sobre produtos.
+certifications:
+  - name: Produção Musical
+    issuer: Futuresonic
+    date: "2017"
+  - name: Técnico em Desenho de Móveis
+    issuer: Instituto Federal do Paraná (IFPR)
+    date: "2013"
+volunteering:
+  - role: Secretário
+    organization: Vicentina (Associação de Proteção à Saúde e Maternidade)
+    period: Abr 2012 - Dez 2013
+    field: Serviços Sociais

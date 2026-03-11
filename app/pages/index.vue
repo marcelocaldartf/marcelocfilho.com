@@ -1,73 +1,65 @@
 <script setup lang="ts">
-const { t, tm, rt, locale } = useI18n();
-const localePath = useLocalePath();
-
-/* region Meta */
-useSeoMeta({
-  title: t("pages.home.meta.title"),
-  description: t("pages.home.sections.hero.description"),
-});
-/* endregion */
-
-/* region Data */
-const global = {
-  meetingLink: "https://cal.com/marcelocfilho",
-  email: "marcelocfilho96@gmail.com",
-  available: true,
-};
+/* region State */
+const { t, rt, locale } = useI18n()
+const localePath = useLocalePath()
 
 const faqItems = computed(() => [
   {
     label: t("pages.home.sections.faq.categories[0].title"),
+    value: "services",
     questions: [
       {
         label: t("pages.home.sections.faq.categories[0].questions[0].label"),
-        content: t("pages.home.sections.faq.categories[0].questions[0].content"),
+        content: t("pages.home.sections.faq.categories[0].questions[0].content")
       },
       {
         label: t("pages.home.sections.faq.categories[0].questions[1].label"),
-        content: t("pages.home.sections.faq.categories[0].questions[1].content"),
-      },
-    ],
+        content: t("pages.home.sections.faq.categories[0].questions[1].content")
+      }
+    ]
   },
   {
     label: t("pages.home.sections.faq.categories[1].title"),
+    value: "technical",
     questions: [
       {
         label: t("pages.home.sections.faq.categories[1].questions[0].label"),
-        content: t("pages.home.sections.faq.categories[1].questions[0].content"),
+        content: t("pages.home.sections.faq.categories[1].questions[0].content")
       },
       {
         label: t("pages.home.sections.faq.categories[1].questions[1].label"),
-        content: t("pages.home.sections.faq.categories[1].questions[1].content"),
-      },
-    ],
-  },
-]);
+        content: t("pages.home.sections.faq.categories[1].questions[1].content")
+      }
+    ]
+  }
+])
 
 const { data: posts } = await useAsyncData(
   `index-blogs-${locale.value}`,
   () => {
-    const collection = `${locale.value}_blog` as any;
-    return queryCollection(collection).order("date", "DESC").limit(3).all();
+    const collection = `${locale.value}_blog` as any
+    return queryCollection(collection).order("date", "DESC").limit(3).all()
   },
-  { watch: [locale] },
-);
+  { watch: [locale] }
+)
+/* endregion */
 
-const faqUi = {
-  root: "flex items-center gap-4 w-full",
-  list: "relative flex bg-transparent dark:bg-transparent gap-2 px-0",
-  indicator:
-    "absolute top-[4px] duration-200 ease-out focus:outline-none rounded-lg bg-elevated/60",
-  trigger:
-    "px-3 py-2 rounded-lg hover:bg-muted/50 data-[state=active]:text-highlighted data-[state=inactive]:text-muted",
-  label: "truncate",
-};
+/* region Meta */
+useSeoMeta({
+  title: t("pages.home.meta.title"),
+  description: t("pages.home.meta.description")
+})
+/* endregion */
+
+/* region Lifecycle */
+/* endregion */
+
+/* region Logic */
 /* endregion */
 </script>
 
 <template>
-  <UPage>
+  <UPage class="pt-18 sm:pt-24 lg:pt-32">
     <!-- Hero Section -->
     <UPageHero
       :title="t('pages.home.sections.hero.title')"
@@ -75,17 +67,23 @@ const faqUi = {
       :ui="{ headline: 'flex justify-center' }"
     >
       <template #headline>
-        <NuxtImg
-          src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
-          alt="Marcelo Caldart Filho profile photo"
-          fetchpriority="high"
-          loading="eager"
-          class="size-18 ring ring-default ring-offset-3 ring-offset-bg mx-auto rounded-full"
-        />
+        <div class="aero-image-wrapper mx-auto size-20 rounded-full">
+          <NuxtImg
+            src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
+            alt="Marcelo Caldart Filho"
+            width="80"
+            height="80"
+            format="webp"
+            fetchpriority="high"
+            loading="eager"
+            preload
+            class="h-full w-full object-cover"
+          />
+        </div>
       </template>
 
       <template #links>
-        <div class="flex flex-col items-center gap-4">
+        <div class="gap-md flex flex-col items-center">
           <UButton
             :label="t('pages.home.sections.hero.actions.talk')"
             :to="localePath('/contact')"
@@ -97,13 +95,13 @@ const faqUi = {
       </template>
     </UPageHero>
 
-    <!-- About & Experience Section -->
+    <!-- About Section -->
     <UPageSection
       :title="t('pages.home.sections.about.title')"
       :description="t('pages.home.sections.about.description')"
       :ui="{
         title: 'text-left text-xl sm:text-xl lg:text-2xl font-medium',
-        description: 'text-left mt-m3 text-sm sm:text-md lg:text-sm text-muted',
+        description: 'text-left mt-m3 text-sm sm:text-md lg:text-sm text-muted'
       }"
     />
 
@@ -113,11 +111,12 @@ const faqUi = {
       :title="t('pages.home.sections.blog.title')"
       :description="t('pages.home.sections.blog.description')"
       :ui="{
+        root: 'py-8 sm:py-12',
         title: 'text-left text-xl sm:text-xl lg:text-2xl font-medium',
-        description: 'text-left mt-3 text-sm sm:text-md lg:text-sm text-muted',
+        description: 'text-left text-sm sm:text-md lg:text-sm text-muted'
       }"
     >
-      <UBlogPosts orientation="vertical" class="gap-4 lg:gap-y-4">
+      <UBlogPosts orientation="vertical">
         <UBlogPost
           v-for="(post, index) in posts"
           :key="index"
@@ -129,78 +128,98 @@ const faqUi = {
             author: post.author
               ? {
                   ...post.author,
-                  avatar: post.author.avatar?.src ? post.author.avatar : undefined,
+                  avatar: post.author.avatar?.src ? post.author.avatar : undefined
                 }
-              : undefined,
+              : undefined
           }"
           :to="post.path ? localePath(post.path) : undefined"
           :ui="{
-            root: 'group relative lg:items-start lg:flex ring-0 hover:ring-0',
+            root: 'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl p-6 shadow-xl sm:p-10 mb-2 last:mb-0 group relative lg:items-start lg:flex ring-0 hover:ring-0',
             body: '!px-0',
-            header: 'hidden',
+            header: 'hidden'
           }"
         >
           <template #footer>
-            <UButton
-              size="xs"
-              variant="link"
-              class="px-0 gap-0"
-              :label="t('pages.home.sections.blog.readMore')"
-            >
-              <template #trailing>
-                <UIcon
-                  name="i-lucide-arrow-right"
-                  class="size-4 text-primary transition-all opacity-0 group-hover:translate-x-1 group-hover:opacity-100"
-                />
-              </template>
-            </UButton>
+            <div class="mt-4 flex w-full justify-center">
+              <UButton
+                size="md"
+                variant="solid"
+                color="primary"
+                :label="t('pages.home.sections.blog.readMore')"
+                class="min-w-32"
+              >
+                <template #trailing>
+                  <UIcon name="lucide:arrow-right" class="size-4" />
+                </template>
+              </UButton>
+            </div>
           </template>
         </UBlogPost>
       </UBlogPosts>
     </UPageSection>
 
     <!-- FAQ Section -->
-    <UPageSection
-      :title="t('pages.home.sections.faq.title')"
-      :description="t('pages.home.sections.faq.description')"
-      :ui="{
-        container: 'px-0 !pt-0 gap-4 sm:gap-4',
-        title: 'text-center text-xl sm:text-xl lg:text-2xl font-medium',
-        description: 'text-center mt-2 text-sm sm:text-md lg:text-sm text-muted',
-      }"
-    >
-      <UContainer>
-        <UTabs :items="faqItems" orientation="horizontal" :ui="faqUi">
+    <ClientOnly>
+      <UPageSection
+        :title="t('pages.home.sections.faq.title')"
+        :description="t('pages.home.sections.faq.description')"
+        :ui="{
+          root: 'overflow-hidden px-4 md:px-0',
+          container:
+            'frutiger-gloss bg-primary/5 dark:bg-primary/10 rounded-3xl p-6 shadow-xl sm:p-12 gap-md sm:gap-md max-w-4xl mx-auto',
+          title: 'text-center text-xl sm:text-2xl lg:text-3xl font-medium',
+          description: 'text-center text-sm sm:text-md lg:text-sm text-muted'
+        }"
+      >
+        <UTabs
+          :items="faqItems"
+          :default-value="faqItems[0]?.value"
+          orientation="horizontal"
+          variant="pill"
+          class="w-full"
+          :ui="{
+            root: 'flex flex-col gap-md w-full',
+            list: 'relative grid grid-cols-2 bg-muted/20 dark:bg-muted/10 p-1 rounded-2xl w-full items-center',
+            trigger: 'justify-center py-2.5 font-medium'
+          }"
+        >
           <template #content="{ item }">
-            <LazyUAccordion
-              trailing-icon="lucide:plus"
-              :items="item.questions"
-              :unmount-on-hide="false"
-              :ui="{
-                item: 'border-none',
-                trigger:
-                  'mb-2 border-0 group px-4 transform-gpu rounded-lg bg-elevated/60 will-change-transform hover:bg-muted/50 text-base',
-                trailingIcon:
-                  'group-data-[state=closed]:rotate-0 group-data-[state=open]:rotate-135 text-base text-muted',
-              }"
-            >
-              <template #body="{ item: _item }">
-                <LazyMDC v-if="_item.content" :value="_item.content" unwrap="p" class="px-4" />
-              </template>
-            </LazyUAccordion>
+            <div class="mt-6">
+              <LazyUAccordion
+                trailing-icon="lucide:plus"
+                :items="item.questions"
+                :unmount-on-hide="false"
+                type="multiple"
+                :ui="{
+                  trailingIcon:
+                    'group-data-[state=closed]:rotate-0 group-data-[state=open]:rotate-135 transition-transform duration-200'
+                }"
+              >
+                <template #body="{ item: _item }">
+                  <LazyMDC v-if="_item.content" :value="_item.content" unwrap="p" class="px-4" />
+                </template>
+              </LazyUAccordion>
+            </div>
           </template>
         </UTabs>
-      </UContainer>
-    </UPageSection>
+      </UPageSection>
+    </ClientOnly>
 
     <!-- Post CTA -->
     <UPageCTA
       :title="t('pages.contact.sections.form.title')"
       :description="t('pages.contact.sections.hero.description')"
       variant="naked"
+      :ui="{
+        root: 'py-16 sm:py-24 px-4 md:px-0',
+        container:
+          'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl p-8 sm:p-16 max-w-4xl mx-auto text-center shadow-xl',
+        title: 'text-2xl sm:text-3xl lg:text-4xl font-medium',
+        description: 'text-muted sm:text-lg'
+      }"
     >
       <template #links>
-        <div class="flex flex-col items-center gap-4">
+        <div class="flex justify-center">
           <UButton
             :label="t('pages.home.sections.hero.actions.talk')"
             :to="localePath('/contact')"

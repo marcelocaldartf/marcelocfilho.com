@@ -1,33 +1,38 @@
 export default defineNuxtConfig({
   compatibilityDate: "2026-02-13",
   future: {
-    compatibilityVersion: 5,
+    compatibilityVersion: 5
   },
   experimental: {
     viteEnvironmentApi: false,
     typescriptPlugin: true,
     nitroAutoImports: true,
     componentIslands: {
-      selectiveClient: true,
+      selectiveClient: true
     },
-    viewTransition: true,
+    viewTransition: true
   },
 
   modules: [
-    "@nuxtjs/seo",
+    // Dev Modules
     "@nuxt/a11y",
-    "@nuxt/content",
-    "@nuxt/fonts",
     "@nuxt/hints",
-    "@nuxt/icon",
-    "@nuxt/image",
     "@nuxt/test-utils",
-    "@nuxt/ui",
-    "@nuxtjs/device",
+    // Must go before Content
     "@nuxtjs/i18n",
+    "@nuxt/image",
+    "@nuxtjs/seo",
+    "@nuxt/content",
+    // Must go before UI
+    "@nuxt/fonts",
+    "@nuxt/icon",
+    // Must go after Content
+    "@nuxt/ui",
+    "nuxt-studio",
+    "@nuxtjs/device",
     "nuxt-llms",
     "nuxt-security",
-    "nuxt-studio",
+    "@nuxt/scripts"
   ],
 
   $development: {
@@ -37,13 +42,13 @@ export default defineNuxtConfig({
     a11y: {
       enabled: true,
       defaultHighlight: false,
-      logIssues: false,
+      logIssues: false
     },
-    site: { indexable: false },
+    site: { indexable: false }
   },
 
   $test: {
-    devtools: { enabled: true },
+    devtools: { enabled: true }
   },
 
   $production: {
@@ -52,42 +57,56 @@ export default defineNuxtConfig({
     nitro: {
       experimental: {
         websocket: true,
-        tasks: true,
+        tasks: true
       },
       compressPublicAssets: true,
       minify: true,
       preset: "cloudflare-module",
       cloudflare: {
         deployConfig: true,
-        nodeCompat: true,
+        nodeCompat: true
       },
       prerender: {
-        routes: ["/"],
-        crawlLinks: true,
-      },
+        routes: [
+          "/",
+          "/pt",
+          "/en",
+          "/about",
+          "/pt/about",
+          "/contact",
+          "/pt/contact",
+          "/blog",
+          "/pt/blog",
+          "/projects",
+          "/pt/projects",
+          "/resume",
+          "/pt/resume"
+        ],
+        crawlLinks: true
+      }
     },
     site: {
-      url: "https://marcelocfilho-dot-com.marcelocaldartfilho.workers.dev/",
-      indexable: true,
+      url: "https://marcelocfilho.com",
+      indexable: true
     },
     robots: {
       blockAiBots: true,
       blockNonSeoBots: true,
-      disallow: ["/dashboard"],
+      disallow: ["/dashboard"]
     },
     a11y: {
-      enabled: false,
+      enabled: false
     },
     content: {
       database: {
         type: "d1",
-        bindingName: "DB",
-      },
-    },
+        bindingName: "DB"
+      }
+    }
   },
 
   vite: {
-    clearScreen: false,
+    clearScreen: false
   },
 
   ssr: true,
@@ -100,183 +119,225 @@ export default defineNuxtConfig({
       meta: [
         {
           name: "description",
-          content: "My personal portfolio.",
+          content: "Web Developer & Designer"
         },
         {
           name: "author",
-          content: "Marcelo Caldart Filho",
+          content: "Marcelo Caldart Filho"
         },
         {
           name: "creator",
-          content: "Marcelo Caldart Filho",
-        },
+          content: "Marcelo Caldart Filho"
+        }
       ],
       link: [
         {
           rel: "icon",
           type: "image/svg+xml",
-          href: "/favicon.svg",
-        },
-      ],
+          href: "/favicon.svg"
+        }
+      ]
     },
-    viewTransition: true,
+    viewTransition: true
   },
 
   security: {
-    ssg: {
-      meta: false,
-      exportToPresets: false,
-    },
+    strict: false,
     headers: {
       contentSecurityPolicy: {
+        "default-src": ["'none'"],
+        "base-uri": ["'none'"],
+        "font-src": ["'self'", "https:", "data:", "https://fonts.gstatic.com"],
+        "form-action": ["'self'"],
+        "frame-ancestors": ["'self'"],
         "img-src": [
           "'self'",
           "data:",
-          "blob:",
           "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
           "https://placehold.co",
+          "https://avatars.githubusercontent.com"
         ],
-        "script-src": ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'"],
+        "object-src": ["'none'"],
         "script-src-attr": ["'none'"],
+        "style-src": ["'self'", "https:", "'unsafe-inline'"],
+        "script-src": [
+          "'self'",
+          "https:",
+          "'unsafe-inline'",
+          "'strict-dynamic'",
+          "'nonce-{{nonce}}'",
+          "'wasm-unsafe-eval'",
+          "https://esm.sh",
+          "https://static.cloudflareinsights.com"
+        ],
         "connect-src": [
           "'self'",
-          "https://marcelocfilho-dot-com.marcelocaldartfilho.workers.dev",
+          "https://marcelocfilho.com",
           "https://api.iconify.design",
           "https://api.unisvg.com",
           "https://api.simplesvg.com",
-        ],
-        "font-src": ["'self'", "https://fonts.gstatic.com"],
-        "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-        "frame-ancestors": ["'self'"],
-        "form-action": ["'self'"],
+          "https://cloudflareinsights.com",
+          "https://static.cloudflareinsights.com",
+          "https://nuxt.studio",
+          "https://*.nuxt.com",
+          "https://*.nuxt.dev",
+          "https://api.github.com",
+          "https://raw.githubusercontent.com",
+          "https://esm.sh"
+        ]
       },
       strictTransportSecurity: {
         maxAge: 31536000,
         includeSubdomains: true,
-        preload: true,
+        preload: true
       },
       crossOriginOpenerPolicy: "same-origin",
+      crossOriginEmbedderPolicy: "unsafe-none",
       referrerPolicy: "strict-origin-when-cross-origin",
       xFrameOptions: "SAMEORIGIN",
-      xContentTypeOptions: "nosniff",
+      xContentTypeOptions: "nosniff"
     },
+    nonce: true,
+    ssg: {
+      meta: true,
+      hashScripts: true,
+      hashStyles: false,
+      nitroHeaders: true,
+      exportToPresets: false
+    },
+    sri: true
+  },
+
+  routeRules: {
+    // Disable rate limiting for internal Nuxt endpoints
+    "/__nuxt_content/**": { security: { rateLimiter: false } },
+    "/_content/**": { security: { rateLimiter: false } },
+    "/api/_content/**": { security: { rateLimiter: false } },
+    "/__nuxt_studio/**": { security: { rateLimiter: false } },
+    "/__nuxt_hints/**": { security: { enabled: false } },
+    "/_nuxt/**": { security: { rateLimiter: false } },
+    // Cache content pages
+    "/blog/**": { isr: true },
+    "/projects/**": { isr: true },
+    "/about": { isr: true },
+    "/resume": { isr: true }
   },
 
   i18n: {
     strategy: "prefix_except_default",
     defaultLocale: "en",
     langDir: "locales",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      cookieSecure: true,
+      alwaysRedirect: true
+    },
     locales: [
       {
         code: "en",
         name: "English",
         language: "en-US",
-        file: "en.json",
+        file: "en.json"
       },
       {
         code: "pt",
         name: "Português",
         language: "pt-BR",
-        file: "pt.json",
-      },
-    ],
+        file: "pt.json"
+      }
+    ]
   },
 
   css: ["~/assets/css/main.css"],
 
   components: [
     {
+      path: "~/components/content",
+      pathPrefix: false
+    },
+    {
       path: "~/components",
       pathPrefix: false,
-      prefix: "MC",
+      prefix: "MC"
     },
     {
       path: "~/pages",
       pattern: "**/components/**",
       pathPrefix: false,
-      prefix: "MC",
-    },
+      prefix: "MC"
+    }
   ],
 
   pages: {
-    pattern: ["**/*.vue", "!**/components/**"],
+    pattern: ["**/*.vue", "!**/components/**"]
   },
 
   colorMode: {
     preference: "dark",
-    fallback: "dark",
+    fallback: "dark"
   },
 
   fonts: {
     defaults: {
-      weights: [
-        // Thin
-        100,
-        // ExtraLight
-        200,
-        // Light
-        300,
-        // Regular
-        400,
-        // Medium
-        500,
-        // SemiBold
-        600,
-        // Bold
-        700,
-        // Extra Bold
-        800,
-      ],
-      styles: ["normal", "italic"],
+      weights: [400, 500, 600, 700],
+      styles: ["normal", "italic"]
     },
-    families: [],
+    families: [
+      { name: "Public Sans", provider: "google" },
+      { name: "Instrument Serif", provider: "google" }
+    ]
   },
 
   icon: {
+    mode: "svg",
     class: "icon",
     size: "24px",
-    customCollections: [],
+    customCollections: []
   },
 
   image: {
-    format: ["webp"],
-    domains: ["pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev", "placehold.co"],
+    provider: "cloudflare",
+    cloudflare: {
+      baseURL: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev"
+    },
+    domains: ["marcelocfilho.com", "placehold.co"]
   },
 
   ogImage: {
-    zeroRuntime: true,
+    zeroRuntime: true
   },
 
   sitemap: {
-    zeroRuntime: true,
+    zeroRuntime: true
   },
 
   content: {
     build: {
       markdown: {
         toc: {
-          depth: 3,
-        },
-      },
-    },
+          depth: 3
+        }
+      }
+    }
   },
 
   studio: {
     i18n: {
-      defaultLocale: "en",
+      defaultLocale: "en"
     },
     route: "/studio",
     repository: {
       provider: "github",
       owner: "marcelocaldartf",
-      repo: "marcelocfilho.com",
-    },
+      repo: "marcelocfilho.com"
+    }
   },
 
   llms: {
     domain: "https://marcelocfilho.com",
     title: "Marcelo Caldart Filho",
-    description: "My personal portfolio website.",
+    description: "Web Developer & Designer"
   },
 
   ui: {
@@ -294,8 +355,8 @@ export default defineNuxtConfig({
         "error",
         "commentary",
         "ideation",
-        "source",
-      ],
-    },
-  },
-});
+        "source"
+      ]
+    }
+  }
+})

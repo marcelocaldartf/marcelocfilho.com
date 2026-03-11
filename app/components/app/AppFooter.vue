@@ -12,19 +12,7 @@
 /* endregion */
 
 /* region State */
-const socialLinks = [
-  {
-    name: "LinkedIn",
-    icon: "simple-icons:linkedin",
-    to: "https://www.linkedin.com/in/marcelocfilho",
-    class: "hover:text-primary-500",
-  },
-  {
-    name: "SoundCloud",
-    icon: "simple-icons:soundcloud",
-    to: "https://soundcloud.com/marcelo-filho-32565359",
-  },
-]
+const { socials } = useAppConfig()
 /* endregion */
 
 /* region Meta */
@@ -40,23 +28,24 @@ const socialLinks = [
 <template>
   <UFooter>
     <template #left>
-      <p class="text-muted text-xs">© {{ new Date().getFullYear() }} Marcelo Caldart Filho</p>
+      <div class="frutiger-gloss rounded-full bg-primary/20 px-4 py-1.5 shadow-lg dark:bg-primary/20">
+        <p class="text-xs font-medium text-neutral-950 dark:text-white">
+          © {{ new Date().getFullYear() }} Marcelo Caldart Filho
+        </p>
+      </div>
     </template>
 
     <template #right>
       <UButton
-        v-for="link in socialLinks"
-        :key="link.name"
-        size="sm"
+        v-for="link in socials"
+        :key="link.label"
+        v-bind="{ ...link, label: undefined }"
+        size="md"
         color="neutral"
         variant="ghost"
-        :icon="link.icon"
-        :to="link.to"
-        target="_blank"
-        :aria-label="link.name"
-        :class="link.class"
+        class="hover:text-primary-500"
+        :aria-label="link.label"
       />
     </template>
   </UFooter>
 </template>
-

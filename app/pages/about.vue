@@ -1,38 +1,51 @@
 <script setup lang="ts">
-const route = useRoute();
-const { locale, t } = useI18n();
+import { withoutTrailingSlash } from "ufo"
+
+/* region State */
+const route = useRoute()
+const { locale, t } = useI18n()
 const { data: page } = await useAsyncData(
-  route.path,
+  withoutTrailingSlash(route.path),
   async () => {
-    const collection = `${locale.value}_pages` as any;
-    return queryCollection(collection).path("/about").first();
+    const collection = `${locale.value}_about` as any
+    return queryCollection(collection).first()
   },
-  { watch: [locale] },
-);
+  { watch: [locale] }
+)
 
 if (!page.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",
-    fatal: true,
-  });
+    fatal: true
+  })
 }
 
 if (page.value?.ogImage) {
-  defineOgImage(page.value.ogImage);
+  defineOgImage(page.value.ogImage)
 } else if (page.value?.image) {
-  defineOgImage({ url: page.value.image });
+  defineOgImage({ url: page.value.image })
 }
-useHead((page.value?.head || {}) as any);
+useHead((page.value?.head || {}) as any)
+/* endregion */
+
+/* region Meta */
 useSeoMeta({
   title: t("pages.about.meta.title"),
   description: t("pages.about.sections.hero.description"),
-  ...(page.value?.seo || {}),
-});
+  ...page.value?.seo
+})
+/* endregion */
+
+/* region Lifecycle */
+/* endregion */
+
+/* region Logic */
+/* endregion */
 </script>
 
 <template>
-  <UPage v-if="page">
+  <UPage v-if="page" class="pt-18 sm:pt-24 lg:pt-32">
     <UPageSection
       :title="t('pages.about.sections.hero.title')"
       :description="t('pages.about.sections.hero.description')"
@@ -40,15 +53,23 @@ useSeoMeta({
       :ui="{
         title: 'mx-0 text-left',
         description: 'mx-0 text-left',
-        links: 'justify-start',
+        links: 'justify-start'
       }"
     >
-      <div class="flex flex-col sm:grid sm:grid-cols-3 gap-24">
-        <div class="order-first sm:order-last sm:col-span-1 w-full aspect-square sm:rotate-4">
+      <div class="flex flex-col gap-24 sm:grid sm:grid-cols-3">
+        <div
+          class="aero-image-wrapper order-first aspect-square w-full rounded-xl sm:order-last sm:col-span-1 sm:rotate-4"
+        >
           <NuxtImg
             src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
-            alt="My profile picture"
-            class="w-full h-full rounded-lg ring ring-default ring-offset-3 ring-offset-bg"
+            alt="Marcelo Caldart Filho"
+            width="512"
+            height="512"
+            format="webp"
+            fetchpriority="high"
+            loading="eager"
+            preload
+            class="h-full w-full object-cover"
           />
         </div>
         <MDC :value="page.content" unwrap="p" class="order-last sm:order-first sm:col-span-2" />

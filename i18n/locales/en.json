@@ -1,8 +1,7 @@
 {
   "app": {
     "title": "Marcelo Caldart Filho",
-    "description": "My portfolio website.",
-    "seoTitleTemplate": "%s - Marcelo Caldart Filho",
+    "description": "Sound Designer and Musician specialized in game audio and immersive experiences.",
     "header": {
       "home": "Home",
       "projects": "Projects",
@@ -16,11 +15,12 @@
   "pages": {
     "home": {
       "meta": {
-        "title": "Marcelo Caldart Filho - Sound Designer | Musician"
+        "title": "Marcelo Caldart Filho - Sound Designer | Musician",
+        "description": "I craft immersive audio experiences and music for games and media."
       },
       "sections": {
         "hero": {
-          "title": "Hey, I'm Marcelo Caldart Filho Sound Designer | Musician",
+          "title": "Hey, I'm Marcelo Caldart Filho, Sound Designer | Musician",
           "description": "I craft immersive audio experiences and music for games and media. Based in Curitiba, bringing sonic worlds to life through creativity and technology.",
           "actions": {
             "talk": "Let's Talk"
@@ -28,11 +28,11 @@
         },
         "about": {
           "title": "About Me",
-          "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding. My approach blends creative strategy with technical expertise, transforming concepts into purposeful sonic experiences."
+          "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I specialize in building immersive audio landscapes for games and audiovisual projects, focusing on creative strategy and technical excellence."
         },
         "blog": {
           "title": "Latest Articles",
-          "description": "Some of my recent thoughts",
+          "description": "Insights on Sound Design, Music Production, and Game Audio.",
           "readMore": "Read Article"
         },
         "faq": {
@@ -40,7 +40,7 @@
           "description": "Everything you need to know about working with me on audio and music productions.",
           "categories": [
             {
-              "title": "Services & Process",
+              "title": "Specialization & Stack",
               "questions": [
                 {
                   "label": "What services do you offer?",
@@ -61,7 +61,7 @@
                 },
                 {
                   "label": "What gear and software do you use?",
-                  "content": "I primarily work with Reaper and Pro Tools for DAW work, and DaVinci Resolve for video sync. My studio is equipped with professional-grade microphones and monitoring systems to ensure the highest fidelity."
+                  "content": "I primarily work with Reaper and Pro Tools for DAW work, and DaVinci Resolve for video sync. My studio is equipped with professional-grade microphones and monitoring systems ensuring the highest fidelity."
                 }
               ]
             }
@@ -76,7 +76,7 @@
       "sections": {
         "hero": {
           "title": "Projects",
-          "description": "A showcase of my sound design and music work for games and media."
+          "description": "A collection of my sound design and music work for games and media."
         }
       },
       "viewProject": "View Project"
@@ -111,129 +111,39 @@
       },
       "sections": {
         "hero": {
-          "title": "Marcelo Caldart Filho",
-          "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding.",
-          "actions": {
-            "hire": "Let's Talk",
-            "downloadCv": "Download CV"
-          }
-        },
-        "sidebar": {
-          "location": "Curitiba, Brazil",
-          "availability": "Available"
+          "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I build robust sonic architectures and premium auditory experiences."
         },
         "about": {
-          "title": "About",
           "fields": {
-            "name": "Name:",
-            "nameValue": "Marcelo Caldart Filho",
-            "gender": "Gender:",
-            "genderValue": "Male",
-            "pronouns": "Pronouns:",
-            "pronounsValue": "He / Him",
-            "nationality": "Nationality:",
-            "nationalityValue": "Brazilian",
             "age": "Age:"
           }
         },
         "languages": {
           "title": "Languages",
           "levels": {
+            "native": "Native",
             "professional": "Professional",
-            "native": "Native"
-          },
-          "items": {
-            "english": "English",
-            "portuguese": "Portuguese"
+            "basic": "Basic",
+            "learning": "Learning"
           }
         },
         "skills": {
           "title": "Skills"
         },
         "tech": {
-          "title": "Technologies",
-          "categories": {
-            "audio": "Audio Production",
-            "video": "Video Editing"
-          }
+          "title": "Technologies"
         },
         "education": {
-          "title": "Education",
-          "items": [
-            {
-              "degree": "Bachelor of Music, Music Production and Research",
-              "school": "Federal University of Paraná (UFPR)",
-              "period": "Jun 2021 – Dec 2025"
-            }
-          ]
+          "title": "Education"
         },
         "certifications": {
-          "title": "Certifications",
-          "items": [
-            {
-              "name": "Music Production",
-              "issuer": "Futuresonic",
-              "date": "2017"
-            },
-            {
-              "name": "Furniture Design Technician",
-              "issuer": "Federal Institute of Paraná (IFPR)",
-              "date": "2013"
-            }
-          ]
+          "title": "Certifications"
         },
         "volunteering": {
-          "title": "Volunteering",
-          "items": [
-            {
-              "role": "Secretary",
-              "organization": "Vicentina (Associação de Proteção à Saúde e Maternidade)",
-              "period": "Apr 2012 - Dec 2013",
-              "field": "Social Services"
-            }
-          ]
+          "title": "Volunteering"
         },
         "experience": {
-          "title": "Experience",
-          "items": [
-            {
-              "role": "Audio Designer",
-              "company": "Freelance",
-              "period": "Feb 2017 - Present",
-              "bullets": [
-                "Game audio, Digital sound, Sound design, Foley, and Music composition.",
-                "Delivering high-quality audio assets for various multimedia projects.",
-                "Collaborating with clients to define sonic identities."
-              ]
-            },
-            {
-              "role": "Music Producer",
-              "company": "Freelance",
-              "period": "Feb 2017 - Present",
-              "bullets": [
-                "Studio recording, Mixing, and Mastering.",
-                "Electronic music production and arrangement."
-              ]
-            },
-            {
-              "role": "Production and Secretary Assistant",
-              "company": "Paideia Produções Artísticas",
-              "period": "Oct 2018 - Feb 2019",
-              "bullets": [
-                "Worked on event production, including stage setup and administrative duties.",
-                "Contributed to logistics, organization, and event execution."
-              ]
-            },
-            {
-              "role": "Sales Associate",
-              "company": "Decathlon",
-              "period": "Nov 2016 - Feb 2017",
-              "bullets": [
-                "Direct customer service and identification of sports product needs.",
-                "Support during the purchase process and product orientation."
-              ]
-            }
-          ]
+          "title": "Experience"
         }
       }
     },
@@ -243,8 +153,7 @@
       },
       "sections": {
         "hero": {
-          "title": "Send me a message",
-          "description": "Feel free to contact me for business inquiries or other topics!"
+          "description": "Feel free to contact me for business inquiries or collaboration proposals!"
         },
         "form": {
           "title": "Send a Message",
@@ -256,7 +165,7 @@
             },
             "email": {
               "label": "Email Address",
-              "placeholder": "name{'@'}example.com",
+              "placeholder": "marcelocfilho96{'@'}gmail.com",
               "error": "Please enter a valid email address."
             },
             "message": {
@@ -276,7 +185,7 @@
           "email": "Email",
           "emailValue": "marcelocfilho96{'@'}gmail.com",
           "whatsapp": "WhatsApp",
-          "whatsappValue": "41999862882",
+          "whatsappValue": "+55 41 99986-2882",
           "socials": "I'm also available through my socials:"
         }
       }

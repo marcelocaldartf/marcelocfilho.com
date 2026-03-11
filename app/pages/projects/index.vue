@@ -1,48 +1,61 @@
 <script setup lang="ts">
-const route = useRoute();
-const { locale, t } = useI18n();
-const localePath = useLocalePath();
+import { withoutTrailingSlash } from "ufo"
+
+/* region State */
+const route = useRoute()
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
 const { data: page } = await useAsyncData(
-  route.path,
+  withoutTrailingSlash(route.path),
   async () => {
-    const collection = `${locale.value}_pages` as any;
-    return queryCollection(collection).path("/projects").first();
+    const collection = `${locale.value}_pages` as any
+    return queryCollection(collection).path("/projects").first()
   },
-  { watch: [locale] },
-);
+  { watch: [locale] }
+)
 if (!page.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",
-    fatal: true,
-  });
+    fatal: true
+  })
 }
 
 const { data: projects } = await useAsyncData(
   `projects-${locale.value}`,
   async () => {
-    const collection = `${locale.value}_projects` as any;
-    return queryCollection(collection).order("date", "DESC").all();
+    const collection = `${locale.value}_projects` as any
+    return queryCollection(collection).order("date", "DESC").all()
   },
-  { watch: [locale] },
-);
+  { watch: [locale] }
+)
 
 if (page.value?.ogImage) {
-  defineOgImage(page.value.ogImage);
+  defineOgImage(page.value.ogImage)
 } else if (page.value?.image) {
-  defineOgImage({ url: page.value.image });
+  defineOgImage({ url: page.value.image })
 }
 
-useHead((page.value?.head || {}) as any);
+useHead((page.value?.head || {}) as any)
+/* endregion */
+
+/* region Meta */
 useSeoMeta({
   title: t("pages.projects.meta.title"),
   description: t("pages.projects.sections.hero.description"),
-  ...(page.value?.seo || {}),
-});
+  ...page.value?.seo
+})
+/* endregion */
+
+/* region Lifecycle */
+/* endregion */
+
+/* region Logic */
+/* endregion */
 </script>
 
 <template>
-  <UPage v-if="page">
+  <UPage v-if="page" class="pt-18 sm:pt-24 lg:pt-32">
     <UPageSection
       :title="t('pages.projects.sections.hero.title')"
       :description="t('pages.projects.sections.hero.description')"
@@ -50,12 +63,12 @@ useSeoMeta({
       :ui="{
         title: 'mx-0 text-left',
         description: 'mx-0 text-left',
-        links: 'justify-start',
+        links: 'justify-start'
       }"
     >
       <UPageGrid>
         <UPageCard
-          v-for="(project, index) in projects"
+          v-for="project in projects"
           :key="project.title"
           :title="project.title"
           :description="project.description"
@@ -63,34 +76,40 @@ useSeoMeta({
           variant="naked"
           class="group"
           :ui="{
-            root: 'ring ring-default hover:ring-2 hover:ring-primary-500 transition-all duration-300 rounded-xl overflow-hidden',
+            root: 'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl shadow-xl overflow-hidden group relative transition-all duration-300 hover:-translate-y-1 ring-0 hover:ring-0',
             header: 'p-0 h-48 w-full relative overflow-hidden',
             body: 'p-6',
-            footer: 'p-6 pt-0 mt-auto',
+            footer: 'p-6 pt-0 mt-auto'
           }"
         >
           <template #header>
-            <NuxtImg
+            <LazyNuxtImg
               v-if="project.image"
               :src="project.image"
               :alt="project.title"
-              class="w-full h-full block object-cover transition-transform duration-500 group-hover:scale-105"
+              class="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div class="absolute top-4 left-4">
-              <UBadge variant="subtle" color="neutral" size="sm">
-                {{ new Date(project.date).getFullYear() }}
+              <UBadge
+                variant="subtle"
+                color="primary"
+                size="xl"
+                class="frutiger-gloss !shadow-lg border-white/20 text-neutral-900 dark:text-white"
+              >
+                {{ project.date ? new Date(project.date).getUTCFullYear() : "" }}
               </UBadge>
             </div>
           </template>
 
           <template #footer>
-            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-default mb-4">
+            <div class="mb-4 flex flex-wrap gap-2 pt-2">
               <UBadge
                 v-for="tag in project.tags"
                 :key="tag"
-                variant="soft"
-                color="neutral"
-                size="xs"
+                variant="subtle"
+                color="primary"
+                size="xl"
+                class="frutiger-gloss !shadow-sm border-white/10 text-neutral-900 dark:text-white"
               >
                 {{ tag }}
               </UBadge>
@@ -99,8 +118,10 @@ useSeoMeta({
               :label="t('pages.projects.viewProject')"
               icon="i-lucide-arrow-right"
               trailing
-              variant="link"
-              class="p-0 hover:text-primary"
+              variant="solid"
+              color="primary"
+              size="md"
+              class="w-auto px-6"
               :to="localePath(project.path)"
             />
           </template>

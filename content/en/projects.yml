@@ -1,11 +1,21 @@
-title: Projects
-description: A collection of my work in sound design and audio production.
+title: Projects | Marcelo Caldart Filho
+description: A showcase of my sound design and music work for games and media.
+head:
+  script:
+    - type: application/ld+json
+      key: schema-org-graph
+      nodes:
+        - _resolver: webPage
+      data-nuxt-schema-org: true
 links:
-  - label: "Let's talk"
-    color: "primary"
-    to: "/contact"
-  - label: "View SoundCloud"
-    color: "neutral"
-    variant: "outline"
-    to: "https://soundcloud.com/marcelo-filho-32565359"
-    target: "_blank"
+  - label: Let's talk
+    color: primary
+    to: /contact
+ogImage:
+  props: {}
+schemaOrg:
+  _resolver: webPage
+sitemap:
+  loc: /projects
+  videos: []
+  images: []

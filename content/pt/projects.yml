@@ -1,11 +1,8 @@
-title: Projetos
-description: Uma coleção dos meus trabalhos em sound design e produção de áudio.
+title: Projetos | Marcelo Caldart Filho
+description: Uma vitrine do meu trabalho de design de som e música para jogos e mídia.
 links:
-  - label: "Vamos conversar"
-    color: "primary"
-    to: "/contact"
-  - label: "Ver SoundCloud"
-    color: "neutral"
-    variant: "outline"
-    to: "https://soundcloud.com/marcelo-filho-32565359"
-    target: "_blank"
+  - label: Vamos conversar
+    color: primary
+    to: /contact
+sitemap:
+  loc: /pt/projects

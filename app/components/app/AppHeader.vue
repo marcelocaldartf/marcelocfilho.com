@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem, ButtonProps } from "@nuxt/ui";
+import type { NavigationMenuItem } from "@nuxt/ui"
 
 /* region Props */
 /* endregion */
@@ -16,7 +16,7 @@ import type { NavigationMenuItem, ButtonProps } from "@nuxt/ui";
 /* region State */
 const { t, locale, setLocale } = useI18n()
 const localePath = useLocalePath()
-const route = useRoute()
+const { socials } = useAppConfig()
 
 const open = ref(false)
 
@@ -24,44 +24,35 @@ const leftLinks = computed<NavigationMenuItem[]>(() => [
   {
     label: t("app.header.home"),
     to: localePath("/"),
+    icon: "lucide:house"
   },
   {
     label: t("app.header.projects"),
     to: localePath("/projects"),
+    icon: "lucide:folder-git-2"
   },
   {
     label: t("app.header.blog"),
     to: localePath("/blog"),
+    icon: "lucide:newspaper"
   },
   {
     label: t("app.header.about"),
     to: localePath("/about"),
-  },
+    icon: "lucide:user"
+  }
 ])
 
 const rightLinks = computed<NavigationMenuItem[]>(() => [
   {
     label: t("app.header.resume"),
     to: localePath("/resume"),
+    icon: "lucide:file-text"
   },
   {
     label: t("app.header.contact"),
     to: localePath("/contact"),
-  },
-])
-
-const socialLinks = computed<ButtonProps[]>(() => [
-  {
-    label: "LinkedIn",
-    icon: "simple-icons:linkedin",
-    to: "https://www.linkedin.com/in/marcelocfilho/",
-    class: "hover:text-primary-500",
-  },
-  {
-    label: "SoundCloud",
-    icon: "simple-icons:soundcloud",
-    to: "https://soundcloud.com/marcelo-filho-32565359",
-    class: "hover:text-primary-500",
+    icon: "lucide:mail"
   }
 ])
 /* endregion */
@@ -70,12 +61,6 @@ const socialLinks = computed<ButtonProps[]>(() => [
 /* endregion */
 
 /* region Lifecycle */
-watch(
-  () => route.path,
-  () => {
-    open.value = false;
-  },
-)
 /* endregion */
 
 /* region Logic */
@@ -83,116 +68,108 @@ watch(
 </script>
 
 <template>
-  <header
-    class="fixed top-2 sm:top-4 z-50 inset-x-0 mx-auto w-full max-w-(--ui-container) px-sm"
-  >
+  <header class="px-sm fixed inset-x-0 top-2 z-50 mx-auto max-w-(--ui-container) sm:top-4">
     <div
-      class="flex w-full items-center justify-between bg-muted rounded-full px-md py-xs border border-muted shadow-lg shadow-neutral-950/5"
+      class="frutiger-gloss px-md py-xs flex w-full items-center justify-between rounded-full border border-emerald-500/20 bg-emerald-500/5 shadow-lg shadow-neutral-950/5 backdrop-blur-md dark:bg-emerald-400/5"
     >
       <!-- Left Section -->
       <div class="flex items-center">
-        <ClientOnly>
-          <USlideover
-            v-model:open="open"
-            side="left"
-            :ui="{ content: 'w-2/3' }"
-            :title="t('app.title')"
-            :description="t('app.description')"
-          >
-            <UButton
-              icon="lucide:menu"
-              color="neutral"
-              variant="ghost"
-              class="rounded-full my-auto sm:hidden"
-              aria-label="Open Menu"
-            />
-            <template #body>
-              <div class="flex flex-col gap-md">
-                <UNavigationMenu orientation="vertical" :items="[...leftLinks, ...rightLinks]"/>
-                <LazyUSeparator />
-                <div class="flex flex-col gap-sm">
-                  <UButton
-                    v-for="link in socialLinks"
-                    :key="link.name"
-                    size="md"
-                    color="neutral"
-                    variant="ghost"
-                    :icon="link.icon"
-                    :label="link.label"
-                    :to="link.to"
-                    target="_blank"
-                    :aria-label="link.name"
-                    :class="link.class"
-                  />
-                </div>
-              </div>
-            </template>
-          </USlideover>
-        </ClientOnly>
-
-        <div class="hidden sm:flex items-center">
-          <UNavigationMenu
-            :items="leftLinks"
-            variant="link"
+        <USlideover
+          v-model:open="open"
+          side="left"
+          :ui="{ content: 'w-2/3' }"
+          :title="t('app.title')"
+          :description="t('app.description')"
+        >
+          <UButton
+            icon="lucide:menu"
+            color="neutral"
+            variant="ghost"
+            class="my-auto rounded-full sm:hidden"
+            aria-label="Open Menu"
           />
+          <template #body>
+            <div class="gap-md flex flex-col">
+              <UNavigationMenu
+                orientation="vertical"
+                :items="[...leftLinks, ...rightLinks]"
+                color="primary"
+              />
+              <LazyUSeparator />
+              <div class="gap-sm flex flex-col">
+                <UButton
+                  v-for="link in socials"
+                  :key="link.label"
+                  v-bind="link"
+                  color="neutral"
+                  variant="ghost"
+                  class="hover:text-primary-500"
+                  :aria-label="link.label"
+                />
+              </div>
+            </div>
+          </template>
+        </USlideover>
+
+        <div class="hidden items-center sm:flex">
+          <UNavigationMenu :items="leftLinks" color="primary" variant="pill" />
         </div>
       </div>
 
       <!-- Right Section -->
-      <div class="flex self-stretch items-stretch gap-sm">
-        <div class="hidden sm:flex items-center">
-          <UNavigationMenu
-            :items="rightLinks"
-            variant="link"
+      <div class="gap-sm flex items-stretch self-stretch">
+        <div class="hidden items-center sm:flex">
+          <UNavigationMenu :items="rightLinks" color="primary" variant="pill" />
+        </div>
+
+        <div class="gap-xs hidden items-center sm:flex">
+          <UButton
+            v-for="link in socials"
+            :key="link.label"
+            v-bind="{ ...link, label: undefined }"
+            color="neutral"
+            variant="ghost"
+            class="hover:text-primary-500"
+            :aria-label="link.label"
           />
         </div>
 
-        <div class="flex items-stretch gap-1">
-          <UColorModeButton size="sm" class="rounded-full" />
+        <div class="flex items-center gap-1">
+          <UColorModeButton
+            size="md"
+            color="neutral"
+            variant="ghost"
+            class="hover:text-primary-500"
+            aria-label="Toggle color mode"
+          />
 
-          <ClientOnly>
-            <USelectMenu
-              :model-value="locale"
-              @update:model-value="setLocale($event as 'en' | 'pt')"
-              :items="[
-                  { code: 'en', name: 'English' },
-                  { code: 'pt', name: 'Português' },
-                ]"
-              value-key="code"
-              label-key="name"
-              icon="i-lucide-languages"
-              variant="ghost"
-              size="sm"
-              class="shrink-0 h-full"
-              :ui="{
-                  value: 'hidden',
-                  content: 'w-48',
-                }"
-              :aria-label="t('app.header.languagePicker')"
-            >
-              <template #leading="{ modelValue }">
-                <span class="text-xs font-medium">{{ modelValue === "pt" ? "PT" : "EN" }}</span>
-              </template>
-              <template #item-leading="{ item }">
-                <span class="text-xs font-medium">{{ item.code.toUpperCase() }}</span>
-              </template>
-            </USelectMenu>
-          </ClientOnly>
-
-          <div class="hidden sm:flex items-center gap-xs">
-            <UButton
-              v-for="link in socialLinks"
-              :key="link.name"
-              size="sm"
-              color="neutral"
-              variant="ghost"
-              :icon="link.icon"
-              :to="link.to"
-              target="_blank"
-              :aria-label="link.name"
-              :class="link.class"
-            />
-          </div>
+          <USelectMenu
+            :model-value="locale"
+            @update:model-value="setLocale($event as 'en' | 'pt')"
+            :items="[
+              { code: 'en', name: 'English' },
+              { code: 'pt', name: 'Português' }
+            ]"
+            value-key="code"
+            label-key="name"
+            variant="ghost"
+            color="neutral"
+            size="md"
+            class="hover:text-primary-500 shrink-0"
+            :ui="{
+              base: 'w-auto gap-1 px-2 h-9',
+              content: 'w-24'
+            }"
+            :aria-label="t('app.header.languagePicker')"
+          >
+            <template #leading>
+              <UIcon name="i-lucide-languages" class="size-4" />
+            </template>
+            <span class="text-xs font-bold leading-none">{{ locale === "pt" ? "PT" : "EN" }}</span>
+            <template #item-leading="{ item }">
+              <span class="text-xs font-medium">{{ item.code.toUpperCase() }}</span>
+            </template>
+          </USelectMenu>
         </div>
       </div>
     </div>
