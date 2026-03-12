@@ -117,6 +117,9 @@ useHead({
 
 <template>
   <UApp :locale="(locales as any)[locale]">
+    <NuxtRouteAnnouncer />
+    <NuxtAnnouncer />
+    <NuxtLoadingIndicator color="#0064d7" />
     <NuxtLayout>
       <MCAppHeader />
       <UMain>
