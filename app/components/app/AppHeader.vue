@@ -155,16 +155,18 @@ const rightLinks = computed<NavigationMenuItem[]>(() => [
             variant="ghost"
             color="neutral"
             size="md"
+            icon="lucide:languages"
             class="hover:text-primary-500 shrink-0"
             :ui="{
-              base: 'w-auto gap-1 px-2 h-9',
-              content: 'w-24'
+              base: 'w-fit min-w-0 h-9',
+              leading: 'ps-2.5',
+              trailing: 'pe-2.5',
+              leadingIcon: 'text-inherit',
+              trailingIcon: 'text-inherit',
+              content: 'w-48'
             }"
             :aria-label="t('app.header.languagePicker')"
           >
-            <template #leading>
-              <UIcon name="i-lucide-languages" class="size-4" />
-            </template>
             <span class="text-xs leading-none font-bold">{{ locale === "pt" ? "PT" : "EN" }}</span>
             <template #item-leading="{ item }">
               <span class="text-xs font-medium">{{ item.code.toUpperCase() }}</span>

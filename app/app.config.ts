@@ -80,7 +80,7 @@ export default defineAppConfig({
     },
     selectMenu: {
       slots: {
-        base: "frutiger-gloss rounded-xl"
+        base: "frutiger-gloss rounded-xl inline-flex items-center"
       }
     },
     accordion: {
