@@ -70,7 +70,7 @@ const rightLinks = computed<NavigationMenuItem[]>(() => [
 <template>
   <header class="px-sm fixed inset-x-0 top-2 z-50 mx-auto max-w-(--ui-container) sm:top-4">
     <div
-      class="frutiger-gloss px-md py-xs flex w-full items-center justify-between rounded-full border border-emerald-500/20 bg-emerald-500/5 shadow-lg shadow-neutral-950/5 backdrop-blur-md dark:bg-emerald-400/5"
+      class="frutiger-gloss px-md py-xs flex w-full items-center justify-between rounded-full border border-sky-200/50 bg-white/70 shadow-lg shadow-sky-950/10 backdrop-blur-xl dark:border-sky-500/30 dark:bg-sky-950/60"
     >
       <!-- Left Section -->
       <div class="flex items-center">

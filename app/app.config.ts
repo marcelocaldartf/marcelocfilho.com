@@ -25,7 +25,7 @@ export default defineAppConfig({
   },
   ui: {
     colors: {
-      primary: "emerald",
+      primary: "sky",
       neutral: "slate"
     },
     button: {
@@ -37,8 +37,8 @@ export default defineAppConfig({
       variants: {
         variant: {
           solid:
-            "shadow-md hover:brightness-110 hover:shadow-xl shadow-emerald-500/20 text-white dark:text-white",
-          outline: "ring-2 ring-emerald-500/50 hover:bg-emerald-500/10"
+            "bg-primary hover:bg-primary/90 shadow-md hover:brightness-110 hover:shadow-xl shadow-primary-950/60 text-white dark:text-white",
+          outline: "ring-2 ring-primary/50 hover:bg-primary/10"
         }
       }
     },

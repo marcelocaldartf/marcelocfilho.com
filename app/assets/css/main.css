@@ -42,8 +42,8 @@
     inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 -1px 1px rgba(0, 0, 0, 0.1);
   --aero-border: 1px solid rgba(255, 255, 255, 0.3);
 
-  --aero-bg: linear-gradient(135deg, #4ade80 0%, #dcfce7 40%, #38bdf8 70%, #2dd4bf 100%);
-  --aero-bg-dark: linear-gradient(135deg, #064e3b 0%, #082f49 50%, #134e4a 100%);
+  --aero-bg: radial-gradient(ellipse at left, #bae6fd 0%, #f0f9ff 100%);
+  --aero-bg-dark: radial-gradient(ellipse at left, #082f49 0%, #000000 100%);
 }
 
 body {
@@ -58,14 +58,14 @@ body {
 :root {
   ::selection {
     color: var(--color-neutral-900);
-    background-color: var(--color-primary-500);
+    background-color: var(--color-sky-700);
   }
 }
 
 .dark {
   ::selection {
     color: var(--color-neutral-50);
-    background-color: var(--color-primary-500);
+    background-color: var(--color-sky-700);
   }
 }
 
@@ -91,8 +91,8 @@ body {
     z-index: 0; /* Behind content */
   }
 
-  /* Ensure content stays above the gloss */
-  .frutiger-gloss > * {
+  /* Ensure content stays above the gloss without breaking absolute positioning */
+  .frutiger-gloss > *:not(.absolute):not(.fixed) {
     position: relative;
     z-index: 2;
   }
