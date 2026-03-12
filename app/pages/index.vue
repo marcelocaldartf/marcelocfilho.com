@@ -69,7 +69,7 @@ useSeoMeta({
       <template #headline>
         <div class="aero-image-wrapper mx-auto size-20 rounded-full">
           <NuxtImg
-            src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
+            src="/Images/marcelocfilho.webp"
             alt="Marcelo Caldart Filho"
             width="80"
             height="80"

@@ -61,7 +61,7 @@ useSeoMeta({
           class="aero-image-wrapper order-first aspect-square w-full rounded-xl sm:order-last sm:col-span-1 sm:rotate-4"
         >
           <NuxtImg
-            src="https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp"
+            src="/Images/marcelocfilho.webp"
             alt="Marcelo Caldart Filho"
             width="512"
             height="512"

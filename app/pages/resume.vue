@@ -90,10 +90,7 @@ useSeoMeta({
       >
         <div class="aero-image-wrapper mx-auto size-48 rounded-full sm:size-64">
           <NuxtImg
-            :src="
-              page.hero.image ||
-              'https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp'
-            "
+            :src="page.hero.image || '/Images/marcelocfilho.webp'"
             alt="Marcelo Caldart Filho"
             width="512"
             height="512"
@@ -233,10 +230,7 @@ useSeoMeta({
             <div class="gap-sm flex flex-col items-center justify-center">
               <div class="aero-image-wrapper mx-auto size-24 rounded-full sm:size-32">
                 <NuxtImg
-                  :src="
-                    page.sidebar?.image ||
-                    'https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev/Images/marcelocfilho.webp'
-                  "
+                  :src="page.sidebar?.image || '/Images/marcelocfilho.webp'"
                   alt="Marcelo Caldart Filho"
                   width="96"
                   height="96"

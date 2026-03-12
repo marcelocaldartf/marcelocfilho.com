@@ -301,7 +301,7 @@ export default defineNuxtConfig({
     cloudflare: {
       baseURL: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev"
     },
-    domains: ["marcelocfilho.com", "placehold.co"]
+    domains: ["marcelocfilho.com", "placehold.co", "pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev"]
   },
 
   ogImage: {
