@@ -135,6 +135,14 @@ export default defineNuxtConfig({
           rel: "icon",
           type: "image/svg+xml",
           href: "/favicon.svg"
+        },
+        {
+          rel: "preconnect",
+          href: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev"
+        },
+        {
+          rel: "dns-prefetch",
+          href: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev"
         }
       ]
     },
@@ -231,7 +239,7 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: "i18n_redirected",
       cookieSecure: true,
-      alwaysRedirect: true
+      alwaysRedirect: false
     },
     locales: [
       {
