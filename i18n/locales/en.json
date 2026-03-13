@@ -31,8 +31,6 @@
           "description": "Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I specialize in building immersive audio landscapes for games and audiovisual projects, focusing on creative strategy and technical excellence."
         },
         "blog": {
-          "title": "Latest Articles",
-          "description": "Insights on Sound Design, Music Production, and Game Audio.",
           "readMore": "Read Article"
         },
         "faq": {

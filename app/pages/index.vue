@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /* region State */
-const { t, rt, locale } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
 const faqItems = computed(() => [
@@ -34,11 +34,11 @@ const faqItems = computed(() => [
   }
 ])
 
-const { data: posts } = await useAsyncData(
-  `index-blogs-${locale.value}`,
+const { data: projects } = await useAsyncData(
+  `index-projects-${locale.value}`,
   () => {
-    const collection = `${locale.value}_blog` as any
-    return queryCollection(collection).order("date", "DESC").limit(3).all()
+    const collection = `${locale.value}_projects` as any
+    return queryCollection(collection).order("date", "DESC").limit(6).all()
   },
   { watch: [locale] }
 )
@@ -64,35 +64,30 @@ useSeoMeta({
     <UPageHero
       :title="t('pages.home.sections.hero.title')"
       :description="t('pages.home.sections.hero.description')"
-      :ui="{ headline: 'flex justify-center' }"
+      orientation="horizontal"
+      :ui="{
+        container: 'lg:py-24',
+        headline: 'flex justify-start'
+      }"
     >
-      <template #headline>
-        <div class="aero-image-wrapper mx-auto size-20 rounded-full">
-          <NuxtImg
-            src="/Images/marcelocfilho.webp"
-            alt="Marcelo Caldart Filho"
-            width="80"
-            height="80"
-            format="webp"
-            fetchpriority="high"
-            loading="eager"
-            preload
-            class="h-full w-full object-cover"
+      <template #links>
+        <div class="gap-md flex flex-col items-start">
+          <UButton
+            :label="t('pages.home.sections.hero.actions.talk')"
+            :to="localePath('/contact')"
+            color="neutral"
+            variant="ghost"
+            size="lg"
+            class="hover:text-primary-500"
           />
         </div>
       </template>
 
-      <template #links>
-        <div class="gap-md flex flex-col items-center">
-          <UButton
-            :label="t('pages.home.sections.hero.actions.talk')"
-            :to="localePath('/contact')"
-            color="primary"
-            variant="solid"
-            size="lg"
-          />
-        </div>
-      </template>
+      <div
+        class="frutiger-gloss aspect-video overflow-hidden rounded-3xl border border-sky-200/50 bg-white/10 shadow-2xl dark:border-sky-500/30 dark:bg-sky-950/20"
+      >
+        <ScriptYouTubePlayer video-id="uH1Hw6SDI1M" trigger="onElementVisible" />
+      </div>
     </UPageHero>
 
     <!-- About Section -->
@@ -105,57 +100,94 @@ useSeoMeta({
       }"
     />
 
-    <!-- Blog Section -->
+    <!-- Projects Section -->
     <UPageSection
-      v-if="posts"
-      :title="t('pages.home.sections.blog.title')"
-      :description="t('pages.home.sections.blog.description')"
+      v-if="projects"
+      :title="t('pages.projects.sections.hero.title')"
+      :description="t('pages.projects.sections.hero.description')"
       :ui="{
         root: 'py-8 sm:py-12',
         title: 'text-left text-xl sm:text-xl lg:text-2xl font-medium',
         description: 'text-left text-sm sm:text-md lg:text-sm text-muted'
       }"
     >
-      <UBlogPosts orientation="vertical">
-        <UBlogPost
-          v-for="(post, index) in posts"
-          :key="index"
-          orientation="horizontal"
-          variant="naked"
-          v-bind="{
-            ...post,
-            image: post.image || undefined,
-            author: post.author
-              ? {
-                  ...post.author,
-                  avatar: post.author.avatar?.src ? post.author.avatar : undefined
-                }
-              : undefined
-          }"
-          :to="post.path ? localePath(post.path) : undefined"
-          :ui="{
-            root: 'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl p-6 shadow-xl sm:p-10 mb-2 last:mb-0 group relative lg:items-start lg:flex ring-0 hover:ring-0',
-            body: '!px-0',
-            header: 'hidden'
-          }"
+      <UPageGrid>
+        <ULink
+          v-for="project in projects"
+          :key="project.title"
+          :to="localePath(project.path)"
+          class="group"
         >
-          <template #footer>
-            <div class="mt-4 flex w-full justify-center">
+          <UPageCard
+            :title="project.title"
+            :description="project.description"
+            variant="naked"
+            :ui="{
+              root: 'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl shadow-xl overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1 ring-0 group-hover:ring-0',
+              header: 'p-0 h-48 w-full relative overflow-hidden',
+              body: 'p-6',
+              footer: 'p-6 pt-0 mt-auto'
+            }"
+          >
+            <template #header>
+              <LazyNuxtImg
+                v-if="project.image"
+                :src="project.image"
+                :alt="project.title"
+                class="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="absolute top-4 left-4">
+                <UBadge
+                  variant="subtle"
+                  color="primary"
+                  size="lg"
+                  class="frutiger-gloss border-white/20 text-neutral-900 !shadow-lg dark:text-white"
+                >
+                  {{ project.date ? new Date(project.date).getUTCFullYear() : "" }}
+                </UBadge>
+              </div>
+            </template>
+
+            <template #footer>
+              <div class="mb-4 flex flex-wrap gap-2 pt-2">
+                <UBadge
+                  v-for="tag in project.tags"
+                  :key="tag"
+                  variant="subtle"
+                  color="primary"
+                  size="lg"
+                  class="frutiger-gloss border-white/10 text-neutral-900 !shadow-sm dark:text-white"
+                >
+                  {{ tag }}
+                </UBadge>
+              </div>
               <UButton
+                :label="t('pages.projects.viewProject')"
+                trailing-icon="lucide:arrow-right"
+                variant="ghost"
+                color="neutral"
                 size="md"
-                variant="solid"
-                color="primary"
-                :label="t('pages.home.sections.blog.readMore')"
-                class="min-w-32"
-              >
-                <template #trailing>
-                  <UIcon name="lucide:arrow-right" class="size-4" />
-                </template>
-              </UButton>
-            </div>
+                class="hover:text-primary-500 pointer-events-none mt-auto w-auto px-0"
+              />
+            </template>
+          </UPageCard>
+        </ULink>
+      </UPageGrid>
+
+      <div class="mt-12 flex justify-center">
+        <UButton
+          size="lg"
+          variant="ghost"
+          color="neutral"
+          label="View All"
+          :to="localePath('/projects')"
+          class="hover:text-primary-500 min-w-48"
+        >
+          <template #trailing>
+            <UIcon name="lucide:arrow-right" class="size-5" />
           </template>
-        </UBlogPost>
-      </UBlogPosts>
+        </UButton>
+      </div>
     </UPageSection>
 
     <!-- FAQ Section -->
@@ -223,9 +255,10 @@ useSeoMeta({
           <UButton
             :label="t('pages.home.sections.hero.actions.talk')"
             :to="localePath('/contact')"
-            color="primary"
-            variant="solid"
+            color="neutral"
+            variant="ghost"
             size="lg"
+            class="hover:text-primary-500"
           />
         </div>
       </template>

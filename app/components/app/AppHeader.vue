@@ -18,7 +18,9 @@ const { t, locale, setLocale } = useI18n()
 const localePath = useLocalePath()
 const { socials } = useAppConfig()
 
+const y = ref(0)
 const open = ref(false)
+const isScrolled = computed(() => y.value > 50)
 
 const leftLinks = computed<NavigationMenuItem[]>(() => [
   {
@@ -43,17 +45,24 @@ const leftLinks = computed<NavigationMenuItem[]>(() => [
   }
 ])
 
-const rightLinks = computed<NavigationMenuItem[]>(() => [
+const rightLinksMenu = computed<NavigationMenuItem[]>(() => [
   {
     label: t("app.header.resume"),
     to: localePath("/resume"),
     icon: "lucide:file-text"
-  },
-  {
-    label: t("app.header.contact"),
-    to: localePath("/contact"),
-    icon: "lucide:mail"
   }
+])
+
+const contactLink = computed(() => ({
+  label: t("app.header.contact"),
+  to: localePath("/contact"),
+  icon: "lucide:mail"
+}))
+
+const mobileLinks = computed<NavigationMenuItem[]>(() => [
+  ...leftLinks.value,
+  ...rightLinksMenu.value,
+  contactLink.value
 ])
 /* endregion */
 
@@ -61,6 +70,18 @@ const rightLinks = computed<NavigationMenuItem[]>(() => [
 /* endregion */
 
 /* region Lifecycle */
+const handleScroll = () => {
+  y.value = window.scrollY
+}
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll, { passive: true })
+  handleScroll()
+})
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll)
+})
 /* endregion */
 
 /* region Logic */
@@ -70,7 +91,12 @@ const rightLinks = computed<NavigationMenuItem[]>(() => [
 <template>
   <header class="px-sm fixed inset-x-0 top-2 z-50 mx-auto max-w-(--ui-container) sm:top-4">
     <div
-      class="frutiger-gloss px-md py-xs flex w-full items-center justify-between rounded-full border border-sky-200/50 bg-white/70 shadow-lg shadow-sky-950/10 backdrop-blur-xl dark:border-sky-500/30 dark:bg-sky-950/60"
+      :class="[
+        'px-md py-xs relative flex w-full items-center justify-between rounded-full border transition-all duration-300',
+        isScrolled
+          ? 'frutiger-gloss border-sky-200/50 bg-white/70 shadow-lg shadow-sky-950/10 backdrop-blur-md dark:border-sky-500/30 dark:bg-sky-950/60'
+          : 'border-transparent bg-transparent shadow-none backdrop-blur-none'
+      ]"
     >
       <!-- Left Section -->
       <div class="flex items-center">
@@ -90,11 +116,7 @@ const rightLinks = computed<NavigationMenuItem[]>(() => [
           />
           <template #body>
             <div class="gap-md flex flex-col">
-              <UNavigationMenu
-                orientation="vertical"
-                :items="[...leftLinks, ...rightLinks]"
-                color="primary"
-              />
+              <UNavigationMenu orientation="vertical" :items="mobileLinks" color="primary" />
               <LazyUSeparator />
               <div class="gap-sm flex flex-col">
                 <UButton
@@ -116,10 +138,28 @@ const rightLinks = computed<NavigationMenuItem[]>(() => [
         </div>
       </div>
 
+      <!-- Center Section -->
+      <div
+        class="pointer-events-none absolute left-1/2 -translate-x-1/2 transition-opacity duration-300"
+        :class="isScrolled ? 'opacity-100' : 'opacity-0'"
+      >
+        <span class="text-sm font-bold whitespace-nowrap">
+          {{ t("app.title") }}
+        </span>
+      </div>
+
       <!-- Right Section -->
       <div class="gap-sm flex items-stretch self-stretch">
-        <div class="hidden items-center sm:flex">
-          <UNavigationMenu :items="rightLinks" color="primary" variant="pill" />
+        <div class="hidden items-center gap-1 sm:flex">
+          <UNavigationMenu :items="rightLinksMenu" color="primary" variant="pill" />
+          <UButton
+            v-bind="{ ...contactLink, label: undefined }"
+            color="neutral"
+            variant="ghost"
+            class="hover:text-primary-500 rounded-full"
+            :aria-label="contactLink.label"
+            :to="contactLink.to"
+          />
         </div>
 
         <div class="gap-xs hidden items-center sm:flex">
