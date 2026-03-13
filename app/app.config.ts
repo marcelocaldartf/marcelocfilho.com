@@ -30,7 +30,7 @@ export default defineAppConfig({
     },
     button: {
       slots: {
-        base: "frutiger-gloss rounded-xl font-bold inline-flex items-center justify-center transition-all duration-300 active:scale-95",
+        base: "frutiger-gloss rounded-full font-bold inline-flex items-center justify-center transition-all duration-300 active:scale-95",
         leadingIcon: "text-inherit shrink-0 size-5",
         trailingIcon: "text-inherit shrink-0 size-5"
       },
@@ -40,6 +40,11 @@ export default defineAppConfig({
             "bg-primary hover:bg-primary/90 shadow-md hover:brightness-110 hover:shadow-xl shadow-primary-950/60 text-white dark:text-white",
           outline: "ring-2 ring-primary/50 hover:bg-primary/10"
         }
+      }
+    },
+    badge: {
+      slots: {
+        base: "rounded-full font-bold"
       }
     },
     icon: {
@@ -57,7 +62,7 @@ export default defineAppConfig({
       slots: {
         root: "relative flex flex-col sm:flex-row",
         list: "gap-2",
-        link: "rounded-xl transition-all duration-300"
+        link: "rounded-full transition-all duration-300"
       },
       variants: {
         active: {
@@ -72,29 +77,29 @@ export default defineAppConfig({
           active: true,
           variant: "pill",
           class: {
-            link: "frutiger-gloss bg-primary text-white dark:text-white",
-            linkLeadingIcon: "text-white"
+            link: "frutiger-gloss text-primary font-bold bg-transparent",
+            linkLeadingIcon: "text-primary"
           }
         }
       ]
     },
     selectMenu: {
       slots: {
-        base: "frutiger-gloss rounded-xl inline-flex items-center"
+        base: "frutiger-gloss rounded-full inline-flex items-center"
       }
     },
     accordion: {
       slots: {
         item: "border-none",
         trigger:
-          "frutiger-gloss bg-primary/12 dark:bg-primary/20 hover:bg-muted/50 rounded-xl px-4 py-3 mb-2 font-medium transition-all duration-300",
+          "frutiger-gloss bg-primary/12 dark:bg-primary/20 hover:bg-muted/50 rounded-full px-4 py-3 mb-2 font-medium transition-all duration-300",
         content: "px-4 pt-0 pb-4"
       }
     },
     tabs: {
       slots: {
-        indicator: "!absolute frutiger-gloss rounded-xl bg-primary",
-        trigger: "rounded-xl transition-all duration-300 data-[state=active]:text-white"
+        indicator: "!absolute frutiger-gloss rounded-full bg-primary",
+        trigger: "rounded-full transition-all duration-300 data-[state=active]:!text-white"
       },
       compoundVariants: [
         {
