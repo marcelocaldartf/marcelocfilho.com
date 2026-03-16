@@ -94,7 +94,7 @@ onUnmounted(() => {
       :class="[
         'px-md py-xs relative flex w-full items-center justify-between rounded-full border transition-all duration-300',
         isScrolled
-          ? 'frutiger-gloss border-sky-200/50 bg-white/70 shadow-lg shadow-sky-950/10 backdrop-blur-md dark:border-sky-500/30 dark:bg-sky-950/60'
+          ? 'frutiger-gloss border-sky-200/50 bg-white/70 shadow-lg shadow-sky-950/10 backdrop-blur-sm dark:border-sky-500/30 dark:bg-sky-950/60'
           : 'border-transparent bg-transparent shadow-none backdrop-blur-none'
       ]"
     >
