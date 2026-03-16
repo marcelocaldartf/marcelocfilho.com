@@ -1,241 +1,221 @@
-import { defineCollection, defineContentConfig, z } from "@nuxt/content"
-import { asSeoCollection } from "@nuxtjs/seo/content"
+import { defineCollection, defineContentConfig, property } from "@nuxt/content"
+import { object, string, optional, picklist, array, number, date, pipe, minLength } from "valibot"
 
 export const createButtonSchema = () =>
-  z.object({
-    label: z.string(),
-    icon: z.string().optional(),
-    to: z.string().optional(),
-    color: z.enum(["primary", "neutral", "success", "warning", "error", "info"]).optional(),
-    size: z.enum(["xs", "sm", "md", "lg", "xl"]).optional(),
-    variant: z.enum(["solid", "outline", "subtle", "soft", "ghost", "link"]).optional(),
-    target: z.enum(["_blank", "_self"]).optional()
+  object({
+    label: string(),
+    icon: optional(string()),
+    to: optional(string()),
+    color: optional(picklist(["primary", "neutral", "success", "warning", "error", "info"])),
+    size: optional(picklist(["xs", "sm", "md", "lg", "xl"])),
+    variant: optional(picklist(["solid", "outline", "subtle", "soft", "ghost", "link"])),
+    target: optional(picklist(["_blank", "_self"]))
   })
 
 const createImageSchema = () =>
-  z.object({
-    src: z.string().editor({ input: "media" }),
-    alt: z.string()
+  object({
+    src: property(string()).editor({ input: "media" }),
+    alt: string()
   })
 
 const createAuthorSchema = () =>
-  z.object({
-    name: z.string(),
-    description: z.string().optional(),
-    username: z.string().optional(),
-    twitter: z.string().optional(),
-    to: z.string().optional(),
-    avatar: createImageSchema().optional()
+  object({
+    name: string(),
+    description: optional(string()),
+    username: optional(string()),
+    twitter: optional(string()),
+    to: optional(string()),
+    avatar: optional(createImageSchema())
   })
 
-const commonSchema = z.object({
-  title: z.string(),
-  description: z.string().optional(),
-  links: z.array(createButtonSchema()).optional(),
-  content: z.string().optional(),
-  images: z.array(createImageSchema()).optional()
+const commonSchema = object({
+  title: string(),
+  description: optional(string()),
+  links: optional(array(createButtonSchema())),
+  content: optional(string()),
+  images: optional(array(createImageSchema()))
 })
 
-const contactSchema = commonSchema.extend({
-  contactItems: z
-    .array(
-      z.object({
-        icon: z.string().optional(),
-        label: z.string().optional(),
-        value: z.string().optional()
+const contactSchema = object({
+  ...commonSchema.entries,
+  contactItems: optional(
+    array(
+      object({
+        icon: optional(string()),
+        label: optional(string()),
+        value: optional(string())
       })
     )
-    .optional(),
-  recipientEmail: z.string().optional()
+  ),
+  recipientEmail: optional(string())
 })
 
-const blogSchema = commonSchema.extend({
-  minRead: z.number(),
-  date: z.date(),
-  image: z.string().optional().editor({ input: "media" }),
+const blogSchema = object({
+  ...commonSchema.entries,
+  minRead: number(),
+  date: date(),
+  image: optional(property(string()).editor({ input: "media" })),
   author: createAuthorSchema()
 })
 
-const projectSchema = commonSchema.extend({
-  title: z.string().nonempty(),
-  description: z.string().nonempty(),
-  image: z.string().optional().editor({ input: "media" }),
-  tags: z.array(z.string()),
-  date: z.date()
+const projectSchema = object({
+  ...commonSchema.entries,
+  title: pipe(string(), minLength(1)),
+  description: pipe(string(), minLength(1)),
+  image: optional(property(string()).editor({ input: "media" })),
+  tags: array(string()),
+  date: date()
 })
 
-const resumeSchema = commonSchema.extend({
-  sidebar: z
-    .object({
-      image: z.string().optional().editor({ input: "media" }),
-      location: z.string().optional(),
-      locationLink: z.string().optional(),
-      availability: z.string().optional(),
-      dateOfBirth: z.string().optional(),
-      about: z
-        .object({
-          title: z.string().optional(),
-          fields: z.array(
-            z.object({
-              label: z.string(),
-              value: z.string()
+const resumeSchema = object({
+  ...commonSchema.entries,
+  sidebar: optional(
+    object({
+      image: optional(property(string()).editor({ input: "media" })),
+      location: optional(string()),
+      locationLink: optional(string()),
+      availability: optional(string()),
+      dateOfBirth: optional(string()),
+      about: optional(
+        object({
+          title: optional(string()),
+          fields: array(
+            object({
+              label: string(),
+              value: string()
             })
           )
         })
-        .optional(),
-      languages: z
-        .array(
-          z.object({
-            name: z.string(),
-            progress: z.number()
+      ),
+      languages: optional(
+        array(
+          object({
+            name: string(),
+            progress: number()
           })
         )
-        .optional()
+      )
     })
-    .optional(),
-  hero: z
-    .object({
-      title: z.string().optional(),
-      description: z.string().optional(),
-      image: z.string().optional().editor({ input: "media" }),
-      links: z.array(createButtonSchema()).optional()
+  ),
+  hero: optional(
+    object({
+      title: optional(string()),
+      description: optional(string()),
+      image: optional(property(string()).editor({ input: "media" })),
+      links: optional(array(createButtonSchema()))
     })
-    .optional(),
-  skills: z.string().optional().editor({ input: "markdown" }),
-  tech: z
-    .array(
-      z.object({
-        title: z.string(),
-        items: z.array(createButtonSchema())
+  ),
+  skills: optional(property(string()).editor({ input: "markdown" })),
+  tech: optional(
+    array(
+      object({
+        title: string(),
+        items: array(createButtonSchema())
       })
     )
-    .optional(),
-  education: z
-    .array(
-      z.object({
-        degree: z.string(),
-        school: z.string(),
-        period: z.string()
+  ),
+  education: optional(
+    array(
+      object({
+        degree: string(),
+        school: string(),
+        period: string()
       })
     )
-    .optional(),
-  experience: z
-    .array(
-      z.object({
-        role: z.string(),
-        company: z.string(),
-        period: z.string(),
-        bullets: z.array(z.string())
+  ),
+  experience: optional(
+    array(
+      object({
+        role: string(),
+        company: string(),
+        period: string(),
+        bullets: array(string())
       })
     )
-    .optional(),
-  certifications: z
-    .array(
-      z.object({
-        name: z.string(),
-        issuer: z.string(),
-        date: z.string()
+  ),
+  certifications: optional(
+    array(
+      object({
+        name: string(),
+        issuer: string(),
+        date: string()
       })
     )
-    .optional(),
-  volunteering: z
-    .array(
-      z.object({
-        role: z.string(),
-        organization: z.string(),
-        period: z.string(),
-        field: z.string().optional()
+  ),
+  volunteering: optional(
+    array(
+      object({
+        role: string(),
+        organization: string(),
+        period: string(),
+        field: optional(string())
       })
     )
-    .optional()
+  )
 })
 
 export default defineContentConfig({
   collections: {
-    en_blog: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "en/blog/**", prefix: "/blog" },
-        schema: blogSchema
-      })
-    ),
-    en_projects: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "en/projects/**", prefix: "/projects" },
-        schema: projectSchema
-      })
-    ),
-    en_about: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "en/*about.{yml,md}", prefix: "/" },
-        schema: commonSchema
-      })
-    ),
-    en_contact: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "en/*contact.{yml,md}", prefix: "/" },
-        schema: contactSchema
-      })
-    ),
-    en_resume: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "en/*resume.{yml,md}", prefix: "/" },
-        schema: resumeSchema
-      })
-    ),
-    en_pages: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "en/*{blog,projects}.{yml,md}", prefix: "/" },
-        schema: commonSchema
-      })
-    ),
+    en_blog: defineCollection({
+      type: "page",
+      source: { include: "en/blog/**", prefix: "/blog" },
+      schema: blogSchema
+    }),
+    en_projects: defineCollection({
+      type: "page",
+      source: { include: "en/projects/**", prefix: "/projects" },
+      schema: projectSchema
+    }),
+    en_about: defineCollection({
+      type: "page",
+      source: { include: "en/*about.{yml,md}", prefix: "/" },
+      schema: commonSchema
+    }),
+    en_contact: defineCollection({
+      type: "page",
+      source: { include: "en/*contact.{yml,md}", prefix: "/" },
+      schema: contactSchema
+    }),
+    en_resume: defineCollection({
+      type: "page",
+      source: { include: "en/*resume.{yml,md}", prefix: "/" },
+      schema: resumeSchema
+    }),
+    en_pages: defineCollection({
+      type: "page",
+      source: { include: "en/*{blog,projects}.{yml,md}", prefix: "/" },
+      schema: commonSchema
+    }),
 
-    pt_blog: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "pt/blog/**", prefix: "/pt/blog" },
-        schema: blogSchema
-      })
-    ),
-    pt_projects: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "pt/projects/**", prefix: "/pt/projects" },
-        schema: projectSchema
-      })
-    ),
-    pt_about: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "pt/*about.{yml,md}", prefix: "/pt" },
-        schema: commonSchema
-      })
-    ),
-    pt_contact: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "pt/*contact.{yml,md}", prefix: "/pt" },
-        schema: contactSchema
-      })
-    ),
-    pt_resume: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "pt/*resume.{yml,md}", prefix: "/pt" },
-        schema: resumeSchema
-      })
-    ),
-    pt_pages: defineCollection(
-      asSeoCollection({
-        type: "page",
-        source: { include: "pt/*{blog,projects}.{yml,md}", prefix: "/pt" },
-        schema: commonSchema
-      })
-    )
+    pt_blog: defineCollection({
+      type: "page",
+      source: { include: "pt/blog/**", prefix: "/pt/blog" },
+      schema: blogSchema
+    }),
+    pt_projects: defineCollection({
+      type: "page",
+      source: { include: "pt/projects/**", prefix: "/pt/projects" },
+      schema: projectSchema
+    }),
+    pt_about: defineCollection({
+      type: "page",
+      source: { include: "pt/*about.{yml,md}", prefix: "/pt" },
+      schema: commonSchema
+    }),
+    pt_contact: defineCollection({
+      type: "page",
+      source: { include: "pt/*contact.{yml,md}", prefix: "/pt" },
+      schema: contactSchema
+    }),
+    pt_resume: defineCollection({
+      type: "page",
+      source: { include: "pt/*resume.{yml,md}", prefix: "/pt" },
+      schema: resumeSchema
+    }),
+    pt_pages: defineCollection({
+      type: "page",
+      source: { include: "pt/*{blog,projects}.{yml,md}", prefix: "/pt" },
+      schema: commonSchema
+    })
   }
 })

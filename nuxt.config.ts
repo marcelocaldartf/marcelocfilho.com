@@ -1,16 +1,19 @@
+import { isCI } from "std-env"
+
 export default defineNuxtConfig({
   compatibilityDate: "2026-02-13",
   future: {
     compatibilityVersion: 5
   },
   experimental: {
-    viteEnvironmentApi: false,
+    viteEnvironmentApi: true,
     typescriptPlugin: true,
     nitroAutoImports: true,
     componentIslands: {
       selectiveClient: true
     },
-    viewTransition: true
+    viewTransition: true,
+    typedPages: true
   },
 
   modules: [
@@ -18,6 +21,7 @@ export default defineNuxtConfig({
     "@nuxt/a11y",
     "@nuxt/hints",
     "@nuxt/test-utils",
+    "@nuxtjs/html-validator",
     // Must go before Content
     "@nuxtjs/i18n",
     "@nuxt/image",
@@ -26,29 +30,56 @@ export default defineNuxtConfig({
     // Must go before UI
     "@nuxt/fonts",
     "@nuxt/icon",
+    "@nuxtjs/color-mode",
     // Must go after Content
     "@nuxt/ui",
     "nuxt-studio",
     "@nuxtjs/device",
     "nuxt-llms",
     "nuxt-security",
-    "@nuxt/scripts"
+    "@nuxt/scripts",
+    "@vite-pwa/nuxt"
   ],
 
   $development: {
     devtools: { enabled: true },
     // Change to true in case the issue gets resolved: https://github.com/fi3ework/vite-plugin-checker/issues/557
-    typescript: { typeCheck: false },
+    typescript: {
+      typeCheck: false,
+      tsConfig: {
+        compilerOptions: {
+          noUnusedLocals: true,
+          allowImportingTsExtensions: true
+        },
+        include: ["../test/unit/server/**/*.ts", "../test/unit/app/**/*.ts"]
+      },
+      sharedTsConfig: {
+        include: ["../test/unit/shared/**/*.ts"]
+      },
+      nodeTsConfig: {
+        compilerOptions: {
+          allowImportingTsExtensions: true,
+          paths: {
+            "#server/*": ["../server/*"],
+            "#shared/*": ["../shared/*"]
+          }
+        },
+        include: ["../*.ts", "../test/e2e/**/*.ts"]
+      }
+    },
+    site: { indexable: false },
     a11y: {
       enabled: true,
       defaultHighlight: false,
       logIssues: false
-    },
-    site: { indexable: false }
+    }
   },
 
   $test: {
-    devtools: { enabled: true }
+    devtools: { enabled: true },
+    debug: {
+      hydration: true
+    }
   },
 
   $production: {
@@ -100,6 +131,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: "/",
     head: {
+      htmlAttrs: { lang: "en-US" },
       title: "Marcelo Caldart Filho",
       titleTemplate: "%s | Marcelo Caldart Filho",
       meta: [
@@ -133,6 +165,54 @@ export default defineNuxtConfig({
       ]
     },
     viewTransition: true
+  },
+
+  pwa: {
+    // Disable service worker
+    disable: true,
+    pwaAssets: {
+      disabled: false,
+      config: false
+    },
+    manifest: {
+      name: "Marcelo Caldart Filho",
+      short_name: "Marcelo Caldart Filho",
+      description: "Web Developer & Designer",
+      theme_color: "#0a0a0a",
+      background_color: "#0a0a0a",
+      icons: [
+        {
+          src: "pwa-64x64.png",
+          sizes: "64x64",
+          type: "image/png"
+        },
+        {
+          src: "pwa-192x192.png",
+          sizes: "192x192",
+          type: "image/png"
+        },
+        {
+          src: "pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any"
+        },
+        {
+          src: "maskable-icon-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable"
+        }
+      ]
+    }
+  },
+
+  htmlValidator: {
+    enabled: !isCI,
+    options: {
+      rules: { "meta-refresh": "off" }
+    },
+    failOnError: true
   },
 
   security: {
@@ -208,6 +288,12 @@ export default defineNuxtConfig({
     sri: true
   },
 
+  router: {
+    options: {
+      scrollBehaviorType: "smooth"
+    }
+  },
+
   routeRules: {
     // Disable rate limiting for internal Nuxt endpoints
     "/__nuxt_content/**": { security: { rateLimiter: false } },
@@ -216,6 +302,9 @@ export default defineNuxtConfig({
     "/__nuxt_studio/**": { security: { rateLimiter: false } },
     "/__nuxt_hints/**": { security: { enabled: false } },
     "/_nuxt/**": { security: { rateLimiter: false } },
+    // ISR Rules
+    "/": { prerender: true },
+    "/api/**": { isr: 60 },
     // Cache content pages
     "/blog/**": { isr: true },
     "/projects/**": { isr: true },
@@ -274,18 +363,28 @@ export default defineNuxtConfig({
   },
 
   colorMode: {
-    preference: "dark",
-    fallback: "dark"
+    preference: "system",
+    fallback: "dark",
+    dataValue: "theme"
   },
 
   fonts: {
-    defaults: {
-      weights: [400, 500, 600, 700],
-      styles: ["normal", "italic"]
+    providers: {
+      fontshare: false
     },
     families: [
-      { name: "Public Sans", provider: "google" },
-      { name: "Instrument Serif", provider: "google" }
+      {
+        name: "Public Sans",
+        provider: "google",
+        preload: true,
+        global: true
+      },
+      {
+        name: "Instrument Serif",
+        provider: "google",
+        preload: true,
+        global: true
+      }
     ]
   },
 
