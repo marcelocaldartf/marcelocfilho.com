@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /* region State */
-const { t, locale } = useI18n();
-const localePath = useLocalePath();
+const { t, locale } = useI18n()
+const localePath = useLocalePath()
 
 const faqItems = computed(() => [
   {
@@ -10,13 +10,13 @@ const faqItems = computed(() => [
     questions: [
       {
         label: t("pages.home.sections.faq.categories[0].questions[0].label"),
-        content: t("pages.home.sections.faq.categories[0].questions[0].content"),
+        content: t("pages.home.sections.faq.categories[0].questions[0].content")
       },
       {
         label: t("pages.home.sections.faq.categories[0].questions[1].label"),
-        content: t("pages.home.sections.faq.categories[0].questions[1].content"),
-      },
-    ],
+        content: t("pages.home.sections.faq.categories[0].questions[1].content")
+      }
+    ]
   },
   {
     label: t("pages.home.sections.faq.categories[1].title"),
@@ -24,31 +24,31 @@ const faqItems = computed(() => [
     questions: [
       {
         label: t("pages.home.sections.faq.categories[1].questions[0].label"),
-        content: t("pages.home.sections.faq.categories[1].questions[0].content"),
+        content: t("pages.home.sections.faq.categories[1].questions[0].content")
       },
       {
         label: t("pages.home.sections.faq.categories[1].questions[1].label"),
-        content: t("pages.home.sections.faq.categories[1].questions[1].content"),
-      },
-    ],
-  },
-]);
+        content: t("pages.home.sections.faq.categories[1].questions[1].content")
+      }
+    ]
+  }
+])
 
 const { data: projects } = await useAsyncData(
   `index-projects-${locale.value}`,
   () => {
-    const collection = `${locale.value}_projects` as any;
-    return queryCollection(collection).order("date", "DESC").limit(6).all();
+    const collection = `${locale.value}_projects` as any
+    return queryCollection(collection).order("date", "DESC").limit(6).all()
   },
-  { watch: [locale] },
-);
+  { watch: [locale] }
+)
 /* endregion */
 
 /* region Meta */
 useSeoMeta({
   title: t("pages.home.meta.title"),
-  description: t("pages.home.meta.description"),
-});
+  description: t("pages.home.meta.description")
+})
 /* endregion */
 
 /* region Lifecycle */
@@ -67,7 +67,7 @@ useSeoMeta({
       orientation="horizontal"
       :ui="{
         container: 'lg:py-24',
-        headline: 'flex justify-start',
+        headline: 'flex justify-start'
       }"
     >
       <template #links>
@@ -96,7 +96,7 @@ useSeoMeta({
       :description="t('pages.home.sections.about.description')"
       :ui="{
         title: 'text-left text-xl sm:text-xl lg:text-2xl font-medium',
-        description: 'text-left mt-m3 text-sm sm:text-md lg:text-sm text-muted',
+        description: 'text-left mt-m3 text-sm sm:text-md lg:text-sm text-muted'
       }"
     />
 
@@ -108,7 +108,7 @@ useSeoMeta({
       :ui="{
         root: 'py-8 sm:py-12',
         title: 'text-left text-xl sm:text-xl lg:text-2xl font-medium',
-        description: 'text-left text-sm sm:text-md lg:text-sm text-muted',
+        description: 'text-left text-sm sm:text-md lg:text-sm text-muted'
       }"
     >
       <UPageGrid>
@@ -126,7 +126,7 @@ useSeoMeta({
               root: 'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl shadow-xl overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1 ring-0 group-hover:ring-0',
               header: 'p-0 h-48 w-full relative overflow-hidden',
               body: 'p-6',
-              footer: 'p-6 pt-0 mt-auto',
+              footer: 'p-6 pt-0 mt-auto'
             }"
           >
             <template #header>
@@ -200,7 +200,7 @@ useSeoMeta({
           container:
             'frutiger-gloss bg-primary/5 dark:bg-primary/10 rounded-3xl p-6 shadow-xl sm:p-12 gap-md sm:gap-md max-w-4xl mx-auto',
           title: 'text-center text-xl sm:text-2xl lg:text-3xl font-medium',
-          description: 'text-center text-sm sm:text-md lg:text-sm text-muted',
+          description: 'text-center text-sm sm:text-md lg:text-sm text-muted'
         }"
       >
         <UTabs
@@ -212,7 +212,7 @@ useSeoMeta({
           :ui="{
             root: 'flex flex-col gap-md w-full',
             list: 'relative grid grid-cols-2 bg-muted/20 dark:bg-muted/10 p-1 rounded-2xl w-full items-center',
-            trigger: 'justify-center py-2.5 font-medium',
+            trigger: 'justify-center py-2.5 font-medium'
           }"
         >
           <template #content="{ item }">
@@ -224,7 +224,7 @@ useSeoMeta({
                 type="multiple"
                 :ui="{
                   trailingIcon:
-                    'group-data-[state=closed]:rotate-0 group-data-[state=open]:rotate-135 transition-transform duration-200',
+                    'group-data-[state=closed]:rotate-0 group-data-[state=open]:rotate-135 transition-transform duration-200'
                 }"
               >
                 <template #body="{ item: _item }">
@@ -247,7 +247,7 @@ useSeoMeta({
         container:
           'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl p-8 sm:p-16 max-w-4xl mx-auto text-center shadow-xl',
         title: 'text-2xl sm:text-3xl lg:text-4xl font-medium',
-        description: 'text-muted sm:text-lg',
+        description: 'text-muted sm:text-lg'
       }"
     >
       <template #links>

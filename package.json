@@ -16,14 +16,20 @@
   },
   "type": "module",
   "scripts": {
-    "analyze": "nuxi analyze",
+    "postinstall": "nuxt prepare",
+    "prepare": "vp config",
+    "analyze": "nuxt analyze",
     "build": "nuxt build --profile=verbose",
+    "build:lunaria": "node ./lunaria/lunaria.ts",
     "dev": "nuxt dev",
+    "generate": "nuxt generate",
     "preview": "nuxt preview",
     "i18n": "vue-i18n-extract report --vueFiles \"./{app,server,shared,auth,types}/**/*.?(js|vue|ts)\" --languageFiles \"./i18n/locales/*.?(json|yml|yaml|js)\"",
     "i18n:add": "vue-i18n-extract report --vueFiles \"./{app,server,shared,auth,types}/**/*.?(js|vue|ts)\" --languageFiles \"./i18n/locales/*.?(json|yml|yaml|js)\" --add",
     "i18n:remove": "vue-i18n-extract report --vueFiles \"./{app,server,shared,auth,types}/**/*.?(js|vue|ts)\" --languageFiles \"./i18n/locales/*.?(json|yml|yaml|js)\" --remove",
-    "i18n:fix": "vue-i18n-extract report --vueFiles \"./{app,server,shared,auth,types}/**/*.?(js|vue|ts)\" --languageFiles \"./i18n/locales/*.?(json|yml|yaml|js)\" --add --remove"
+    "i18n:fix": "vue-i18n-extract report --vueFiles \"./{app,server,shared,auth,types}/**/*.?(js|vue|ts)\" --languageFiles \"./i18n/locales/*.?(json|yml|yaml|js)\" --add --remove",
+    "knip": "knip",
+    "knip:fix": "knip --fix"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.98",
@@ -31,44 +37,47 @@
     "@iconify-json/simple-icons": "^1.2.74",
     "@lunariajs/core": "^0.1.1",
     "@nuxt/content": "^3.12.0",
-    "@nuxt/fonts": "^0.14.0",
-    "@nuxt/icon": "^2.2.1",
     "@nuxt/image": "^2.0.0",
     "@nuxt/scripts": "^0.13.2",
     "@nuxt/ui": "^4.5.1",
-    "@nuxtjs/color-mode": "4.0.0",
     "@nuxtjs/device": "^4.0.0",
     "@nuxtjs/html-validator": "2.1.0",
     "@nuxtjs/i18n": "^10.2.3",
-    "@nuxtjs/seo": "^3.4.0",
+    "@nuxtjs/robots": "^5.7.1",
+    "@nuxtjs/sitemap": "^7.6.0",
     "better-sqlite3": "^12.8.0",
-    "defu": "^6.1.4",
     "nuxt": "^4.4.2",
     "nuxt-llms": "^0.2.0",
     "nuxt-og-image": "^6.0.3",
     "nuxt-security": "^2.5.1",
     "nuxt-studio": "^1.4.0",
-    "std-env": "^4.0.0",
-    "tailwindcss": "^4.2.1",
     "valibot": "1.2.0",
-    "vite-plus": "^0.1.12",
-    "vue": "^3.5.30"
+    "vue": "^3.5.29"
   },
   "devDependencies": {
     "@nuxt/a11y": "1.0.0-alpha.1",
-    "@nuxt/devtools": "^3.2.4",
     "@nuxt/hints": "^1.0.0",
-    "@nuxt/test-utils": "^4.0.0",
+    "@nuxt/test-utils": "4.0.0",
+    "@takumi-rs/wasm": "^0.73.1",
     "@valibot/to-json-schema": "^1.5.0",
-    "@vitest/coverage-v8": "4.1.0",
+    "@vitest/browser-playwright": "^4.1.0",
+    "@vitest/coverage-v8": "^4.1.0",
     "@vue/test-utils": "^2.4.6",
     "knip": "^5.87.0",
-    "rimelight-cli": "github:Rimelight-Entertainment/rimelight-cli",
-    "typescript": "^5.9.3",
-    "vitest": "npm:@voidzero-dev/vite-plus-test@0.0.0-gd42e0ca6.20260225-0619",
+    "vite-plus": "latest",
     "vue-i18n-extract": "^2.0.7",
     "vue-tsc": "^3.2.6",
     "wrangler": "^4.75.0"
   },
-  "packageManager": "pnpm@10.32.1"
+  "packageManager": "pnpm@10.32.1",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "better-sqlite3",
+      "esbuild",
+      "sharp",
+      "vue-demi",
+      "workerd"
+    ]
+  }
 }

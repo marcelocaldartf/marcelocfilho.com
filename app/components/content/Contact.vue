@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import type { Collections } from "@nuxt/content";
-import { z } from "zod";
+import type { Collections } from "@nuxt/content"
+import { object, string, email, minLength, pipe, type InferOutput } from "valibot"
 
 /* region Props */
 export interface ContactItem {
-  icon: string;
-  label: string;
-  value: string;
+  icon: string
+  label: string
+  value: string
 }
 
 export interface ContactProps {
-  contactItems?: ContactItem[];
-  recipientEmail?: string;
+  contactItems?: ContactItem[]
+  recipientEmail?: string
 }
 
-const { contactItems, recipientEmail } = defineProps<ContactProps>();
+const { contactItems, recipientEmail } = defineProps<ContactProps>()
 /* endregion */
 
 /* region Emits */
@@ -27,72 +27,74 @@ const { contactItems, recipientEmail } = defineProps<ContactProps>();
 /* endregion */
 
 /* region State */
-const { t, locale } = useI18n();
-const route = useRoute();
-const toast = useToast();
-const { socials } = useAppConfig();
+const { t, locale } = useI18n()
+const route = useRoute()
+const toast = useToast()
+const { socials } = useAppConfig()
 
 // Fetch page data as fallback if props are not provided (MDC context)
 const { data: pageData } = await useAsyncData(
   `contact-data-${route.path}-${locale.value}`,
   async () => {
     // Try the specific contact collection first
-    const contactCollection = `${locale.value}_contact` as keyof Collections;
-    const content = await queryCollection(contactCollection).path(route.path).first();
+    const contactCollection = `${locale.value}_contact` as keyof Collections
+    const content = await queryCollection(contactCollection).path(route.path).first()
 
-    if (content) return content;
+    if (content) return content
 
     // Fallback to pages collection
-    const pagesCollection = `${locale.value}_pages` as keyof Collections;
-    return await queryCollection(pagesCollection).path(route.path).first();
-  },
-);
+    const pagesCollection = `${locale.value}_pages` as keyof Collections
+    return await queryCollection(pagesCollection).path(route.path).first()
+  }
+)
 
-const contactFormSchema = z.object({
-  name: z.string().min(2, t("pages.contact.sections.form.fields.name.error")),
-  email: z.string().email(t("pages.contact.sections.form.fields.email.error")),
-  message: z.string().min(10, t("pages.contact.sections.form.fields.message.error")),
-});
+const contactFormSchema = object({
+  name: pipe(string(), minLength(2, t("pages.contact.sections.form.fields.name.error"))),
+  email: pipe(string(), email(t("pages.contact.sections.form.fields.email.error"))),
+  message: pipe(string(), minLength(10, t("pages.contact.sections.form.fields.message.error")))
+})
+
+type ContactFormValues = InferOutput<typeof contactFormSchema>
 
 const state = ref({
   name: "",
   email: "",
-  message: "",
-});
+  message: ""
+})
 
-const isLoading = ref(false);
+const isLoading = ref(false)
 
 const contactInfo = computed(() => {
   // 1. Check explicit props (from MDC block parameters)
-  const rawItemsFromProps = contactItems ?? [];
+  const rawItemsFromProps = contactItems ?? []
   const itemsFromProps = Array.isArray(rawItemsFromProps)
     ? rawItemsFromProps.filter((i) => i && typeof i === "object" && i.icon && i.label && i.value)
-    : [];
-  if (itemsFromProps.length > 0) return itemsFromProps;
+    : []
+  if (itemsFromProps.length > 0) return itemsFromProps
 
   // 2. Check page metadata (from Studio/Frontmatter)
-  const rawItemsFromPage = (pageData.value as any)?.contactItems ?? [];
+  const rawItemsFromPage = (pageData.value as any)?.contactItems ?? []
   const itemsFromPage = Array.isArray(rawItemsFromPage)
     ? rawItemsFromPage.filter(
-        (i: any) => i && typeof i === "object" && i.icon && i.label && i.value,
+        (i: any) => i && typeof i === "object" && i.icon && i.label && i.value
       )
-    : [];
-  if (itemsFromPage.length > 0) return itemsFromPage;
+    : []
+  if (itemsFromPage.length > 0) return itemsFromPage
 
   // 3. Ultimate fallback to i18n
   return [
     {
       icon: "lucide:mail",
       label: t("pages.contact.sections.details.email"),
-      value: t("pages.contact.sections.details.emailValue"),
+      value: t("pages.contact.sections.details.emailValue")
     },
     {
       icon: "simple-icons:whatsapp",
       label: t("pages.contact.sections.details.whatsapp"),
-      value: t("pages.contact.sections.details.whatsappValue"),
-    },
-  ];
-});
+      value: t("pages.contact.sections.details.whatsappValue")
+    }
+  ]
+})
 /* endregion */
 
 /* region Meta */
@@ -103,28 +105,28 @@ const contactInfo = computed(() => {
 
 /* region Logic */
 async function onSubmit() {
-  isLoading.value = true;
+  isLoading.value = true
 
-  const { name, email, message } = state.value;
+  const { name, email, message } = state.value
   const targetEmail =
     recipientEmail ||
     (pageData.value as any)?.recipientEmail ||
-    t("pages.contact.sections.details.emailValue");
-  const subject = encodeURIComponent(`Contact from ${name}`);
-  const body = encodeURIComponent(`${message}\n\n---\nFrom: ${name}\nEmail: ${email}`);
+    t("pages.contact.sections.details.emailValue")
+  const subject = encodeURIComponent(`Contact from ${name}`)
+  const body = encodeURIComponent(`${message}\n\n---\nFrom: ${name}\nEmail: ${email}`)
 
-  window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`
 
-  isLoading.value = false;
+  isLoading.value = false
   toast.add({
     color: "success",
     title: t("pages.contact.sections.form.success.title"),
-    description: t("pages.contact.sections.form.success.description"),
-  });
+    description: t("pages.contact.sections.form.success.description")
+  })
 
-  state.value.name = "";
-  state.value.email = "";
-  state.value.message = "";
+  state.value.name = ""
+  state.value.email = ""
+  state.value.message = ""
 }
 /* endregion */
 </script>

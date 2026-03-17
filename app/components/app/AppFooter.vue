@@ -12,7 +12,7 @@
 /* endregion */
 
 /* region State */
-const { socials } = useAppConfig();
+const { socials } = useAppConfig()
 /* endregion */
 
 /* region Meta */

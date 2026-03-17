@@ -1,146 +1,141 @@
-import { defu } from "defu";
-import { rimelightViteConfig } from "./.rimelight/rimelight.vite";
-import { isCI } from "std-env";
-
 export default defineNuxtConfig({
   compatibilityDate: "2026-02-13",
   future: {
-    compatibilityVersion: 5,
+    compatibilityVersion: 5
   },
   experimental: {
     viteEnvironmentApi: true,
     typescriptPlugin: true,
     nitroAutoImports: true,
     componentIslands: {
-      selectiveClient: true,
+      selectiveClient: true
     },
     viewTransition: true,
-    typedPages: true,
+    typedPages: true
   },
 
   modules: [
     // Dev Modules
     "@nuxt/a11y",
-    "@nuxt/hints",
     "@nuxt/test-utils",
     "@nuxtjs/html-validator",
     // Must go before Content
     "@nuxtjs/i18n",
     "@nuxt/image",
-    "@nuxtjs/seo",
-    "@nuxt/content",
+    // SEO Modules
+    "@nuxtjs/robots",
+    "@nuxtjs/sitemap",
+    "nuxt-og-image",
     // Must go before UI
-    "@nuxt/fonts",
-    "@nuxt/icon",
-    "@nuxtjs/color-mode",
+    "@nuxt/content",
     // Must go after Content
     "@nuxt/ui",
     "nuxt-studio",
     "@nuxtjs/device",
     "nuxt-llms",
-    "nuxt-security",
     "@nuxt/scripts",
+    "nuxt-security"
   ],
 
   $development: {
-    devtools: { enabled: true },
+    devtools: {
+      enabled: true
+    },
     // Change to true in case the issue gets resolved: https://github.com/fi3ework/vite-plugin-checker/issues/557
     typescript: {
       typeCheck: false,
       tsConfig: {
         compilerOptions: {
           noUnusedLocals: true,
-          allowImportingTsExtensions: true,
+          allowImportingTsExtensions: true
         },
-        include: ["./test/unit/server/**/*.ts", "./test/unit/app/**/*.ts"],
+        include: ["./test/unit/server/**/*.ts", "./test/unit/app/**/*.ts"]
       },
       sharedTsConfig: {
-        include: ["./test/unit/shared/**/*.ts"],
+        include: ["./test/unit/shared/**/*.ts"]
       },
       nodeTsConfig: {
         compilerOptions: {
           allowImportingTsExtensions: true,
           paths: {
             "#server/*": ["./server/*"],
-            "#shared/*": ["./shared/*"],
-          },
+            "#shared/*": ["./shared/*"]
+          }
         },
-        include: ["./*.ts", "./test/e2e/**/*.ts"],
-      },
-    },
-    site: {
-      indexable: false,
-      trailingSlash: false,
-    },
-    a11y: {
-      enabled: true,
-      defaultHighlight: false,
-      logIssues: false,
-    },
+        include: ["./*.ts", "./test/e2e/**/*.ts"]
+      }
+    }
   },
 
   $test: {
-    devtools: { enabled: true },
-    debug: {
-      hydration: true,
+    devtools: {
+      enabled: true
     },
+    debug: {
+      hydration: true
+    }
   },
 
   $production: {
-    devtools: { enabled: false },
-    typescript: { typeCheck: false },
+    devtools: {
+      enabled: false
+    },
+    typescript: {
+      typeCheck: false
+    },
     nitro: {
       experimental: {
         websocket: true,
-        tasks: true,
+        tasks: true
       },
       compressPublicAssets: true,
       minify: true,
       preset: "cloudflare-module",
       cloudflare: {
         deployConfig: true,
-        nodeCompat: true,
+        nodeCompat: true
       },
       prerender: {
         routes: ["/"],
-        crawlLinks: true,
+        crawlLinks: true
       },
+      routeRules: {
+        // ISR Rules
+        "/api/**": { isr: 60 },
+        // Cache content pages
+        "/blog/**": { isr: true },
+        "/projects/**": { isr: true },
+        "/about": { isr: true },
+        "/resume": { isr: true }
+      }
     },
     site: {
       url: "https://marcelocfilho.com",
       indexable: true,
-      trailingSlash: false,
+      trailingSlash: false
     },
     robots: {
       blockAiBots: true,
       blockNonSeoBots: true,
-      disallow: ["/dashboard"],
+      disallow: ["/dashboard"]
     },
     a11y: {
-      enabled: false,
+      enabled: false
     },
     content: {
       database: {
         type: "d1",
-        bindingName: "DB",
-      },
-    },
+        bindingName: "DB"
+      }
+    }
   },
 
-  vite: defu(
-    {
-      server: {},
-      build: {},
-      preview: {},
-      test: {},
-      lint: {},
-      fmt: {},
-      run: {},
-      pack: {},
-      staged: {},
-    },
-    rimelightViteConfig,
-  ),
+  vite: {
+    clearScreen: false,
+    optimizeDeps: {
+      include: ["@vue/devtools-core", "@vue/devtools-kit"]
+    }
+  },
 
   ssr: true,
 
@@ -153,82 +148,41 @@ export default defineNuxtConfig({
       meta: [
         {
           name: "description",
-          content: "Web Developer & Designer",
+          content: "Web Developer & Designer"
         },
         {
           name: "author",
-          content: "Marcelo Caldart Filho",
+          content: "Marcelo Caldart Filho"
         },
         {
           name: "creator",
-          content: "Marcelo Caldart Filho",
-        },
+          content: "Marcelo Caldart Filho"
+        }
       ],
       link: [
         {
           rel: "icon",
           type: "image/svg+xml",
-          href: "/favicon.svg",
+          href: "/favicon.svg"
         },
         {
           rel: "preconnect",
-          href: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
+          href: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev"
         },
         {
           rel: "dns-prefetch",
-          href: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
-        },
-      ],
+          href: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev"
+        }
+      ]
     },
-    viewTransition: true,
-  },
-
-  pwa: {
-    // Disable service worker
-    disable: true,
-    pwaAssets: {
-      disabled: false,
-      config: false,
-    },
-    manifest: {
-      name: "Marcelo Caldart Filho",
-      short_name: "Marcelo Caldart Filho",
-      description: "Web Developer & Designer",
-      theme_color: "#0a0a0a",
-      background_color: "#0a0a0a",
-      icons: [
-        {
-          src: "pwa-64x64.png",
-          sizes: "64x64",
-          type: "image/png",
-        },
-        {
-          src: "pwa-192x192.png",
-          sizes: "192x192",
-          type: "image/png",
-        },
-        {
-          src: "pwa-512x512.png",
-          sizes: "512x512",
-          type: "image/png",
-          purpose: "any",
-        },
-        {
-          src: "maskable-icon-512x512.png",
-          sizes: "512x512",
-          type: "image/png",
-          purpose: "maskable",
-        },
-      ],
-    },
+    viewTransition: true
   },
 
   htmlValidator: {
-    enabled: !isCI,
     options: {
-      rules: { "meta-refresh": "off" },
+      rules: { "meta-refresh": "off" }
     },
-    failOnError: true,
+    failOnError: true
   },
 
   security: {
@@ -247,7 +201,7 @@ export default defineNuxtConfig({
           "https://placehold.co",
           "https://avatars.githubusercontent.com",
           "https://i.ytimg.com",
-          "https://*.youtube.com",
+          "https://*.youtube.com"
         ],
         "object-src": ["'none'"],
         "script-src-attr": ["'none'"],
@@ -262,7 +216,7 @@ export default defineNuxtConfig({
           "https://esm.sh",
           "https://static.cloudflareinsights.com",
           "https://www.youtube.com",
-          "https://s.ytimg.com",
+          "https://s.ytimg.com"
         ],
         "frame-src": ["'self'", "https://www.youtube.com", "https://www.youtube-nocookie.com"],
         "connect-src": [
@@ -279,19 +233,19 @@ export default defineNuxtConfig({
           "https://api.github.com",
           "https://raw.githubusercontent.com",
           "https://esm.sh",
-          "https://*.youtube.com",
-        ],
+          "https://*.youtube.com"
+        ]
       },
       strictTransportSecurity: {
         maxAge: 31536000,
         includeSubdomains: true,
-        preload: true,
+        preload: true
       },
       crossOriginOpenerPolicy: "same-origin",
       crossOriginEmbedderPolicy: "unsafe-none",
       referrerPolicy: "strict-origin-when-cross-origin",
       xFrameOptions: "SAMEORIGIN",
-      xContentTypeOptions: "nosniff",
+      xContentTypeOptions: "nosniff"
     },
     nonce: !process.dev,
     ssg: {
@@ -299,15 +253,15 @@ export default defineNuxtConfig({
       hashScripts: true,
       hashStyles: false,
       nitroHeaders: true,
-      exportToPresets: false,
+      exportToPresets: false
     },
-    sri: !process.dev,
+    sri: !process.dev
   },
 
   router: {
     options: {
-      scrollBehaviorType: "smooth",
-    },
+      scrollBehaviorType: "smooth"
+    }
   },
 
   routeRules: {
@@ -317,14 +271,7 @@ export default defineNuxtConfig({
     "/api/_content/**": { security: { rateLimiter: false } },
     "/__nuxt_studio/**": { security: { rateLimiter: false } },
     "/__nuxt_hints/**": { security: { enabled: false } },
-    "/_nuxt/**": { security: { rateLimiter: false } },
-    // ISR Rules
-    "/api/**": { isr: 60 },
-    // Cache content pages
-    "/blog/**": { isr: !process.dev },
-    "/projects/**": { isr: !process.dev },
-    "/about": { isr: !process.dev },
-    "/resume": { isr: !process.dev },
+    "/_nuxt/**": { security: { rateLimiter: false } }
   },
 
   i18n: {
@@ -335,22 +282,22 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: "i18n_redirected",
       cookieSecure: true,
-      alwaysRedirect: false,
+      alwaysRedirect: false
     },
     locales: [
       {
         code: "en",
         name: "English",
         language: "en-US",
-        file: "en.json",
+        file: "en.json"
       },
       {
         code: "pt",
         name: "Português",
         language: "pt-BR",
-        file: "pt.json",
-      },
-    ],
+        file: "pt.json"
+      }
+    ]
   },
 
   css: ["~/assets/css/main.css"],
@@ -358,29 +305,29 @@ export default defineNuxtConfig({
   components: [
     {
       path: "~/components/content",
-      pathPrefix: false,
+      pathPrefix: false
     },
     {
       path: "~/components",
       pathPrefix: false,
-      prefix: "MC",
+      prefix: "MC"
     },
     {
       path: "~/pages",
       pattern: "**/components/**",
       pathPrefix: false,
-      prefix: "MC",
-    },
+      prefix: "MC"
+    }
   ],
 
   pages: {
-    pattern: ["**/*.vue", "!**/components/**"],
+    pattern: ["**/*.vue", "!**/components/**"]
   },
 
   colorMode: {
     preference: "system",
     fallback: "dark",
-    dataValue: "theme",
+    dataValue: "theme"
   },
 
   fonts: {
@@ -389,66 +336,66 @@ export default defineNuxtConfig({
         name: "Public Sans",
         provider: "google",
         preload: true,
-        global: true,
+        global: true
       },
       {
         name: "Instrument Serif",
         provider: "google",
         preload: true,
-        global: true,
-      },
-    ],
+        global: true
+      }
+    ]
   },
 
   icon: {
     mode: "svg",
     class: "icon",
     size: "24px",
-    customCollections: [],
+    customCollections: []
   },
 
   image: {
     provider: "cloudflare",
     cloudflare: {
-      baseURL: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev",
+      baseURL: "https://pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev"
     },
-    domains: ["marcelocfilho.com", "placehold.co", "pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev"],
+    domains: ["marcelocfilho.com", "placehold.co", "pub-d59ba6f09fc247e5b5215dbca8bb5841.r2.dev"]
   },
 
   ogImage: {
-    zeroRuntime: true,
+    zeroRuntime: true
   },
 
   sitemap: {
-    zeroRuntime: true,
+    zeroRuntime: true
   },
 
   content: {
     build: {
       markdown: {
         toc: {
-          depth: 3,
-        },
-      },
-    },
+          depth: 3
+        }
+      }
+    }
   },
 
   studio: {
     i18n: {
-      defaultLocale: "en",
+      defaultLocale: "en"
     },
     route: "/studio",
     repository: {
       provider: "github",
       owner: "marcelocaldartf",
-      repo: "marcelocfilho.com",
-    },
+      repo: "marcelocfilho.com"
+    }
   },
 
   llms: {
     domain: "https://marcelocfilho.com",
     title: "Marcelo Caldart Filho",
-    description: "Web Developer & Designer",
+    description: "Web Developer & Designer"
   },
 
   ui: {
@@ -466,8 +413,8 @@ export default defineNuxtConfig({
         "error",
         "commentary",
         "ideation",
-        "source",
-      ],
-    },
-  },
-});
+        "source"
+      ]
+    }
+  }
+})

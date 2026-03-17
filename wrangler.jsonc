@@ -7,30 +7,30 @@
     "logs": {
       "enabled": true,
       "head_sampling_rate": 1,
-      "invocation_logs": true,
-    },
+      "invocation_logs": true
+    }
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "marcelocfilho-dot-com",
-      "database_id": "738a23b3-ca88-4985-acc0-0107f1cf593d",
-    },
+      "database_id": "738a23b3-ca88-4985-acc0-0107f1cf593d"
+    }
   ],
   "r2_buckets": [
     {
       "binding": "BLOB",
-      "bucket_name": "marcelocfilho-dot-com",
-    },
+      "bucket_name": "marcelocfilho-dot-com"
+    }
   ],
   "kv_namespaces": [
     {
       "binding": "KV",
-      "id": "de2c94a068b44f91919d296cb04da95f",
+      "id": "de2c94a068b44f91919d296cb04da95f"
     },
     {
       "binding": "CACHE",
-      "id": "dcfff3ad1d5243f4998c7adc3f0e4f57",
-    },
-  ],
+      "id": "dcfff3ad1d5243f4998c7adc3f0e4f57"
+    }
+  ]
 }

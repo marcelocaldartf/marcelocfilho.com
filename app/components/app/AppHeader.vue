@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from "@nuxt/ui";
+import type { NavigationMenuItem } from "@nuxt/ui"
 
 /* region Props */
 /* endregion */
@@ -14,56 +14,56 @@ import type { NavigationMenuItem } from "@nuxt/ui";
 /* endregion */
 
 /* region State */
-const { t, locale, setLocale } = useI18n();
-const localePath = useLocalePath();
-const { socials } = useAppConfig();
+const { t, locale, setLocale } = useI18n()
+const localePath = useLocalePath()
+const { socials } = useAppConfig()
 
-const y = ref(0);
-const open = ref(false);
-const isScrolled = computed(() => y.value > 50);
+const y = ref(0)
+const open = ref(false)
+const isScrolled = computed(() => y.value > 50)
 
 const leftLinks = computed<NavigationMenuItem[]>(() => [
   {
     label: t("app.header.home"),
     to: localePath("/"),
-    icon: "lucide:house",
+    icon: "lucide:house"
   },
   {
     label: t("app.header.projects"),
     to: localePath("/projects"),
-    icon: "lucide:folder-git-2",
+    icon: "lucide:folder-git-2"
   },
   {
     label: t("app.header.blog"),
     to: localePath("/blog"),
-    icon: "lucide:newspaper",
+    icon: "lucide:newspaper"
   },
   {
     label: t("app.header.about"),
     to: localePath("/about"),
-    icon: "lucide:user",
-  },
-]);
+    icon: "lucide:user"
+  }
+])
 
 const rightLinksMenu = computed<NavigationMenuItem[]>(() => [
   {
     label: t("app.header.resume"),
     to: localePath("/resume"),
-    icon: "lucide:file-text",
-  },
-]);
+    icon: "lucide:file-text"
+  }
+])
 
 const contactLink = computed(() => ({
   label: t("app.header.contact"),
   to: localePath("/contact"),
-  icon: "lucide:mail",
-}));
+  icon: "lucide:mail"
+}))
 
 const mobileLinks = computed<NavigationMenuItem[]>(() => [
   ...leftLinks.value,
   ...rightLinksMenu.value,
-  contactLink.value,
-]);
+  contactLink.value
+])
 /* endregion */
 
 /* region Meta */
@@ -71,17 +71,17 @@ const mobileLinks = computed<NavigationMenuItem[]>(() => [
 
 /* region Lifecycle */
 const handleScroll = () => {
-  y.value = window.scrollY;
-};
+  y.value = window.scrollY
+}
 
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  handleScroll();
-});
+  window.addEventListener("scroll", handleScroll, { passive: true })
+  handleScroll()
+})
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
+  window.removeEventListener("scroll", handleScroll)
+})
 /* endregion */
 
 /* region Logic */
@@ -95,7 +95,7 @@ onUnmounted(() => {
         'px-md py-xs relative flex w-full items-center justify-between rounded-full border transition-all duration-300',
         isScrolled
           ? 'frutiger-gloss border-sky-200/50 bg-white/70 shadow-lg shadow-sky-950/10 backdrop-blur-sm dark:border-sky-500/30 dark:bg-sky-950/60'
-          : 'border-transparent bg-transparent shadow-none backdrop-blur-none',
+          : 'border-transparent bg-transparent shadow-none backdrop-blur-none'
       ]"
     >
       <!-- Left Section -->
@@ -188,7 +188,7 @@ onUnmounted(() => {
             @update:model-value="setLocale($event as 'en' | 'pt')"
             :items="[
               { code: 'en', name: 'English' },
-              { code: 'pt', name: 'Português' },
+              { code: 'pt', name: 'Português' }
             ]"
             value-key="code"
             label-key="name"
@@ -203,7 +203,7 @@ onUnmounted(() => {
               trailing: 'pe-2.5',
               leadingIcon: 'text-inherit',
               trailingIcon: 'text-inherit',
-              content: 'w-48',
+              content: 'w-48'
             }"
             :aria-label="t('app.header.languagePicker')"
           >
