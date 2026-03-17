@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     "@nuxtjs/device",
     "nuxt-llms",
     "nuxt-security",
-    "@nuxt/scripts"
+    "@nuxt/scripts",
   ],
 
   $development: {
@@ -70,7 +70,7 @@ export default defineNuxtConfig({
     },
     site: {
       indexable: false,
-      trailingSlash: false
+      trailingSlash: false,
     },
     a11y: {
       enabled: true,
@@ -109,7 +109,7 @@ export default defineNuxtConfig({
     site: {
       url: "https://marcelocfilho.com",
       indexable: true,
-      trailingSlash: false
+      trailingSlash: false,
     },
     robots: {
       blockAiBots: true,
@@ -293,7 +293,7 @@ export default defineNuxtConfig({
       xFrameOptions: "SAMEORIGIN",
       xContentTypeOptions: "nosniff",
     },
-    nonce: true,
+    nonce: !process.dev,
     ssg: {
       meta: true,
       hashScripts: true,
@@ -301,7 +301,7 @@ export default defineNuxtConfig({
       nitroHeaders: true,
       exportToPresets: false,
     },
-    sri: true,
+    sri: !process.dev,
   },
 
   router: {
@@ -321,10 +321,10 @@ export default defineNuxtConfig({
     // ISR Rules
     "/api/**": { isr: 60 },
     // Cache content pages
-    "/blog/**": { isr: true },
-    "/projects/**": { isr: true },
-    "/about": { isr: true },
-    "/resume": { isr: true },
+    "/blog/**": { isr: !process.dev },
+    "/projects/**": { isr: !process.dev },
+    "/about": { isr: !process.dev },
+    "/resume": { isr: !process.dev },
   },
 
   i18n: {
