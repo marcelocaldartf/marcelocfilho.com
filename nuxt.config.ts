@@ -39,8 +39,7 @@ export default defineNuxtConfig({
     "@nuxtjs/device",
     "nuxt-llms",
     "nuxt-security",
-    "@nuxt/scripts",
-    "@vite-pwa/nuxt",
+    "@nuxt/scripts"
   ],
 
   $development: {
@@ -69,7 +68,10 @@ export default defineNuxtConfig({
         include: ["../*.ts", "../test/e2e/**/*.ts"],
       },
     },
-    site: { indexable: false },
+    site: {
+      indexable: false,
+      trailingSlash: false
+    },
     a11y: {
       enabled: true,
       defaultHighlight: false,
@@ -107,6 +109,7 @@ export default defineNuxtConfig({
     site: {
       url: "https://marcelocfilho.com",
       indexable: true,
+      trailingSlash: false
     },
     robots: {
       blockAiBots: true,
