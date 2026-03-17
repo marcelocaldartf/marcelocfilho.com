@@ -1,50 +1,50 @@
 <script setup lang="ts">
-import { withoutTrailingSlash } from "ufo"
+import { withoutTrailingSlash } from "ufo";
 
 /* region State */
-const route = useRoute()
-const { locale, t } = useI18n()
-const localePath = useLocalePath()
+const route = useRoute();
+const { locale, t } = useI18n();
+const localePath = useLocalePath();
 const { data: page } = await useAsyncData(
   withoutTrailingSlash(route.path),
   async () => {
-    const collection = `${locale.value}_pages` as any
-    return queryCollection(collection).path(withoutTrailingSlash(route.path)).first()
+    const collection = `${locale.value}_pages` as any;
+    return queryCollection(collection).path(withoutTrailingSlash(route.path)).first();
   },
-  { watch: [locale] }
-)
+  { watch: [locale] },
+);
 if (!page.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",
-    fatal: true
-  })
+    fatal: true,
+  });
 }
 
 const { data: projects } = await useAsyncData(
   `projects-${locale.value}`,
   async () => {
-    const collection = `${locale.value}_projects` as any
-    return queryCollection(collection).order("date", "DESC").all()
+    const collection = `${locale.value}_projects` as any;
+    return queryCollection(collection).order("date", "DESC").all();
   },
-  { watch: [locale] }
-)
+  { watch: [locale] },
+);
 
 if (page.value?.ogImage?.component || page.value?.ogImage?.url) {
-  defineOgImage(page.value.ogImage)
+  defineOgImage(page.value.ogImage);
 } else if (page.value?.image) {
-  defineOgImage({ url: page.value.image })
+  defineOgImage({ url: page.value.image });
 }
 
-useHead((page.value?.head || {}) as any)
+useHead((page.value?.head || {}) as any);
 /* endregion */
 
 /* region Meta */
 useSeoMeta({
   title: t("pages.projects.meta.title"),
   description: t("pages.projects.sections.hero.description"),
-  ...page.value?.seo
-})
+  ...page.value?.seo,
+});
 /* endregion */
 
 /* region Lifecycle */
@@ -63,7 +63,7 @@ useSeoMeta({
       :ui="{
         title: 'mx-0 text-left',
         description: 'mx-0 text-left',
-        links: 'justify-start'
+        links: 'justify-start',
       }"
     >
       <UPageGrid>
@@ -81,7 +81,7 @@ useSeoMeta({
               root: 'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl shadow-xl overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1 ring-0 group-hover:ring-0',
               header: 'p-0 h-48 w-full relative overflow-hidden',
               body: 'p-6',
-              footer: 'p-6 pt-0 mt-auto'
+              footer: 'p-6 pt-0 mt-auto',
             }"
           >
             <template #header>

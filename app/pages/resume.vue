@@ -1,68 +1,68 @@
 <script setup lang="ts">
-import { withoutTrailingSlash } from "ufo"
+import { withoutTrailingSlash } from "ufo";
 
 /* region State */
-const route = useRoute()
-const { locale, t } = useI18n()
-const localePath = useLocalePath()
-const { socials } = useAppConfig()
+const route = useRoute();
+const { locale, t } = useI18n();
+const localePath = useLocalePath();
+const { socials } = useAppConfig();
 
 const { data: page } = await useAsyncData(
   withoutTrailingSlash(route.path),
   async () => {
-    const collection = `${locale.value}_resume` as any
-    return queryCollection(collection).first()
+    const collection = `${locale.value}_resume` as any;
+    return queryCollection(collection).first();
   },
-  { watch: [locale] }
-)
+  { watch: [locale] },
+);
 
 if (!page.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Resume page not found",
-    fatal: true
-  })
+    fatal: true,
+  });
 }
 
 const age = computed(() => {
-  if (!page.value?.sidebar?.dateOfBirth) return 0
-  const dob = new Date(page.value.sidebar.dateOfBirth)
-  const today = new Date()
+  if (!page.value?.sidebar?.dateOfBirth) return 0;
+  const dob = new Date(page.value.sidebar.dateOfBirth);
+  const today = new Date();
   return (
     today.getFullYear() -
     dob.getFullYear() -
     (today < new Date(today.getFullYear(), dob.getMonth(), dob.getDate()) ? 1 : 0)
-  )
-})
+  );
+});
 
 const getLanguageLevel = (progress: number) => {
-  if (progress >= 75) return t("pages.resume.sections.languages.levels.native")
-  if (progress >= 50) return t("pages.resume.sections.languages.levels.professional")
-  if (progress >= 25) return t("pages.resume.sections.languages.levels.basic")
-  return t("pages.resume.sections.languages.levels.learning")
-}
+  if (progress >= 75) return t("pages.resume.sections.languages.levels.native");
+  if (progress >= 50) return t("pages.resume.sections.languages.levels.professional");
+  if (progress >= 25) return t("pages.resume.sections.languages.levels.basic");
+  return t("pages.resume.sections.languages.levels.learning");
+};
 
 const languages = computed(() => {
   return (page.value?.sidebar?.languages || []).map((lang: { name: string; progress: number }) => ({
     ...lang,
-    level: getLanguageLevel(lang.progress)
-  }))
-})
+    level: getLanguageLevel(lang.progress),
+  }));
+});
 
 if (page.value?.ogImage?.component || page.value?.ogImage?.url) {
-  defineOgImage(page.value.ogImage)
+  defineOgImage(page.value.ogImage);
 } else if ((page.value as any)?.image) {
-  defineOgImage({ url: (page.value as any).image })
+  defineOgImage({ url: (page.value as any).image });
 }
-useHead((page.value?.head || {}) as any)
+useHead((page.value?.head || {}) as any);
 /* endregion */
 
 /* region Meta */
 useSeoMeta({
   title: page.value?.title || t("pages.resume.meta.title"),
   description: page.value?.description || t("pages.resume.sections.hero.description"),
-  ...page.value?.seo
-})
+  ...page.value?.seo,
+});
 /* endregion */
 
 /* region Lifecycle */
@@ -85,7 +85,7 @@ useSeoMeta({
         :ui="{
           title: 'text-highlighted',
           description: 'text-muted',
-          container: 'px-0 max-w-none py-16 sm:py-24'
+          container: 'px-0 max-w-none py-16 sm:py-24',
         }"
       >
         <div class="aero-image-wrapper mx-auto size-48 rounded-full sm:size-64">
@@ -109,7 +109,7 @@ useSeoMeta({
         :title="t('pages.resume.sections.skills.title')"
         :ui="{
           title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8'
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
         }"
       >
         <MDC :value="page.skills" unwrap="p" class="text-highlighted" />
@@ -121,7 +121,7 @@ useSeoMeta({
         :title="t('pages.resume.sections.tech.title')"
         :ui="{
           title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8'
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
         }"
       >
         <div class="gap-lg grid grid-cols-2">
@@ -148,7 +148,7 @@ useSeoMeta({
         :title="t('pages.resume.sections.education.title')"
         :ui="{
           title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8'
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
         }"
       >
         <div v-for="(item, index) in page.education" :key="index">
@@ -166,7 +166,7 @@ useSeoMeta({
         :title="t('pages.resume.sections.experience.title')"
         :ui="{
           title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8'
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
         }"
       >
         <div v-for="(item, index) in page.experience" :key="index" class="mb-4 last:mb-0">
@@ -189,7 +189,7 @@ useSeoMeta({
         :title="t('pages.resume.sections.certifications.title')"
         :ui="{
           title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8'
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
         }"
       >
         <div v-for="(item, index) in page.certifications" :key="index">
@@ -207,7 +207,7 @@ useSeoMeta({
         :title="t('pages.resume.sections.volunteering.title')"
         :ui="{
           title: 'text-left text-xl sm:text-2xl lg:text-3xl',
-          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8'
+          container: 'px-0 max-w-none gap-md sm:gap-md py-4 sm:py-6 lg:py-8',
         }"
       >
         <div v-for="(item, index) in page.volunteering" :key="index">
@@ -223,7 +223,7 @@ useSeoMeta({
       <template #left>
         <UPageAside
           :ui="{
-            root: 'block overflow-y-auto lg:max-h-[calc(100vh-var(--ui-header-height))] lg:sticky lg:top-(--ui-header-height) pt-16 lg:pt-24 pb-8 lg:ps-4 lg:-ms-4 lg:pe-6.5'
+            root: 'block overflow-y-auto lg:max-h-[calc(100vh-var(--ui-header-height))] lg:sticky lg:top-(--ui-header-height) pt-16 lg:pt-24 pb-8 lg:ps-4 lg:-ms-4 lg:pe-6.5',
           }"
         >
           <div class="gap-lg flex flex-col">

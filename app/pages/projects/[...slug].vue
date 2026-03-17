@@ -1,53 +1,53 @@
 <script setup lang="ts">
-import type { ContentNavigationItem } from "@nuxt/content"
-import { findPageHeadline } from "@nuxt/content/utils"
-import { withoutTrailingSlash } from "ufo"
+import type { ContentNavigationItem } from "@nuxt/content";
+import { findPageHeadline } from "@nuxt/content/utils";
+import { withoutTrailingSlash } from "ufo";
 
-const route = useRoute()
-const navigation = inject<Ref<ContentNavigationItem[]>>("navigation")
+const route = useRoute();
+const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
 
-const { locale, t } = useI18n()
-const localePath = useLocalePath()
+const { locale, t } = useI18n();
+const localePath = useLocalePath();
 
 const slug = computed(() => {
-  const s = Array.isArray(route.params.slug) ? route.params.slug.join("/") : route.params.slug
-  return `/projects/${s}`
-})
+  const s = Array.isArray(route.params.slug) ? route.params.slug.join("/") : route.params.slug;
+  return `/projects/${s}`;
+});
 
 const { data: page } = await useAsyncData(
   route.path,
   async () => {
-    const collection = `${locale.value}_projects` as any
-    return queryCollection(collection).path(withoutTrailingSlash(route.path)).first()
+    const collection = `${locale.value}_projects` as any;
+    return queryCollection(collection).path(withoutTrailingSlash(route.path)).first();
   },
-  { watch: [locale] }
-)
+  { watch: [locale] },
+);
 
 if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: "Project not found", fatal: true })
+  throw createError({ statusCode: 404, statusMessage: "Project not found", fatal: true });
 }
 
 const { data: surround } = await useAsyncData(
   `${route.path}-surround`,
   async () => {
-    const collection = `${locale.value}_projects` as any
+    const collection = `${locale.value}_projects` as any;
     return queryCollectionItemSurroundings(collection, withoutTrailingSlash(route.path), {
-      fields: ["description"]
-    })
+      fields: ["description"],
+    });
   },
-  { watch: [locale] }
-)
+  { watch: [locale] },
+);
 
 if (page.value?.ogImage?.component || page.value?.ogImage?.url) {
-  defineOgImage(page.value.ogImage)
+  defineOgImage(page.value.ogImage);
 } else if (page.value?.image) {
-  defineOgImage({ url: page.value.image })
+  defineOgImage({ url: page.value.image });
 }
 
-useHead((page.value?.head || {}) as any)
-useSeoMeta((page.value?.seo || {}) as any)
+useHead((page.value?.head || {}) as any);
+useSeoMeta((page.value?.seo || {}) as any);
 
-const headline = computed(() => findPageHeadline(navigation?.value, page.value?.path))
+const headline = computed(() => findPageHeadline(navigation?.value, page.value?.path));
 
 /* region State */
 /* endregion */
