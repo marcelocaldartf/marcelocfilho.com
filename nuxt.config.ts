@@ -52,20 +52,20 @@ export default defineNuxtConfig({
           noUnusedLocals: true,
           allowImportingTsExtensions: true,
         },
-        include: ["../test/unit/server/**/*.ts", "../test/unit/app/**/*.ts"],
+        include: ["./test/unit/server/**/*.ts", "./test/unit/app/**/*.ts"],
       },
       sharedTsConfig: {
-        include: ["../test/unit/shared/**/*.ts"],
+        include: ["./test/unit/shared/**/*.ts"],
       },
       nodeTsConfig: {
         compilerOptions: {
           allowImportingTsExtensions: true,
           paths: {
-            "#server/*": ["../server/*"],
-            "#shared/*": ["../shared/*"],
+            "#server/*": ["./server/*"],
+            "#shared/*": ["./shared/*"],
           },
         },
-        include: ["../*.ts", "../test/e2e/**/*.ts"],
+        include: ["./*.ts", "./test/e2e/**/*.ts"],
       },
     },
     site: {
@@ -319,7 +319,6 @@ export default defineNuxtConfig({
     "/__nuxt_hints/**": { security: { enabled: false } },
     "/_nuxt/**": { security: { rateLimiter: false } },
     // ISR Rules
-    "/": { prerender: true },
     "/api/**": { isr: 60 },
     // Cache content pages
     "/blog/**": { isr: true },
@@ -385,9 +384,6 @@ export default defineNuxtConfig({
   },
 
   fonts: {
-    providers: {
-      fontshare: false,
-    },
     families: [
       {
         name: "Public Sans",
