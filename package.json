@@ -17,7 +17,7 @@
   "type": "module",
   "scripts": {
     "analyze": "nuxi analyze",
-    "build": "nuxt build",
+    "build": "nuxt build --profile=verbose",
     "dev": "nuxt dev",
     "preview": "nuxt preview",
     "i18n": "vue-i18n-extract report --vueFiles \"./{app,server,shared,auth,types}/**/*.?(js|vue|ts)\" --languageFiles \"./i18n/locales/*.?(json|yml|yaml|js)\"",
@@ -47,7 +47,7 @@
     "better-sqlite3": "^12.8.0",
     "nuxt": "^4.4.2",
     "nuxt-llms": "^0.2.0",
-    "nuxt-og-image": "^6.0.1",
+    "nuxt-og-image": "^6.0.2",
     "nuxt-security": "^2.5.1",
     "nuxt-studio": "^1.4.0",
     "std-env": "^4.0.0",
@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@nuxt/a11y": "1.0.0-alpha.1",
-    "@nuxt/devtools": "^3.2.3",
+    "@nuxt/devtools": "^3.2.4",
     "@nuxt/hints": "^1.0.0",
     "@nuxt/test-utils": "^4.0.0",
     "@valibot/to-json-schema": "^1.5.0",
@@ -70,7 +70,7 @@
     "typescript": "^5.9.3",
     "vitest": "npm:@voidzero-dev/vite-plus-test@0.0.0-gd42e0ca6.20260225-0619",
     "vue-i18n-extract": "^2.0.7",
-    "vue-tsc": "^3.2.5",
+    "vue-tsc": "^3.2.6",
     "wrangler": "^4.74.0"
   },
   "packageManager": "pnpm@10.32.1"
