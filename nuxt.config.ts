@@ -64,6 +64,9 @@ export default defineNuxtConfig({
         },
         include: ["./*.ts", "./test/e2e/**/*.ts"]
       }
+    },
+    htmlValidator: {
+      failOnError: true
     }
   },
 
@@ -82,6 +85,9 @@ export default defineNuxtConfig({
     },
     typescript: {
       typeCheck: false
+    },
+    htmlValidator: {
+      failOnError: true
     },
     nitro: {
       experimental: {
@@ -181,8 +187,7 @@ export default defineNuxtConfig({
   htmlValidator: {
     options: {
       rules: { "meta-refresh": "off" }
-    },
-    failOnError: true
+    }
   },
 
   security: {
