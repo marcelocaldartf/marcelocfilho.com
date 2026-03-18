@@ -1,3 +1,4 @@
+---
 title: Currículo | Marcelo Caldart Filho
 certifications:
   - name: Produção Musical
@@ -97,3 +98,13 @@ volunteering:
     organization: Vicentina (Associação de Proteção à Saúde e Maternidade)
     period: Abr 2012 - Dez 2013
     field: Serviços Sociais
+head:
+  script: []
+ogImage:
+  props: {}
+schemaOrg: {}
+sitemap:
+  loc: /pt/resume
+  videos: []
+  images: []
+---

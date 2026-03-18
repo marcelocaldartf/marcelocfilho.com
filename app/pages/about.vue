@@ -67,7 +67,7 @@ useSeoMeta({
             class="h-full w-full object-cover"
           />
         </div>
-        <MDC :value="page.content" unwrap="p" class="order-last sm:order-first sm:col-span-2" />
+        <ContentRenderer :value="page" class="order-last sm:order-first sm:col-span-2" />
       </div>
     </UPageSection>
   </UPage>

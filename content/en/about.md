@@ -1,0 +1,34 @@
+---
+title: About Me
+description: Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding.
+images:
+  - src: ""
+    alt: My studio workspace
+  - src: ""
+    alt: Live performance stage
+head:
+  script: []
+ogImage:
+  props: {}
+schemaOrg: {}
+sitemap:
+  loc: /about
+  videos: []
+  images: []
+---
+
+Hi, I'm **Marcelo Caldart Filho**, a Sound Designer and Musician based in Curitiba. For the past years, I've been immersed in the world of audio creation, focusing on building experiences that are not just functional, but genuinely immersive and engaging for players and viewers.
+
+My approach blends creative strategy with technical expertise, transforming concepts into purposeful sonic experiences. Whether I'm crafting pixel-perfect sound effects or composing atmospheric music, my focus is always on creating value for the project and its audience.
+
+### My Philosophy
+
+My work is rooted in **creativity** and **problem-solving**. I believe great sound design starts with understanding the 'why' – the project's needs, motivations, and emotional core. I use specialized tools like Reaper and Pro Tools to ensure the sonic solutions I build are truly effective.
+
+I strive to create audio that feels effortless, where functionality and beauty work hand-in-hand. Whether it is a subtle ambient track or an action-packed foley sequence, my focus is on delivering high-quality assets ready for integration.
+
+### Beyond the Screen
+
+When I'm not designing sounds or composing music, you might find me exploring Curitiba's cultural scene or occasionally contributing to creative projects.
+
+Thanks for stopping by. Feel free to browse my [projects](/projects) or [get in touch](/contact) if you'd like to collaborate!

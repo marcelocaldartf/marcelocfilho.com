@@ -1,3 +1,4 @@
+---
 title: Resume | Marcelo Caldart Filho
 certifications:
   - name: Music Production
@@ -76,10 +77,6 @@ sidebar:
       progress: 100
     - name: English
       progress: 65
-sitemap:
-  loc: /resume
-  videos: []
-  images: []
 skills: |
   Sound designer, Foley artist, and Composer with a Bachelor's degree in Music. I offer audio productions for games, audiovisual projects, advertisements, and branding. My approach blends creative strategy with technical expertise, transforming concepts into purposeful sonic experiences.
 tech:
@@ -101,8 +98,13 @@ volunteering:
     organization: Vicentina (Associação de Proteção à Saúde e Maternidade)
     period: Apr 2012 - Dec 2013
     field: Social Services
-schemaOrg: {}
 head:
   script: []
 ogImage:
   props: {}
+schemaOrg: {}
+sitemap:
+  loc: /resume
+  videos: []
+  images: []
+---

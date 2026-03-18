@@ -1,8 +1,17 @@
+---
 title: Projetos | Marcelo Caldart Filho
 description: Uma vitrine do meu trabalho de design de som e música para jogos e mídia.
 links:
   - label: Vamos conversar
     color: primary
     to: /contact
+head:
+  script: []
+ogImage:
+  props: {}
+schemaOrg: {}
 sitemap:
   loc: /pt/projects
+  videos: []
+  images: []
+---
