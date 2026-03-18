@@ -50,14 +50,13 @@ useSeoMeta({
 
 <template>
   <UPage v-if="page" class="pt-18 sm:pt-24 lg:pt-32">
-    <UPageSection
+    <UPageHero
       :title="t('pages.projects.sections.hero.title')"
       :description="t('pages.projects.sections.hero.description')"
       :links="page.links"
       :ui="{
         title: 'mx-0 text-left',
-        description: 'mx-0 text-left',
-        links: 'justify-start'
+        description: 'mx-0 text-left'
       }"
     >
       <UPageGrid>
@@ -122,6 +121,6 @@ useSeoMeta({
           </UPageCard>
         </ULink>
       </UPageGrid>
-    </UPageSection>
+    </UPageHero>
   </UPage>
 </template>

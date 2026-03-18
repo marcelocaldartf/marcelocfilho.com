@@ -133,7 +133,12 @@ onUnmounted(() => {
         </USlideover>
 
         <div class="hidden items-center sm:flex">
-          <UNavigationMenu :items="leftLinks" color="primary" variant="pill" :ui="{ link: 'px-4 py-2' }" />
+          <UNavigationMenu
+            :items="leftLinks"
+            color="primary"
+            variant="pill"
+            :ui="{ link: 'px-4 py-2' }"
+          />
         </div>
       </div>
 

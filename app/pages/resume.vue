@@ -69,7 +69,13 @@ useSeoMeta({
 
 <template>
   <UContainer v-if="page" class="pt-24 sm:pt-32 lg:pt-40">
-    <UPage :ui="{ root: 'flex flex-col gap-y-8 lg:grid lg:grid-cols-10 lg:gap-10' }">
+    <UPage
+      :ui="{
+        root: 'flex flex-col gap-y-8 lg:grid lg:grid-cols-10 lg:gap-10',
+        center: 'lg:col-span-7 lg:order-last',
+        right: 'lg:order-first lg:col-span-3'
+      }"
+    >
       <!-- 1. HERO -->
       <UPageHero
         v-if="page.hero"
@@ -121,7 +127,7 @@ useSeoMeta({
       >
         <div class="gap-lg grid grid-cols-2">
           <div v-for="category in page.tech" :key="category.title" class="gap-md flex flex-col">
-            <h5 class="text-highlighted">{{ category.title }}</h5>
+            <h3 class="text-highlighted">{{ category.title }}</h3>
             <ul class="gap-xs flex flex-col">
               <li v-for="item in category.items" :key="item.label">
                 <UButton
@@ -210,12 +216,12 @@ useSeoMeta({
             <h3 class="text-highlighted">{{ item.role }}</h3>
             <span class="text-muted text-sm">{{ item.organization }}</span>
             <span class="text-muted/80 text-xs">{{ item.period }}</span>
-            <span v-if="item.field" class="text-muted/60 text-xs italic">{{ item.field }}</span>
+            <span v-if="item.field" class="text-muted/80 text-xs italic">{{ item.field }}</span>
           </div>
         </div>
       </UPageSection>
 
-      <template #left>
+      <template #right>
         <UPageAside
           :ui="{
             root: 'block overflow-y-auto lg:max-h-[calc(100vh-var(--ui-header-height))] lg:sticky lg:top-(--ui-header-height) pt-16 lg:pt-24 pb-8 lg:ps-4 lg:-ms-4 lg:pe-6.5'
@@ -284,7 +290,7 @@ useSeoMeta({
             <div v-if="page.sidebar?.about" class="gap-sm flex flex-col">
               <div class="gap-md flex flex-row items-center">
                 <UIcon name="lucide:user" size="xs" />
-                <h5 class="text-highlighted">{{ page.sidebar.about.title }}</h5>
+                <h4 class="text-highlighted">{{ page.sidebar.about.title }}</h4>
               </div>
               <USeparator />
               <ul class="text-neutral-900 dark:text-neutral-100">
@@ -306,14 +312,14 @@ useSeoMeta({
             <div v-if="languages.length" class="gap-sm flex flex-col">
               <div class="gap-md flex flex-row items-center">
                 <UIcon name="lucide:languages" size="xs" />
-                <h5 class="text-highlighted">{{ t("pages.resume.sections.languages.title") }}</h5>
+                <h4 class="text-highlighted">{{ t("pages.resume.sections.languages.title") }}</h4>
               </div>
               <USeparator />
               <ul class="gap-md flex flex-col">
                 <li v-for="lang in languages" :key="lang.name">
                   <div class="gap-xs flex flex-col">
                     <div class="flex w-full flex-row justify-between">
-                      <h6 class="text-highlighted text-sm">{{ lang.name }}</h6>
+                      <h5 class="text-highlighted text-sm">{{ lang.name }}</h5>
                       <span class="text-muted text-xs">{{ lang.level }}</span>
                     </div>
                     <UProgress :model-value="lang.progress" size="sm" />

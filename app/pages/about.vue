@@ -41,14 +41,12 @@ useSeoMeta({
 
 <template>
   <UPage v-if="page" class="pt-18 sm:pt-24 lg:pt-32">
-    <UPageSection
+    <UPageHero
       :title="t('pages.about.sections.hero.title')"
       :description="t('pages.about.sections.hero.description')"
-      orientation="vertical"
       :ui="{
         title: 'mx-0 text-left',
-        description: 'mx-0 text-left',
-        links: 'justify-start'
+        description: 'mx-0 text-left'
       }"
     >
       <div class="flex flex-col gap-24 sm:grid sm:grid-cols-3">
@@ -69,6 +67,6 @@ useSeoMeta({
         </div>
         <ContentRenderer :value="page" class="order-last sm:order-first sm:col-span-2" />
       </div>
-    </UPageSection>
+    </UPageHero>
   </UPage>
 </template>
