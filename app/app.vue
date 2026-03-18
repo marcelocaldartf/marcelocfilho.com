@@ -112,6 +112,44 @@ useHead({
 /* endregion */
 
 /* region Logic */
+const { isMobile } = useDevice()
+
+const targetX = ref(10)
+const targetY = ref(50)
+const currentX = ref(10)
+const currentY = ref(50)
+let animationId: number | null = null
+
+const updatePosition = () => {
+  // Smoothly interpolate current position towards target
+  currentX.value += (targetX.value - currentX.value) * 0.08
+  currentY.value += (targetY.value - currentY.value) * 0.08
+
+  document.documentElement.style.setProperty("--mouse-x", `${currentX.value}%`)
+  document.documentElement.style.setProperty("--mouse-y", `${currentY.value}%`)
+
+  animationId = requestAnimationFrame(updatePosition)
+}
+
+const handleMouseMove = (e: MouseEvent) => {
+  if (isMobile) return
+  targetX.value = (e.clientX / window.innerWidth) * 100
+  targetY.value = (e.clientY / window.innerHeight) * 100
+}
+
+onMounted(() => {
+  if (!isMobile) {
+    window.addEventListener("mousemove", handleMouseMove, { passive: true })
+    updatePosition()
+  }
+})
+
+onUnmounted(() => {
+  if (!isMobile) {
+    window.removeEventListener("mousemove", handleMouseMove)
+    if (animationId) cancelAnimationFrame(animationId)
+  }
+})
 /* endregion */
 </script>
 

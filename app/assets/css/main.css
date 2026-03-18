@@ -42,8 +42,18 @@
     inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 -1px 1px rgba(0, 0, 0, 0.1);
   --aero-border: 1px solid rgba(255, 255, 255, 0.3);
 
-  --aero-bg: radial-gradient(ellipse at left, #bae6fd 0%, #f0f9ff 100%);
-  --aero-bg-dark: radial-gradient(ellipse at left, #082f49 0%, #000000 100%);
+  --aero-bg: radial-gradient(
+    circle at var(--mouse-x, 10%) var(--mouse-y, 50%),
+    rgb(213, 237, 246) 0%,
+    rgb(245, 250, 255) 65%,
+    rgb(255, 255, 255) 100%
+  );
+  --aero-bg-dark: radial-gradient(
+    circle at var(--mouse-x, 10%) var(--mouse-y, 50%),
+    rgb(8, 48, 73) 0%,
+    rgb(1, 15, 25) 75%,
+    rgb(0, 0, 0) 100%
+  );
 }
 
 body {
@@ -56,6 +66,9 @@ body {
 }
 
 :root {
+  --mouse-x: 10%;
+  --mouse-y: 50%;
+
   ::selection {
     color: var(--color-neutral-900);
     background-color: var(--color-sky-700);
