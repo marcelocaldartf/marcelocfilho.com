@@ -247,7 +247,7 @@ export default defineNuxtConfig({
       xFrameOptions: "SAMEORIGIN",
       xContentTypeOptions: "nosniff"
     },
-    nonce: !process.dev,
+    nonce: true,
     ssg: {
       meta: true,
       hashScripts: true,
@@ -255,7 +255,7 @@ export default defineNuxtConfig({
       nitroHeaders: true,
       exportToPresets: false
     },
-    sri: !process.dev
+    sri: true
   },
 
   router: {
