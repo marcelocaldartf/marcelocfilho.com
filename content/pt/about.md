@@ -21,13 +21,13 @@ Olá, sou **Marcelo Caldart Filho**, Designer de Som e Músico de Curitiba. Há 
 
 Minha abordagem combina estratégia criativa com expertise técnica, transformando conceitos em experiências sonoras com propósito. Seja criando efeitos sonoros perfeitos ou compondo música atmosférica, meu foco é sempre criar valor para o projeto e seu público.
 
-### Minha Filosofia
+## Minha Filosofia
 
 Meu trabalho está enraizado na **criatividade** e na **resolução de problemas**. Acredito que um excelente design de som começa com a compreensão do 'porquê' – as necessidades, motivações e o núcleo emocional do projeto. Uso ferramentas especializadas como Reaper e Pro Tools para garantir que as soluções sonoras que construo sejam verdadeiramente eficazes.
 
 Esforço-me para criar áudio que pareça natural, onde a funcionalidade e a beleza trabalham lado a lado. Seja uma trilha ambiente sutil ou uma sequência de foley repleta de ação, meu foco está em entregar assets de alta qualidade prontos para integração.
 
-### Além das Telas
+## Além das Telas
 
 Quando não estou criando sons ou compondo música, você pode me encontrar explorando a cena cultural de Curitiba ou ocasionalmente contribuindo para projetos criativos.
 

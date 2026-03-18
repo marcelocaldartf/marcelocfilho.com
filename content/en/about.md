@@ -21,13 +21,13 @@ Hi, I'm **Marcelo Caldart Filho**, a Sound Designer and Musician based in Curiti
 
 My approach blends creative strategy with technical expertise, transforming concepts into purposeful sonic experiences. Whether I'm crafting pixel-perfect sound effects or composing atmospheric music, my focus is always on creating value for the project and its audience.
 
-### My Philosophy
+## My Philosophy
 
 My work is rooted in **creativity** and **problem-solving**. I believe great sound design starts with understanding the 'why' – the project's needs, motivations, and emotional core. I use specialized tools like Reaper and Pro Tools to ensure the sonic solutions I build are truly effective.
 
 I strive to create audio that feels effortless, where functionality and beauty work hand-in-hand. Whether it is a subtle ambient track or an action-packed foley sequence, my focus is on delivering high-quality assets ready for integration.
 
-### Beyond the Screen
+## Beyond the Screen
 
 When I'm not designing sounds or composing music, you might find me exploring Curitiba's cultural scene or occasionally contributing to creative projects.
 

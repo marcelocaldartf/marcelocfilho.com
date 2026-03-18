@@ -56,7 +56,7 @@ const contactFormSchema = object({
 
 type ContactFormValues = InferOutput<typeof contactFormSchema>
 
-const state = ref({
+const state = ref<ContactFormValues>({
   name: "",
   email: "",
   message: ""
@@ -132,7 +132,7 @@ async function onSubmit() {
 </script>
 
 <template>
-  <UPageSection>
+  <UPageHero>
     <template #title>
       <slot name="title" />
     </template>
@@ -246,5 +246,5 @@ async function onSubmit() {
         </UForm>
       </div>
     </div>
-  </UPageSection>
+  </UPageHero>
 </template>
