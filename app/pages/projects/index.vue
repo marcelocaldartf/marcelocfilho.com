@@ -64,16 +64,16 @@ useSeoMeta({
           v-for="project in projects"
           :key="project.title"
           :to="localePath(project.path)"
-          class="group"
+          class="group flex flex-col h-full"
         >
           <UPageCard
             :title="project.title"
             :description="project.description"
             variant="naked"
             :ui="{
-              root: 'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl shadow-xl overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1 ring-0 group-hover:ring-0',
+              root: 'h-full frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl shadow-xl overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1 ring-0 group-hover:ring-0',
               header: 'p-0 h-48 w-full relative overflow-hidden',
-              body: 'p-6',
+              body: 'p-6 flex-1',
               footer: 'p-6 pt-0 mt-auto'
             }"
           >

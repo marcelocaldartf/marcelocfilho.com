@@ -114,17 +114,22 @@ onUnmounted(() => {
             aria-label="Open Menu"
           />
           <template #body>
-            <div class="gap-md flex flex-col">
-              <UNavigationMenu orientation="vertical" :items="mobileLinks" color="primary" />
+            <div class="gap-sm flex flex-col">
+              <UNavigationMenu
+                orientation="vertical"
+                :items="mobileLinks"
+                color="primary"
+                :ui="{ list: 'gap-sm' }"
+              />
               <LazyUSeparator />
-              <div class="gap-sm flex flex-col">
+              <div class="gap-sm flex flex-col items-start">
                 <UButton
                   v-for="link in socials"
                   :key="link.label"
                   v-bind="link"
                   color="neutral"
                   variant="ghost"
-                  class="hover:text-primary-500 rounded-full"
+                  class="hover:text-primary rounded-full w-full justify-start"
                   :aria-label="link.label"
                 />
               </div>
@@ -143,8 +148,8 @@ onUnmounted(() => {
       </div>
 
       <!-- Center Section -->
-      <div class="pointer-events-none absolute left-1/2 -translate-x-1/2">
-        <span class="text-sm font-bold whitespace-nowrap">
+      <div class="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 sm:flex">
+        <span class="frutiger-gloss text-sm font-bold whitespace-nowrap rounded-full px-4 py-2">
           {{ t("app.title") }}
         </span>
       </div>
@@ -152,12 +157,12 @@ onUnmounted(() => {
       <!-- Right Section -->
       <div class="gap-sm flex items-stretch self-stretch">
         <div class="hidden items-center gap-1 sm:flex">
-          <UNavigationMenu :items="rightLinksMenu" color="primary" variant="pill" />
+          <UNavigationMenu :items="rightLinksMenu" color="primary" variant="pill" :ui="{ link: 'px-4 py-2' }" />
           <UButton
             v-bind="{ ...contactLink, label: undefined }"
             color="neutral"
             variant="ghost"
-            class="hover:text-primary-500 rounded-full"
+            class="hover:text-primary rounded-full"
             :aria-label="contactLink.label"
             :to="contactLink.to"
           />
@@ -170,7 +175,7 @@ onUnmounted(() => {
             v-bind="{ ...link, label: undefined }"
             color="neutral"
             variant="ghost"
-            class="hover:text-primary-500"
+            class="hover:text-primary rounded-full"
             :aria-label="link.label"
           />
         </div>
@@ -180,7 +185,7 @@ onUnmounted(() => {
             size="md"
             color="neutral"
             variant="ghost"
-            class="hover:text-primary-500"
+            class="hover:text-primary rounded-full"
             aria-label="Toggle color mode"
           />
 
@@ -197,7 +202,7 @@ onUnmounted(() => {
             color="neutral"
             size="md"
             icon="lucide:languages"
-            class="hover:text-primary-500 shrink-0"
+            class="hover:text-primary shrink-0 rounded-full"
             :ui="{
               base: 'w-fit min-w-0 h-9',
               leading: 'ps-2.5',

@@ -64,7 +64,7 @@ useSeoMeta({
     <div class="relative -mt-18 overflow-hidden pt-18 sm:-mt-24 sm:pt-24 lg:-mt-32 lg:pt-32">
       <MCLiquidBackground class="absolute inset-0 -z-10 opacity-70 dark:opacity-50" />
       <div
-        class="absolute inset-0 -z-1 bg-white/15 backdrop-blur-[1px] dark:bg-black/25"
+        class="absolute inset-0 -z-1 bg-white/15 backdrop-blur-[1px]"
       />
 
       <UPageHero
@@ -73,7 +73,8 @@ useSeoMeta({
         orientation="horizontal"
         :ui="{
           container: 'lg:py-24',
-          headline: 'flex justify-start'
+          headline: 'flex justify-start',
+          description: 'text-inverted'
         }"
       >
         <template #links>
@@ -123,16 +124,16 @@ useSeoMeta({
           v-for="project in projects"
           :key="project.title"
           :to="localePath(project.path)"
-          class="group"
+          class="group flex flex-col h-full"
         >
           <UPageCard
             :title="project.title"
             :description="project.description"
             variant="naked"
             :ui="{
-              root: 'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl shadow-xl overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1 ring-0 group-hover:ring-0',
+              root: 'h-full frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl shadow-xl overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1 ring-0 group-hover:ring-0',
               header: 'p-0 h-48 w-full relative overflow-hidden',
-              body: 'p-6',
+              body: 'p-6 flex-1',
               footer: 'p-6 pt-0 mt-auto'
             }"
           >
@@ -148,7 +149,7 @@ useSeoMeta({
                   variant="subtle"
                   color="primary"
                   size="lg"
-                  class="frutiger-gloss border-white/20 text-neutral-900 !shadow-lg dark:text-white !rounded-full"
+                  class="frutiger-gloss border-white/20 text-neutral-900 shadow-lg! dark:text-white rounded-full!"
                 >
                   {{ project.date ? new Date(project.date).getUTCFullYear() : "" }}
                 </UBadge>
@@ -163,7 +164,7 @@ useSeoMeta({
                   variant="subtle"
                   color="primary"
                   size="lg"
-                  class="frutiger-gloss border-white/10 text-neutral-900 !shadow-sm dark:text-white !rounded-full"
+                  class="frutiger-gloss border-white/10 text-neutral-900 shadow-sm! dark:text-white rounded-full!"
                 >
                   {{ tag }}
                 </UBadge>
@@ -204,8 +205,6 @@ useSeoMeta({
         :description="t('pages.home.sections.faq.description')"
         :ui="{
           root: 'overflow-hidden px-4 md:px-0',
-          container:
-            'frutiger-gloss bg-primary/5 dark:bg-primary/10 rounded-3xl p-6 shadow-xl sm:p-12 gap-md sm:gap-md max-w-4xl mx-auto',
           title: 'text-center text-xl sm:text-2xl lg:text-3xl font-medium',
           description: 'text-center text-sm sm:text-md lg:text-sm text-muted'
         }"
@@ -245,30 +244,36 @@ useSeoMeta({
     </ClientOnly>
 
     <!-- Post CTA -->
-    <UPageCTA
-      :title="t('pages.contact.sections.form.title')"
-      :description="t('pages.contact.sections.hero.description')"
-      variant="naked"
-      :ui="{
-        root: 'py-16 sm:py-24 px-4 md:px-0',
-        container:
-          'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl p-8 sm:p-16 max-w-4xl mx-auto text-center shadow-xl',
-        title: 'text-2xl sm:text-3xl lg:text-4xl font-medium',
-        description: 'text-muted sm:text-lg'
-      }"
-    >
-      <template #links>
-        <div class="flex justify-center">
-          <UButton
-            :label="t('pages.home.sections.hero.actions.talk')"
-            :to="localePath('/contact')"
-            color="neutral"
-            variant="ghost"
-            size="lg"
-            class="hover:text-primary-500"
-          />
-        </div>
-      </template>
-    </UPageCTA>
+    <div class="relative -mx-4 overflow-hidden py-16 sm:-mx-4 sm:py-24 md:mx-0 md:px-0">
+      <MCLiquidBackground class="absolute inset-0 -z-10 opacity-70 dark:opacity-50" />
+      <div
+        class="absolute inset-0 -z-1 bg-white/15 backdrop-blur-[1px]"
+      />
+      <UPageCTA
+        :title="t('pages.contact.sections.form.title')"
+        :description="t('pages.contact.sections.hero.description')"
+        variant="naked"
+        :ui="{
+          root: 'px-4 md:px-0',
+          container:
+            'frutiger-gloss bg-primary/12 dark:bg-primary/20 rounded-3xl p-8 sm:p-16 max-w-4xl mx-auto text-center shadow-xl',
+          title: 'text-2xl sm:text-3xl lg:text-4xl font-medium',
+          description: 'text-inverted sm:text-lg'
+        }"
+      >
+        <template #links>
+          <div class="flex justify-center">
+            <UButton
+              :label="t('pages.home.sections.hero.actions.talk')"
+              :to="localePath('/contact')"
+              color="neutral"
+              variant="ghost"
+              size="lg"
+              class="hover:text-primary-500"
+            />
+          </div>
+        </template>
+      </UPageCTA>
+    </div>
   </UPage>
 </template>

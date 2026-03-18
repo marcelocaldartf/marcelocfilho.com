@@ -38,26 +38,21 @@ export default defineAppConfig({
       slots: {
         root: "relative flex flex-col sm:flex-row",
         list: "gap-2",
-        link: "rounded-full transition-all duration-300 before:rounded-full"
+        link: "frutiger-gloss rounded-full transition-all duration-300 before:rounded-full"
       },
       variants: {
         active: {
+          true: {
+            link: "text-primary font-bold bg-transparent",
+            linkLeadingIcon: "text-primary"
+          },
           false: {
-            link: "text-neutral-950 dark:text-white hover:text-primary-500",
-            linkLeadingIcon: "text-neutral-950 dark:text-white group-hover:text-primary-500"
+            link: "text-neutral-950 dark:text-white hover:text-primary",
+            linkLeadingIcon: "text-neutral-950 dark:text-white group-hover:text-primary"
           }
         }
       },
-      compoundVariants: [
-        {
-          active: true,
-          variant: "pill",
-          class: {
-            link: "frutiger-gloss text-primary font-bold bg-transparent",
-            linkLeadingIcon: "text-primary"
-          }
-        }
-      ]
+      compoundVariants: []
     },
     selectMenu: {
       slots: {
@@ -114,13 +109,13 @@ export default defineAppConfig({
       slots: {
         root: "backdrop-blur-sm",
         overlay: "bg-neutral-950/50 dark:bg-neutral-950/70",
-        content: "bg-white dark:bg-sky-950/95 rounded-r-2xl",
+        content: "bg-white/40 dark:bg-sky-950/30 backdrop-blur-2xl rounded-r-2xl",
         close: "rounded-full size-9 shrink-0"
       },
       variants: {
         side: {
           left: {
-            content: "max-w-md"
+            content: "max-w-2/3"
           }
         }
       }
