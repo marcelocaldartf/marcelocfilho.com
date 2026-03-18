@@ -79,7 +79,7 @@ const headline = computed(() => findPageHeadline(navigation?.value, page.value?.
         />
 
         <div class="mb-12 flex flex-wrap items-center gap-3">
-          <UBadge v-for="tag in page.tags" :key="tag" variant="subtle" color="neutral" size="md">
+          <UBadge v-for="tag in page.tags" :key="tag" variant="subtle" color="neutral" size="md" class="!rounded-full">
             {{ tag }}
           </UBadge>
           <div class="bg-default mx-2 h-4 w-px" />

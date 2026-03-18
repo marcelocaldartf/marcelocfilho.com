@@ -92,10 +92,10 @@ useSeoMeta({
             <div class="mt-4 flex w-full justify-center lg:justify-start">
               <UButton
                 size="md"
-                variant="solid"
-                color="primary"
+                variant="ghost"
+                color="neutral"
                 :label="t('pages.home.sections.blog.readMore')"
-                class="min-w-32"
+                class="min-w-32 hover:text-primary-500"
               >
                 <template #trailing>
                   <UIcon name="lucide:arrow-right" class="size-4" />

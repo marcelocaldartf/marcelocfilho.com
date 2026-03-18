@@ -90,7 +90,7 @@ useSeoMeta({
                   variant="subtle"
                   color="primary"
                   size="lg"
-                  class="frutiger-gloss border-white/20 text-neutral-900 !shadow-lg dark:text-white"
+                  class="frutiger-gloss border-white/20 text-neutral-900 !shadow-lg dark:text-white !rounded-full"
                 >
                   {{ project.date ? new Date(project.date).getUTCFullYear() : "" }}
                 </UBadge>
@@ -105,19 +105,19 @@ useSeoMeta({
                   variant="subtle"
                   color="primary"
                   size="lg"
-                  class="frutiger-gloss border-white/10 text-neutral-900 !shadow-sm dark:text-white"
+                  class="frutiger-gloss border-white/10 text-neutral-900 !shadow-sm dark:text-white !rounded-full"
                 >
                   {{ tag }}
                 </UBadge>
               </div>
-              <UButton
-                :label="t('pages.projects.viewProject')"
-                trailing-icon="lucide:arrow-right"
-                variant="ghost"
-                color="neutral"
-                size="md"
-                class="hover:text-primary-500 pointer-events-none w-auto px-0"
-              />
+              <ULink
+                :to="localePath(project.path)"
+                class="inline-flex items-center gap-1 text-sm font-medium text-neutral hover:text-primary-500"
+                @click.stop
+              >
+                {{ t("pages.projects.viewProject") }}
+                <UIcon name="lucide:arrow-right" class="size-4" />
+              </ULink>
             </template>
           </UPageCard>
         </ULink>

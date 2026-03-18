@@ -103,7 +103,6 @@ onUnmounted(() => {
         <USlideover
           v-model:open="open"
           side="left"
-          :ui="{ content: 'w-2/3' }"
           :title="t('app.title')"
           :description="t('app.description')"
         >
@@ -125,7 +124,7 @@ onUnmounted(() => {
                   v-bind="link"
                   color="neutral"
                   variant="ghost"
-                  class="hover:text-primary-500"
+                  class="hover:text-primary-500 rounded-full"
                   :aria-label="link.label"
                 />
               </div>
@@ -134,15 +133,12 @@ onUnmounted(() => {
         </USlideover>
 
         <div class="hidden items-center sm:flex">
-          <UNavigationMenu :items="leftLinks" color="primary" variant="pill" />
+          <UNavigationMenu :items="leftLinks" color="primary" variant="pill" :ui="{ link: 'px-4 py-2' }" />
         </div>
       </div>
 
       <!-- Center Section -->
-      <div
-        class="pointer-events-none absolute left-1/2 -translate-x-1/2 transition-opacity duration-300"
-        :class="isScrolled ? 'opacity-100' : 'opacity-0'"
-      >
+      <div class="pointer-events-none absolute left-1/2 -translate-x-1/2">
         <span class="text-sm font-bold whitespace-nowrap">
           {{ t("app.title") }}
         </span>

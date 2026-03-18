@@ -38,7 +38,7 @@ export default defineAppConfig({
       slots: {
         root: "relative flex flex-col sm:flex-row",
         list: "gap-2",
-        link: "rounded-full transition-all duration-300"
+        link: "rounded-full transition-all duration-300 before:rounded-full"
       },
       variants: {
         active: {
@@ -106,6 +106,21 @@ export default defineAppConfig({
           },
           false: {
             link: "text-neutral-950 dark:text-white hover:bg-primary/5 dark:hover:bg-primary/10"
+          }
+        }
+      }
+    },
+    slideover: {
+      slots: {
+        root: "backdrop-blur-sm",
+        overlay: "bg-neutral-950/50 dark:bg-neutral-950/70",
+        content: "bg-white dark:bg-sky-950/95 rounded-r-2xl",
+        close: "rounded-full size-9 shrink-0"
+      },
+      variants: {
+        side: {
+          left: {
+            content: "max-w-md"
           }
         }
       }
