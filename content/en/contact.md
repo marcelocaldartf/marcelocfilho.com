@@ -14,8 +14,9 @@ sitemap:
 ---
 
 ::contact
----
-title: Send a Message
-description: Feel free to contact me for business inquiries or other topics!
----
+#title
+Send me a message
+
+#description
+Feel free to contact me for business inquiries or other topics!
 ::
