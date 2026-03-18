@@ -61,34 +61,41 @@ useSeoMeta({
 <template>
   <UPage class="pt-18 sm:pt-24 lg:pt-32">
     <!-- Hero Section -->
-    <UPageHero
-      :title="t('pages.home.sections.hero.title')"
-      :description="t('pages.home.sections.hero.description')"
-      orientation="horizontal"
-      :ui="{
-        container: 'lg:py-24',
-        headline: 'flex justify-start'
-      }"
-    >
-      <template #links>
-        <div class="gap-md flex flex-col items-start">
-          <UButton
-            :label="t('pages.home.sections.hero.actions.talk')"
-            :to="localePath('/contact')"
-            color="neutral"
-            variant="ghost"
-            size="lg"
-            class="hover:text-primary-500"
-          />
-        </div>
-      </template>
-
+    <div class="relative -mt-18 overflow-hidden pt-18 sm:-mt-24 sm:pt-24 lg:-mt-32 lg:pt-32">
+      <MCLiquidBackground class="absolute inset-0 -z-10 opacity-70 dark:opacity-50" />
       <div
-        class="frutiger-gloss aspect-video overflow-hidden rounded-3xl border border-sky-200/50 bg-white/10 shadow-2xl dark:border-sky-500/30 dark:bg-sky-950/20"
+        class="absolute inset-0 -z-1 bg-white/15 backdrop-blur-[1px] dark:bg-black/25"
+      />
+
+      <UPageHero
+        :title="t('pages.home.sections.hero.title')"
+        :description="t('pages.home.sections.hero.description')"
+        orientation="horizontal"
+        :ui="{
+          container: 'lg:py-24',
+          headline: 'flex justify-start'
+        }"
       >
-        <ScriptYouTubePlayer video-id="uH1Hw6SDI1M" trigger="onElementVisible" />
-      </div>
-    </UPageHero>
+        <template #links>
+          <div class="gap-md flex flex-col items-start">
+            <UButton
+              :label="t('pages.home.sections.hero.actions.talk')"
+              :to="localePath('/contact')"
+              color="neutral"
+              variant="ghost"
+              size="lg"
+              class="hover:text-primary-500"
+            />
+          </div>
+        </template>
+
+        <div
+          class="frutiger-gloss aspect-video overflow-hidden rounded-3xl border border-sky-200/50 bg-white/10 shadow-2xl dark:border-sky-500/30 dark:bg-sky-950/20"
+        >
+          <ScriptYouTubePlayer video-id="uH1Hw6SDI1M" trigger="onElementVisible" />
+        </div>
+      </UPageHero>
+    </div>
 
     <!-- About Section -->
     <UPageSection

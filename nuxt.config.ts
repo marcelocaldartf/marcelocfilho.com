@@ -133,7 +133,7 @@ export default defineNuxtConfig({
   vite: {
     clearScreen: false,
     optimizeDeps: {
-      include: ["@vue/devtools-core", "@vue/devtools-kit"]
+      include: ["@vue/devtools-core", "@vue/devtools-kit", "ogl", "clsx", "tailwind-merge"]
     }
   },
 
